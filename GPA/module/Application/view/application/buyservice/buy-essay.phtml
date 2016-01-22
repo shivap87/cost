@@ -1,0 +1,370 @@
+<?php 
+use Common\ActionForms\ExplorerForm;
+use Common\Utilities\Constants;
+use Zend\Session\SessionManager;
+use Zend\Session\Container;
+$session = new Container('user');
+$uid=$this->uid;
+$service_id=$this->service_id;
+/*
+$paypal_url=Constants::ESSAY_PAYPAL_URL; // Paypal API URL
+$paypal_id=Constants::ESSAY_PAYPAL_ID; // Business email ID
+
+$service_name=$this->service_name;
+$cop_code=$this->coupon_data;
+//calculate coupon programatically
+$c_id='';$aft_dis_cost=$this->service_cost;
+if(count($cop_code)>0){	
+	$session->coupon_used='yes';
+	$c_id="&&".$cop_code->coupon_id;
+	if($cop_code->discount_type=="flat"){	
+		$aft_dis_cost=$this->service_cost-$cop_code->discount_value;
+	}
+	if($cop_code->discount_type=="percentage"){		
+		$aft_dis_cost=round($this->service_cost-(($this->service_cost*$cop_code->discount_value)/100),2);
+	}
+	$session->ser_cost=$aft_dis_cost;
+}
+*/
+
+?>
+
+
+
+<!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper pscontentContainer">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+            Buy Essay Review Service
+            <!-- <small>Advice from Your UCEazy Counselor</small>-->
+          </h1>
+         <ol class="breadcrumb">
+            <li><a href="/user/index"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li class="active">Buy Essay Review Service</li>
+            
+          </ol>
+        </section>
+        <section class="content">
+          <div class="introContent bg-red">
+            <div class="bg-blackTrans" style="padding:30px;">
+                <!-- 
+                <div class="inner text-center" >
+                  <h3>Early Black Friday Sale!</h3>
+                  <h3>UC Essay Reviews are 30% OFF?</h3>
+                  <div>
+                      <a href="/buyservice/buyEssay" class="btn btn-danger btn-lg" style="margin-top:10px">Let's get started!</a>
+                    </div>
+                </div>-->
+                <!-- for Paid user -->
+                <div class="inner text-center" >
+                  <div class="bannerText">"I have seen the reviews. These are much more comprehensive than what my son received from a professional counselor last year when he was applying to college."</div>
+                  <p><i>- Vinnie Gupta (UCLA Parent and UCEazy CEO)</i></p>
+                  
+                </div>
+              
+              </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 col-lg-push-8">
+              <div id="generalPanel" class="box box-default box-solid">
+                <div class="box-header bg-blue ">
+                  <h3 class="box-title">Buy Essay Review Service</h3>                   
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                  <div class="form-group" align="center">
+                  	 <div class="form-group form-group-sm " style="height: 293px ;">
+							
+						<strong><label class="btn-success col-sm-12" style="padding:10px;margin-top: 25%">Essay Review is now closed but you can still take advantage of our expert advice in our app</label></strong>
+						</div>
+                  
+                  <!--  
+                    <form class="form-horizontal" id="" action="<?php echo $paypal_url; ?>" method="post" name="frmPayPal1">
+		                <input type="hidden" name="business" value="<?php echo $paypal_id; ?>">
+		                <input type="hidden" name="cmd" value="_xclick">
+		                <input type="hidden" name="item_name" value="Essay service">
+		                <input type="hidden" name="item_tatal" value="1">
+		                <input type="hidden" name="no_of_service" value="1">                
+		                <input type="hidden" name="userid" value="<?php echo $uid; ?>">
+		               <!-- enable when actual coupon is activated  <input type="hidden" name="custom" value="<?php echo $service_id."&&".$service_name."&&".$uid; ?>" id="custom">-->
+		               <!--<input type="hidden" name="custom" value="<?php echo $service_id."&&".$service_name."&&".$uid.$c_id; ?>" id="custom">		
+		                <input type="hidden" name="amount" value="<?php echo $aft_dis_cost?>" id='ser_amt'>                
+		                <input type="hidden" name="no_shipping" value="1">
+		                <input type="hidden" name="currency_code" value="USD">
+		                <input type="hidden" name="handling" value="0">
+		                <input type='hidden' name='rm' value='2'>
+		                <input type="hidden" name="lc" value="" />    			
+		    			<input type="hidden" name="no_note" value="1" />
+		                <input type="hidden" name="cancel_return" value="<?php echo Constants::ESSAY_PAYPAL_CANCEL_URL; ?>">
+		                <input type="hidden" name="return" value="<?php echo Constants::ESSAY_PAYPAL_RETURN_URL; ?>">
+     				
+					<?php if(isset($this->eligible)&& $this->eligible=='no'){?>
+		              <p class="bg-danger" style="margin: 1%">Sorry, You can't purchase two essay services at a time. Please click the below link to go to an existing essay service.		              
+		              </p><br> <a class="btn btn-info" href="/buyservice/essay">click here</a>
+		              <?php }?>
+		              <?php if(isset($this->is_desktop) && $this->is_desktop!='desktop'){?>
+		              	<h4 class="bg-danger" style="margin: 1%">UCEazy Essay Review service buying using PayPal is currently supported on desktop browsers only.</h4>
+		              <?php } ?>
+		              
+		                <!-- form start -->
+		                  
+		                
+              		<?php if(isset($this->eligible)&& $this->eligible=='yes' && isset($this->is_desktop) && $this->is_desktop=='desktop'){?>
+              				<?php /*if($this->coupon_avil=='yes' && count($cop_code)>0){
+              					$offer_txt='';
+              					if($cop_code->discount_type=='flat'){
+              						$offer_txt='FLAT $'.$cop_code->discount_value;	
+              					}if($cop_code->discount_type=='percentage'){
+              						$offer_txt=$cop_code->discount_value."%";
+              					}*/
+              					
+              				?>
+              				
+              					<!--  <h4 class="col-sm-12 " align="center">The team at UcEazy have put together something special just for you. you can get <?php echo $offer_txt; ?> of discount by using following coupon <strong><i><?php echo $cop_code->code; ?></i></strong></h4>-->
+              				<?php //}?>
+		                  <!--<div class="col-lg-12 text-center">
+              			 <?php if(count($cop_code)>0){?>
+                       <div class="form-group form-group-sm ">
+							<?php if($cop_code->code=='firstTimeuser'){
+								$str="Early bird discount of ";
+								$str1="Cost after early bird discount";
+							}else{
+								$str="Returning user discount of ";
+								$str1="Cost after returning user discount";
+							}
+							?>
+						<strong><label class="btn-success col-sm-12" style="padding:10px;"><?php echo $str.$cop_code-> discount_value; ?>% for a limited time</label></strong>
+						</div>
+						<?php  }?>
+						<div class="form-group form-group-sm" style=" text-align:left;">
+							<label class="col-sm-7 col-xs-7 " for="formGroupInputSmall" style="padding-top:7px;" >Service Cost</label>
+							<div class="col-sm-5 col-xs-5" >
+								<label for="" class="col-sm-1" style="font-size:20px;"><strong>$99.99 </strong> </label>								
+							</div>
+						</div>
+						
+						 <!-- <div class="form-group form-group-sm">
+							<label class="col-sm-4 control-label" for="formGroupInputSmall">Coupon Code</label>
+							<div class="col-sm-7">
+								<input class="col-sm-5" type="text" id="coupon_code" value="" placeholder="coupon code goes here" autocomplete="off">
+								<button type="button" data-loading-text="applying..." class="btn btn-primary col-sm-2" id="coupon_submit" href="#" role="button" style="margin-left: 2%" >Apply</button>								
+							</div>
+						</div>-->
+
+						<!--<div class="form-group form-group-sm" data-div='last' style=" text-align:left;">
+							<label class="col-sm-7 col-xs-7" for="formGroupInputSmall"  style="padding-top:7px;"><?php echo $str1;?> </label>
+							<div class="col-sm-5 col-xs-5">
+								<label for="" class="col-sm-1" id="aft_dis_cost"  style="font-size:20px;"><strong>$<?php echo $aft_dis_cost;?> </strong> </label>
+								
+							</div>
+						</div>
+							</div><!-- /.widget box -->
+                      
+                        <?php }?>
+        
+                  <!--<div class="box-footer text-center"> 
+                                 	 
+                  <?php if(isset($this->eligible)&& $this->eligible=='yes' && isset($this->is_desktop) && $this->is_desktop=='desktop'){?>
+                   
+                   <div class="box-body col-md-12  text-center">                     
+                     <input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                    </div>
+                    <div class="clearfix"></div>
+                    <h5><i><strong>Disclaimer: There are no refunds and we are not guaranteeing the essay will help secure a college admission.</strong></i></h5>
+                    <?php }?>
+                     <?php if(isset($session->cancel_flag) && isset($_GET['cancel-flag']) && $session->cancel_flag==$_GET['cancel-flag']){?>
+		                   <div id="payment_cancel" class="alert alert-danger col-sm-12" >
+		               	<div class="info-text-container-failure ">
+		                  	<i class="fa fa-close "></i> 
+		                    <span class="info-text" id="">
+		                    The Payment has been cancelled!
+		                    </span>
+		                </div>
+		              	</div>
+		              	<?php $session->cancel_flag=""; } ?>
+						
+				        <?php if(isset($session->failed_flag) && isset($_GET['fail-flag']) && $session->fail_flag==$_GET['failed-flag']){?>
+		                  <div id="payment_cancel" class="alert alert-danger col-sm-12" >
+		               	<div class="info-text-container-failure ">
+		                  	<i class="fa fa-close "></i> 
+		                    <span class="info-text" id="">
+		                    	The Payment has been cancelled. The reason is <br>
+		                    	<?php echo  $session->failed_reason; ?>
+		                    </span>
+		                 </div>
+		              </div> 
+		              <?php }?>
+		              
+		              <?php if(isset($session->custom_flag) && isset($_GET['flag']) && $session->custom_flag==$_GET['flag']){?>
+		                   <div id="payment_cancel" class="alert alert-danger col-sm-12" >
+		               	<div class="info-text-container-failure ">
+		                  	<i class="fa fa-close "></i> 
+		                    <span class="info-text" id="">
+		                    The Transaction is incomplete. Please contact <a href="mailto:support@uceazy.com" style="color:#3c8dbc"> support@uceazy.com</a>
+		                    </span>
+		                </div>
+		              	</div>
+		              	<?php $session->custom_flag=""; } ?>
+                                        
+                  </div><!-- /.box-footer -->
+                  <!--<input type="hidden" id="ser_id" value="<?php echo $service_id; ?>">
+                </form>-->
+                  </div>                 
+                   
+                </div>
+              </div>
+            </div>
+            <!-- Column -->
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 col-lg-pull-4  mobilePaddingTop" >
+              <div id="generalPanel" class="box box-default box-solid">
+                <div class="box-header bg-blue ">
+                  <h3 class="box-title">About Essay Review</h3>                   
+                </div>
+                <div style="font-size:14px; padding:15px;">
+                <p >Our specialized method consists of a two-step process with two reviewers who go through your personal statements and provide feedback. 
+                </p>
+                <p>The first reviewer is a current or former UC student who has experience in editing, the English language, and the UC system itself. Each one wrote a personal statement and got into a University of California.</p>
+                <p>The second step of the review builds upon the first - an experienced editor will look over the comments of the first and add more, focusing on clarity and the story that best represents you.</p>
+                <p style="padding-bottom:15px;">&nbsp;</p>
+                </div>
+              </div>
+            </div>
+            <!-- Column -->
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 col-lg-pull-4  mobilePaddingTop" >
+              <div id="generalPanel" class="box box-default box-solid">
+                <div class="box-header bg-blue ">
+                  <h3 class="box-title">Meet Stacey, one of our essay reviewers</h3>                   
+                </div>
+                <div style="font-size:14px; padding:15px;">
+                	<img src="../dist/img/team/stacey.jpg" alt="Stacey" style="width:45%; height:45%; float:left;" />
+                	<h3 class="reviewerTitle">Stacey Ho Ching </h3>
+
+                	<div class="clearfix"></div>
+	                <ul style="margin:0px; padding:20px 20px 0px 20px;">
+	                	<li>UCLA Undergraduate</li>
+						<li>Masters in Counseling from University of Maryland</li>
+						<li>Admissions Advising certificate from Berkeley</li>
+						<li>Over 10 years experience in college counseling and UC essay reviews</li>
+	                </ul>
+                </div>
+              </div>
+            </div>
+          </div><!-- ./row -->
+          <h5> Have a question? <a href="mailto:support@uceazy.com" style="color:#3c8dbc"> support@uceazy.com</a> </h5>
+      </section>
+      
+    </div>
+    
+<!-- REQUIRED JS SCRIPTS -->
+
+    <!-- jQuery 2.1.4 -->
+    <script src="/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <!-- Bootstrap 3.3.2 JS -->
+    <script src="/dist/js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- InputMask -->
+    <script src="/plugins/input-mask/jquery.inputmask.js" type="text/javascript"></script>
+    <script src="/plugins/input-mask/jquery.inputmask.date.extensions.js" type="text/javascript"></script>
+    <script src="/plugins/input-mask/jquery.inputmask.extensions.js" type="text/javascript"></script>
+
+    <!-- ChartJS 1.0.1 -->
+    <script src="/plugins/chartjs/Chart.min.js" type="text/javascript"></script>
+
+    <!-- Slimscroll -->
+    <script src="/plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <!-- FastClick -->
+    <script src='/plugins/fastclick/fastclick.min.js'></script>
+    <!-- AdminLTE App -->
+    <script src="/dist/js/app.min.js" type="text/javascript"></script>
+    <!-- Custom Script -->
+    <script src="/dist/js/custom.js" type="text/javascript"></script>
+
+    <!-- jquery scrollbar Script -->
+    <script src="/dist/js/jquery.scrollbar.min.js" type="text/javascript"></script>
+    <script src="/dist/js/buyService.js" type="text/javascript"></script>
+	
+<script type="text/javascript">
+/*
+$(document).on('click', "#coupon_submit", function(e){
+	e.preventDefault();
+	var btn = $(this);		
+	var ser_id=$("#ser_id").val();
+	var coup_val=$("#coupon_code").val();
+	if(coup_val==''){
+		$('[data-div="last"]').before("<label style='color:red' id='coupon_err'>Please enter the valid coupon code</label>");
+	}else{
+		$("#coupon_err").remove();
+		btn.button('loading');
+		 var data = {"ser_id" : ser_id,coup_val:coup_val};
+				data=$.param(data);
+			    $.ajax({
+			      type: "POST",
+			      dataType: "json",
+			      url: "/buyservice/applyCoupon", 
+			      data: data,
+			      success: function(data) {				      
+		  		    if(data['status']=="valid"){
+		  		    	$('[data-div="last"]').before("<label style='color:green' id='coupon_err'>The coupon code added successfully</label>");
+		  		    	$("#aft_dis_cost").text("$"+data['new_cost']);
+		  		    	$("#ser_amt").val(data['new_cost']);
+		  		    	$("#custom").val( $("#custom").val()+"&&" +data['coup_id'] )
+		  		    	setTimeout(function(){$('#coupon_err').remove();},8000);
+		  		    	btn.button('reset');	
+					 
+					
+					}if(data['status']=='invalid'){
+						$('[data-div="last"]').before("<label style='color:red' id='coupon_err'>The coupon code is invalid</label>");
+		  		    	setTimeout(function(){$('#coupon_err').remove();},5000);
+		  		    	btn.button('reset');
+					}if(data['status']=='expired'){
+						$('[data-div="last"]').before("<label style='color:red' id='coupon_err'>The coupon code is expired</label>");
+		  		    	setTimeout(function(){$('#coupon_err').remove();},5000);
+		  		    	btn.button('reset');
+					}
+					if(data['status']=='notFor'){
+						$('[data-div="last"]').before("<label style='color:red' id='coupon_err'>The coupon code is not applicable for this service</label>");
+		  		    	setTimeout(function(){$('#coupon_err').remove();},5000);
+		  		    	btn.button('reset');
+					}
+					if(data['status']=='noteligible'){
+						$('[data-div="last"]').before("<label style='color:red' id='coupon_err'>You are not eligible to use this coupon code</label>");
+		  		    	setTimeout(function(){$('#coupon_err').remove();},5000);
+		  		    	btn.button('reset');
+					}
+
+										
+
+			      },
+			      error: function(xhr, textStatus, errorThrown){
+			          alert('Oops!  Looks like something went wrong');
+			        btn.button('reset');
+			         
+			       },
+		  		    complete: function(xhr, textStatus){
+			   		 
+			   		}
+			    });
+			    return false;
+
+		
+	}	
+		
+	
+});
+*/
+</script>
+
+<!-- Feedbackify -->  
+<script type="text/javascript">
+var fby = fby || [];
+fby.push(['showTab', {id: '9871', position: 'right', color: '#EB0000'}]);
+
+(function () {
+   var f = document.createElement('script'); f.type = 'text/javascript'; f.async = true;
+   f.src = '//cdn.feedbackify.com/f.js';
+   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(f, s);
+})();
+</script>  
+
+    

@@ -1,0 +1,213 @@
+
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper pscontentContainer">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+            Personal Statement
+            <small>What Makes a Great Personal Statement</small>
+          </h1>
+          <ol class="breadcrumb">
+            <li><a href="/user/index"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li><a href="/plan/index"><i class="ion ion-gear-b"></i> Plan</a></li>
+            <li class="active">Personal Statement</li>
+          </ol>
+        </section>
+
+        
+        <!-- Main content -->
+        <section>
+          <div id="welcome" >
+            <div class="pscontentArea row">
+              <!-- Right side content -->
+            <div class="col-lg-3 col-lg-push-9 col-md-12 col-sm-12 col-xs-12 rightSideContainer">
+                <div class="box box-warning ">
+                    <div class="box-header with-border">
+                      <h3 class="box-title"><i class="fa fa-file-video-o"></i> Hear from An Expert</h3>
+                    </div>
+                  <div class="box-body" >
+                    <!-- <div class="embed-responsive embed-responsive-16by9">
+                      <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/sqpw3NynsTE"></iframe>
+                    </div>-->
+                    <div id="myCarousel" class="carousel slide" data-interval="false">
+                      <!-- <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1" class=""></li>
+                      </ol>-->
+                      <div class="carousel-inner">
+                        <div class="item active">
+                          <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/VtcjW5VJu68?showinfo=0&amp;" allowfullscreen></iframe>
+                          </div>
+                        </div>
+                        <div class="item">
+                          <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/uICkkTMbahU?showinfo=0&amp;" allowfullscreen ></iframe>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- <a class="left carousel-control" href="#myCarousel" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
+                      <a class="right carousel-control" href="#myCarousel" data-slide="next"><i class="fa fa-chevron-right"></i></a>-->
+
+                      <!-- Controls buttons -->
+                      <div class="videoPagnination" >
+                          <input type = "button" class = "btn slide-one active" value = "1">
+                          <input type = "button" class = "btn slide-two" value = "2">            
+                      </div>
+                    </div>
+                  
+                  </div><!-- /.box-body -->
+                </div><!-- /.box -->           
+                <div id="myAffix" class="box box-default visible-lg" data-spy="affix" data-offset-top="300">
+                    <div class="box-header with-border">
+                      <h3 class="box-title"><i class="fa fa-pencil"></i> My Notes</h3>
+                    </div>
+                  <div class="box-body">
+                        <textarea class="form-control" rows="3" placeholder="Coming Soon..." readonly="readonly"></textarea>
+                        <button class="btn btn-default marginTop" disabled="true">Save My Notes </button>
+                  </div><!-- /.box-body -->
+                </div><!-- /.box -->
+                <!-- social media -->
+                <div id="myAffix1" class="box box-solid visible-lg" data-spy="affix" data-offset-top="300">
+                    <div class="box-header ">
+                      <h3 class="box-title"><i class="fa fa-share-alt"></i> Follow Us</h3>
+                      <div class=" pull-right " >
+                        <div  class="fixedBtn"><a href="https://www.facebook.com/askuceazy" class="bg-facebook" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a></div>
+                        <div class="fixedBtn"><a href="https://twitter.com/Uaskuceazy?lang=en" class="bg-twitter" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></div>
+                        <div class="fixedBtn"><a href="https://www.linkedin.com/company/uceazy" class="bg-linkedin" target="_blank" title="Linkedin"><i class="fa fa-linkedin"></i></a></div>
+
+
+						<!-- <div class="fixedBtn"><a href="#" class="bg-google-plus"><i class="fa fa-google-plus"></i></a></div>
+                        <div class="fixedBtn"><a href="#" class="bg-instagram"><i class="fa fa-instagram"></i></a></div>
+                        <div class="fixedBtn"><a href="#" class="bg-pinterest"><i class="fa fa-pinterest"></i></a></div>-->
+                      </div>  
+                    </div>
+                </div>
+            </div>
+            <!-- ./Right side content -->
+
+            <div class="col-lg-9 col-lg-pull-3 col-md-12 col-sm-12 col-xs-12">
+              <p class="lead"><strong>Before you start your personal statement, here are a few things you should know...</strong></p>
+              <p class="infoText text-blue"><strong>None of the CSU's require personal statements (yay!)</strong></p>
+              <ul>
+                <li><strong>All</strong> nine UC undergraduate campuses require <strong>two</strong> personal statements</li>
+                <li>For incoming freshmen, the prompts are:
+                <ul>
+                  <li><strong>Prompt 1:</strong> <br />Describe the world you come from -
+                  <i>for example, your family, community or school - and tell us how your world has shaped your dreams and aspirations.</i>
+                  </li>
+                  <li><strong>Prompt 2:</strong> <br />Tell us about a personal quality, talent, accomplishment, contribution or experience that is important to you. What about this quality or accomplishment makes you proud and how does it relate to the person you are?
+                  </li>
+                </ul>
+                </li>
+                <li>The word limit is 1000 words BETWEEN the two personal statements
+                  <ul>
+                    <li>You can break it down to 500 words per essay, or 600/400 - whatever you like!</li>
+                    <li>Minimum for each essay is 250</li>
+                  </ul>
+                </li>
+                
+              </ul>
+              <?php if($this->service_eligible=="yes"){?>
+              <button type="submit" class="btn btn-lg btn-danger" onClick="parent.location='/buyservice/buyEssay'" >Buy Essay Review Service</button>
+              <?php }else { ?> 
+              <button type="button" class="btn btn-lg btn-danger" onClick="parent.location='/buyservice/essay'" >View Essay Review Service</button>
+              <?php }?>
+              <p class="lead">Before you get started, there are a few <span class="text-red">Do's and Don'ts</span> - to learn what they are, <button type="submit" class="btn btn-lg btn-danger" onClick="parent.location='/plan/personalhome'" >Start our Game</button>  
+              </p>
+              
+            </div>
+
+
+          
+            
+          </div>
+          </div>
+          <div class="clearfix"></div>
+          <!-- My Notes for devices -->
+          <div class="rightSideContainer">
+            <div id="myAffix" class="box box-default hidden-lg" >
+                    <div class="box-header with-border">
+                      <h3 class="box-title"><i class="fa fa-pencil"></i> My Notes</h3>
+                    </div>
+                  <div class="box-body">
+                        <textarea class="form-control" rows="3" placeholder="Coming Soon..." name="note" id="note" readonly="readonly"><?php if(isset($res['notes'][0])){ echo $res['notes'][0];}?> <?php echo $this->service_eligible;?></textarea>
+                        <button class="btn btn-default marginTop"  id="savenote" disabled="true">Save My Notes </button>
+                  </div><!-- /.box-body -->
+                </div><!-- /.box -->
+           </div>
+        </section>
+      </div><!-- /.content-wrapper -->
+
+      <!-- Main Footer -->
+      
+    </div><!-- ./wrapper -->
+
+    <!-- REQUIRED JS SCRIPTS -->
+
+    <!-- jQuery 2.1.4 -->
+    <script src="/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <!-- Bootstrap 3.3.2 JS -->
+    <script src="/dist/js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- InputMask -->
+    <script src="/plugins/input-mask/jquery.inputmask.js" type="text/javascript"></script>
+    <script src="/plugins/input-mask/jquery.inputmask.date.extensions.js" type="text/javascript"></script>
+    <script src="/plugins/input-mask/jquery.inputmask.extensions.js" type="text/javascript"></script>
+
+    <!-- ChartJS 1.0.1 -->
+    <script src="/plugins/chartjs/Chart.min.js" type="text/javascript"></script>
+
+	  <!-- Slimscroll -->
+    <script src="/plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <!-- FastClick -->
+    <script src='/plugins/fastclick/fastclick.min.js'></script>
+    <!-- AdminLTE App -->
+    <script src="/dist/js/app.min.js" type="text/javascript"></script>
+    <!-- Custom Script -->
+    <script src="/dist/js/custom.js" type="text/javascript"></script>
+
+    <!-- jquery scrollbar Script -->
+    <script src="/dist/js/jquery.scrollbar.min.js" type="text/javascript"></script>
+
+<!-- Feedbacify -->    
+<script type="text/javascript">
+var fby = fby || [];
+fby.push(['showTab', {id: '9871', position: 'right', color: '#EB0000'}]);
+
+(function () {
+   var f = document.createElement('script'); f.type = 'text/javascript'; f.async = true;
+   f.src = '//cdn.feedbackify.com/f.js';
+   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(f, s);
+})();
+</script>
+<!-- Fixed container - Mynotes and social media -->
+<script>
+var fixmeTop = $('.myNotes').offset().top;
+$(window).scroll(function() {
+    var currentScroll = $(window).scrollTop() + 60;
+    if (currentScroll >= fixmeTop) {
+        $('.myNotes').css({
+            position: 'fixed',
+            top: '60px',
+            right: '20'
+        });
+    } else {
+        $('.myNotes').css({
+            position: 'static'
+        });
+    }
+});
+</script>
+
+<!-- Carousel control -->
+<script>
+$('.carousel-control').click(function(e){
+    e.stopPropagation();
+    var goTo = $(this).data('slide');
+    if(goTo=="prev") {
+        $('#myCarousel').carousel('prev'); 
+    } else {
+        $('#myCarousel').carousel('next'); 
+    }
+});
+</script>

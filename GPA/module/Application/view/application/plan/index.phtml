@@ -1,0 +1,466 @@
+
+<?php 
+
+$result =$this->result;
+
+/*$gpa = $result['starCounts']['plan_gpa'];
+$profile =  $result['starCounts']['plan_profile'];
+$profilestmt =  $result['starCounts']['plan_personal_stmt'];
+$tests =  $result['starCounts']['plan_std_tests'];
+$major =  $result['starCounts']['plan_major'];
+$counselor =  $result['starCounts']['plan_counselor'];
+$resume =  $result['starCounts']['plan_resume'];
+$costs =  $result['starCounts']['plan_costs'];*/
+$gpa = 0;
+$profile =  0;
+$profilestmt =  0;
+$tests =  0;
+$major =  0;
+$counselor =  0;
+$resume =  0;
+$costs =  0;
+?>
+
+
+<!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper pscontentContainer">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+            <i class="fa fa-gear"></i> Plan
+            <small>Organize, Prepare, Track</small>
+          </h1>
+          <ol class="breadcrumb">
+            <li><a href="/user/index"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li class="active">Plan</li>
+          </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content ">
+        <div class="introContent">
+            <p class="introLeadText text-red" >Welcome to <strong>PLAN</strong>! </p>
+          <p class="introText">PLAN was designed to help you with the many steps you're going to take in preparing for your college applications.</p>
+          <p class="introText">We recommend starting with "<strong>My Profile</strong>". As you complete each section, UCEazy will suggest what section you should start next.  We do this to maximize the potential of how our software can support you.  At the same time, we understand that every student's college needs are different, so please feel free to navigate through any section that is most applicable to your individual situation.
+          </p>
+		  <p class="introText"><span class="text-yellow"><strong>Helpful Tip:</strong></span>
+              Watch the <strong>overview videos</strong> before filling out every section. Most sections in PLAN also have videos for advice on topics in that section. </p>
+        </div>
+        <!-- Plan module Tic-Tac-Toe -->
+          <div class="row">
+            <!-- Right side content -->
+            <div class="col-lg-3 col-lg-push-9 col-md-12 col-sm-12 col-xs-12 rightSideContainer">
+                <div class="box box-warning ">
+                    <div class="box-header with-border">
+                      <h3 class="box-title"><i class="fa fa-file-video-o"></i> Hear from An Expert</h3>
+                    </div>
+                  <div class="box-body" >
+                    <!-- <div class="embed-responsive embed-responsive-16by9">
+                      <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/sqpw3NynsTE"></iframe>
+                    </div>-->
+                    <div id="myCarousel" class="carousel slide" data-interval="false">
+                      <!--<ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1" class=""></li>
+                      </ol>-->
+                      <div class="carousel-inner">
+                        <div class="item active">
+                          <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/QUFNnU_K3wg?showinfo=0&amp;" allowfullscreen></iframe>
+                          </div>
+                        </div>
+                        <div class="item">
+                          <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/nuwALyzzrFM?showinfo=0&amp;" allowfullscreen></iframe>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+                      <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>-->
+                    </div>
+                  
+                  </div><!-- /.box-body -->
+                </div><!-- /.box -->   
+                <!-- social media -->
+                <div class="box box-solid hidden-md hidden-sm hidden-xs" >
+                    <div class="box-header ">
+                      <h3 class="box-title"><i class="fa fa-share-alt"></i> Follow Us</h3>
+                      <div class=" pull-right " >
+                        <div  class="fixedBtn"><a href="https://www.facebook.com/askuceazy" class="bg-facebook" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a></div>
+                        <div class="fixedBtn"><a href="https://twitter.com/Uaskuceazy?lang=en" class="bg-twitter" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></div>
+                        <div class="fixedBtn"><a href="https://www.linkedin.com/company/uceazy" class="bg-linkedin" target="_blank" title="Linkedin"><i class="fa fa-linkedin"></i></a></div>
+                        <!-- <div class="fixedBtn"><a href="#" class="bg-google-plus"><i class="fa fa-google-plus"></i></a></div>
+                        <div class="fixedBtn"><a href="#" class="bg-instagram"><i class="fa fa-instagram"></i></a></div>
+                        <div class="fixedBtn"><a href="#" class="bg-pinterest"><i class="fa fa-pinterest"></i></a></div>-->
+                      </div>  
+                    </div>
+                </div>
+
+            </div>
+            <!-- ./right side content-->
+            <div class="col-lg-9 col-lg-pull-3 col-md-12 col-sm-12 col-xs-12">
+            	<div id="plan-module" class="row">
+                    <!-- thumbnail box -->
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="thumbnail myprofile" >
+                            <a href="/plan/myprofile" rel="tooltip" title="">
+                            <div class="moduleNumber">1</div>
+
+                                <div class="item-box bgTesting-active text-center">
+                                    <i class="fa fa-smile-o"></i>
+                                    <h3>My Profile</h3>
+                                </div>
+                                <div  class="caption"> 
+                                    <h4>My Profile</h4>
+                                    <p>About You</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="startHere blink_me"><i class="ion ion-arrow-up-a"></i> <br /> Start here </div>
+						<!-- <div class="containerStar">
+                        
+                        <?php 
+                        $star = $tests;
+                        $nonstar = 5 - $star;
+                        for($i=0;$i<$star;$i++){
+                        ?>	
+                         <i class="fa fa-star starActive"></i>
+                        <?php 	
+                        }
+                        for($i=0;$i<$nonstar;$i++){
+                        ?>	
+                         <i class="fa fa-star"></i>
+                        <?php 	
+                        }
+                        ?>
+                                               
+                        
+                        </div> -->
+                    </div>
+                    <!-- /box -->
+                    <!-- thumbnail box -->
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="thumbnail major" >
+                            <a href="/plan/major" rel="tooltip" title="">
+                                <div class="moduleNumber">2</div>
+                                <div class="item-box bg-purple-active text-center">
+                                    <i class="fa fa-book"></i>
+                                    <h3>Major</h3>
+                                </div>
+                                <div class="caption">
+                                    <h4>Major</h4>
+                                    <p>Decide your Major</p>
+                                </div>
+                            </a>
+                        </div>
+         <!--               <div class="containerStar">
+                            <?php 
+                        $star = $profile;
+                        $nonstar = 5 - $star;
+                        for($i=0;$i<$star;$i++){
+                        ?>  
+                         <i class="fa fa-star starActive"></i>
+                        <?php   
+                        }
+                        for($i=0;$i<$nonstar;$i++){
+                        ?>  
+                         <i class="fa fa-star"></i>
+                        <?php   
+                        }
+                        ?>
+                      
+                        </div> -->
+                    </div>
+                    <!-- /box -->
+                    <!-- thumbnail box -->
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="thumbnail testing">
+                            <a href="/plan/testing" rel="tooltip" title="">
+                                <div class="moduleNumber">3</div>
+                            	<div class="item-box bg-green-active text-center">
+                                <i class="fa fa-wrench"></i>
+                                <h3>Testing</h3>
+                                </div>
+                                <div class="caption">
+                                    <h4>Testing</h4>
+                                    <p>SAT, ACT, AP, IB</p>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- <div class="containerStar">
+                           <?php 
+                        $star = $major;
+                        $nonstar = 5 - $star;
+                        for($i=0;$i<$star;$i++){
+                        ?>	
+                         <i class="fa fa-star starActive"></i>
+                        <?php 	
+                        }
+                        for($i=0;$i<$nonstar;$i++){
+                        ?>	
+                         <i class="fa fa-star"></i>
+                        <?php 	
+                        }
+                        ?>
+                      
+                        </div> -->
+                    </div>
+                    <!-- /box -->
+                    <!-- thumbnail box -->
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="thumbnail gpa">
+                            <a href="/plan/gpa" rel="tooltip" title="">
+                               <div class="moduleNumber ">4</div>
+                        	   <div class="item-box bg-teal-active text-center">
+                                    <i class="fa fa-calculator"></i>
+                                    <h3>GPA</h3>
+                                </div>
+                                <div class="caption">
+                                    <h4>GPA</h4>
+                                    <p>UC/CSU GPA</p>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- <div class="containerStar">
+                            <?php 
+                        $star = $profile;
+                        $nonstar = 5 - $star;
+                        for($i=0;$i<$star;$i++){
+                        ?>	
+                         <i class="fa fa-star starActive"></i>
+                        <?php 	
+                        }
+                        for($i=0;$i<$nonstar;$i++){
+                        ?>	
+                         <i class="fa fa-star"></i>
+                        <?php 	
+                        }
+                        ?>
+                      
+                        </div> -->
+                    </div>
+                    <!-- /box -->
+                    <!-- thumbnail box -->
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="thumbnail counselor">
+                            <a href="/plan/myuceazy" rel="tooltip" title="">
+                                <div class="moduleNumber">5</div>
+                            	<div class="item-box bg-blue-active text-center">
+                                    <i class="fa fa-user"></i>
+                                    <h3>My Counselor</h3>
+                                </div>
+                                <div class="caption">
+                                    <h4>My Counselor</h4>
+                                    <p>Advice from Your UCEazy Counselor</p>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- <div class="containerStar">
+                            <?php 
+                        $star = $gpa;
+                        $nonstar = 5 - $star;
+                        for($i=0;$i<$star;$i++){
+                        ?>	
+                         <i class="fa fa-star starActive"></i>
+                        <?php 	
+                        }
+                        for($i=0;$i<$nonstar;$i++){
+                        ?>	
+                         <i class="fa fa-star"></i>
+                        <?php 	
+                        }
+                        ?>
+                      
+                        </div> -->
+                    </div>
+                    <!-- /box -->
+                    <!-- thumbnail box -->
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="thumbnail organizer">
+                            <a href="/plan/organisation" rel="tooltip" title="">
+                                <div class="moduleNumber">6</div>
+                            	<div class="item-box bg-aqua-active text-center">
+                                    <i class="fa fa-calendar"></i>
+                                    <h3>Organizer</h3>
+                                </div>
+                                <div class="caption">
+                                    <h4>Organizer</h4>
+                                    <p>Important Dates</p>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- <div class="containerStar">
+                           <?php 
+                        $star = $costs;
+                        $nonstar = 5 - $star;
+                        for($i=0;$i<$star;$i++){
+                        ?>	
+                         <i class="fa fa-star starActive"></i>
+                        <?php 	
+                        }
+                        for($i=0;$i<$nonstar;$i++){
+                        ?>	
+                         <i class="fa fa-star"></i>
+                        <?php 	
+                        }
+                        ?>
+                      
+                        </div> -->
+                    </div>
+                    <!-- /box -->
+                    <!-- thumbnail box -->
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="thumbnail costs">
+                            <a href="/plan/costs" rel="tooltip" title="">
+                                <div class="moduleNumber">7</div>
+                            	<div class="item-box bg-olive-active text-center">
+                                    <i class="fa fa-dollar"></i>
+                                    <h3>Costs</h3>
+                                </div>
+                                <div class="caption">
+                                    <h4>Costs</h4>
+                                    <p>Calculating How Much College Costs</p>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- <div class="containerStar">
+                          <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                        </div> -->
+                    </div>
+                    <!-- /box -->
+                    <!-- thumbnail box -->
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="thumbnail perstat">
+                            <a href="/plan/personal" rel="tooltip" title="">
+                                <div class="moduleNumber">8</div>
+                                <div class="item-box bgPerstat text-center">
+                                    <i class="fa fa-puzzle-piece"></i>
+                                    <h3>Personal Statement</h3>
+                                    <i class="supportText">(Only for UC)</i>
+                                </div>
+                                <div class="caption">
+                                    <h4>Personal Statement</h4>
+                                    <p>What Makes a Great Personal Statement</p>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- <div class="containerStar">
+                      
+                        <?php 
+                        $star = $profilestmt;
+                        $nonstar = 5 - $star;
+                        for($i=0;$i<$star;$i++){
+                        ?>  
+                         <i class="fa fa-star starActive"></i>
+                        <?php   
+                        }
+                        for($i=0;$i<$nonstar;$i++){
+                        ?>  
+                         <i class="fa fa-star"></i>
+                        <?php   
+                        }
+                        ?>
+                      
+                      
+                        </div> -->
+                    </div>
+                    
+                    <!-- /box -->
+                    <!-- thumbnail box -->
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="thumbnail resume">
+                            <a href="/plan/resumehome" rel="tooltip" title="">
+                                <div class="moduleNumber">9</div>
+                            	<div class="item-box bgResume text-center">
+                                    <i class="fa fa-file-text"></i>
+                                    <h3>Resume</h3>
+                                    <i class="supportText">(Only for UC)</i>
+                                </div>
+                                <div class="caption">
+                                    <h4>Resume</h4>
+                                    <p>Extracurricular Activities, Work, Awards</p>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- <div class="containerStar">
+                            <?php 
+                        $star = $counselor;
+                        $nonstar = 5 - $star;
+                        for($i=0;$i<$star;$i++){
+                        ?>	
+                         <i class="fa fa-star starActive"></i>
+                        <?php 	
+                        }
+                        for($i=0;$i<$nonstar;$i++){
+                        ?>	
+                         <i class="fa fa-star"></i>
+                        <?php 	
+                        }
+                        ?>
+                      
+                        </div> -->
+                    </div>
+                   
+                    <!-- /box -->
+                </div>
+            </div><!-- end of left side -->
+            
+            
+          </div><!-- /.row -->
+        </section><!-- /.content -->
+      </div><!-- /.content-wrapper -->
+
+    
+      
+    </div><!-- ./wrapper -->
+
+
+
+<!-- REQUIRED JS SCRIPTS -->
+
+    <!-- jQuery 2.1.4 -->
+    <script src="/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <!-- Bootstrap 3.3.2 JS -->
+    <script src="/dist/js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- InputMask -->
+    <script src="/plugins/input-mask/jquery.inputmask.js" type="text/javascript"></script>
+    <script src="/plugins/input-mask/jquery.inputmask.date.extensions.js" type="text/javascript"></script>
+    <script src="/plugins/input-mask/jquery.inputmask.extensions.js" type="text/javascript"></script>
+
+    <!-- ChartJS 1.0.1 -->
+    <script src="/plugins/chartjs/Chart.min.js" type="text/javascript"></script>
+
+    <!-- Slimscroll -->
+    <script src="/plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <!-- FastClick -->
+    <script src='/plugins/fastclick/fastclick.min.js'></script>
+    <!-- AdminLTE App -->
+    <script src="/dist/js/app.min.js" type="text/javascript"></script>
+    <!-- Custom Script -->
+    <script src="/dist/js/custom.js" type="text/javascript"></script>
+
+    <!-- jquery scrollbar Script -->
+    <script src="/dist/js/jquery.scrollbar.min.js" type="text/javascript"></script>
+
+
+<!-- Feedbacify -->
+<script type="text/javascript">
+var fby = fby || [];
+fby.push(['showTab', {id: '9871', position: 'right', color: '#EB0000'}]);
+
+(function () {
+   var f = document.createElement('script'); f.type = 'text/javascript'; f.async = true;
+   f.src = '//cdn.feedbackify.com/f.js';
+   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(f, s);
+})();
+</script>
+<!-- Blink animation -->
+<script>
+function blinker() {
+    $('.blink_me').fadeOut(500);
+    $('.blink_me').fadeIn(500);
+}
+
+setInterval(blinker, 1000); //Runs every second
+
+</script>

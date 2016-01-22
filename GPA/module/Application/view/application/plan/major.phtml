@@ -1,0 +1,629 @@
+       <?php 
+       
+       $res=$this->result;
+       
+      
+       
+       ?>
+       
+       <form id="majorform" name="majorform" >
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper pscontentContainer">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+             <i class="fa fa-book"></i> Major
+            <small>Decide your Major</small>
+          </h1>
+          <ol class="breadcrumb">
+            <li><a href="/user/index"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li><a href="/plan/index"><i class="ion ion-gear-b"></i> Plan</a></li>
+            <li class="active">Major</li>
+          </ol>
+        </section>
+        <!-- Main content -->
+        <section class="content">
+        <!-- GPA Form -->
+          <div class="row">
+            <!-- Right side content -->
+            <div class="col-lg-3 col-lg-push-9 col-md-12 col-sm-12 col-xs-12 rightSideContainer">
+                <div class="box box-warning ">
+                    <div class="box-header with-border">
+                      <h3 class="box-title"><i class="fa fa-file-video-o"></i> Hear from An Expert</h3>
+                    </div>
+                  <div class="box-body" >
+                    <!-- <div class="embed-responsive embed-responsive-16by9">
+                      <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/sqpw3NynsTE"></iframe>
+                    </div>-->
+                    <div id="myCarousel" class="carousel slide" data-interval="false">
+                      <!-- <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1" class=""></li>
+                      </ol>-->
+                      <div class="carousel-inner">
+                        <div class="item active">
+                          <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/TwySJ7ZA7Io?rel=0;showinfo=0&amp;" allowfullscreen></iframe>
+                          </div>
+                        </div>
+                        <div class="item">
+                          <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/wc3Z9YILvIs?rel=0;showinfo=0&amp;" allowfullscreen></iframe>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- <a class="left carousel-control" href="#myCarousel" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
+                      <a class="right carousel-control" href="#myCarousel" data-slide="next"><i class="fa fa-chevron-right"></i></a>-->
+
+                      <!-- Controls buttons -->
+                      <div class="videoPagnination" >
+                          <input type = "button" class = "btn slide-one active" value = "1">
+                          <input type = "button" class = "btn slide-two" value = "2">            
+                      </div>
+
+                    </div>
+                  
+                  </div><!-- /.box-body -->
+                </div><!-- /.box -->           
+                <div id="myAffix" class="box box-default visible-lg" data-spy="affix" data-offset-top="300">
+                    <div class="box-header with-border">
+                      <h3 class="box-title"><i class="fa fa-pencil"></i> My Notes</h3>
+                    </div>
+                  <div class="box-body">
+                        <textarea class="form-control cusnote" rows="3" placeholder="Coming Soon..." name="note1" id="note1" readonly="readonly"><?php if(isset($this->note)){ echo $this->note;}?></textarea>
+                        <button class="btn btn-default marginTop" id="savenote" disabled="true">Save My Notes </button>
+                  </div><!-- /.box-body -->
+                </div><!-- /.box -->
+
+                <!-- social media -->
+                <div id="myAffix1" class="box box-solid visible-lg" data-spy="affix" data-offset-top="300">
+                    <div class="box-header ">
+                      <h3 class="box-title"><i class="fa fa-share-alt"></i> Follow Us</h3>
+                      <div class=" pull-right " >
+                        <div  class="fixedBtn"><a href="https://www.facebook.com/askuceazy" class="bg-facebook" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a></div>
+                        <div class="fixedBtn"><a href="https://twitter.com/Uaskuceazy?lang=en" class="bg-twitter" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></div>
+                        <div class="fixedBtn"><a href="https://www.linkedin.com/company/uceazy" class="bg-linkedin" target="_blank" title="Linkedin"><i class="fa fa-linkedin"></i></a></div>
+						<!-- <div class="fixedBtn"><a href="#" class="bg-google-plus"><i class="fa fa-google-plus"></i></a></div>
+                        <div class="fixedBtn"><a href="#" class="bg-instagram"><i class="fa fa-instagram"></i></a></div>
+                        <div class="fixedBtn"><a href="#" class="bg-pinterest"><i class="fa fa-pinterest"></i></a></div>-->
+                      </div>  
+                    </div>
+                </div>
+            </div>
+            <!-- ./Right side content -->
+            <div class="col-lg-9 col-lg-pull-3 col-md-12 col-sm-12 col-xs-12">
+              <div class="box box-default box-solid">
+                <div class="box-header bg-purple-active">
+                  <h3 class="box-title">Please select your Major</h3>
+                </div><!-- /.box-header -->
+                <!-- form start -->
+
+
+                  <div class="box-body">
+                  <!-- Potential Discounts -->
+                  
+                 <div class="alert alert-success" id="majarchange" role="alert" style="display: none;">
+                      <h4 id=""><i class="icon fa fa-check "></i>
+                      <span class="info-text" id="mtext">
+                    </span>
+                      </h4>
+                 </div>
+                
+                 <div class="alert alert-error" id="majarchangeerror" role="alert" style="display: none;">
+                      <h4 id=""><i class="icon fa fa-check "></i>
+                      <span class="info-text" id="mtexterror">
+                    </span>
+                      </h4>
+                 </div>
+                  
+              
+                    <div class="form-group">
+                          <label for="currentState" class="col-sm-3 control-label">Specific Major</label>
+                          <div class="col-sm-6">
+                            <select name="mselect" id="majorselect" class="form-control">
+                                <option>Select</option>
+                                <?php  
+                                $i=0;
+                                $selectindex='-1';
+                                $selectedMajor="";
+								sort($res['majors']);
+                                foreach ($res['majors'] as $major){
+                                if($major['major']== $this->major){
+                                	$selectindex=$i;
+                                	
+                                	?>
+                                
+                                <option value="<?php echo $i;?>" selected="selected"><?php echo $major['major'];?></option>
+                                <?php }else{ ?>
+                                <option value="<?php echo $i;?>"><?php echo $major['major'];?></option>
+                                <?php }
+								$i++;
+                                } ?>
+                            </select>
+                            <input type="hidden" value="<?php echo $selectindex;?>" name="selectindex" id="selectindex">
+                            <input type="hidden" name="uid" value="<?php echo $this->uid;?>" id="uid">
+                          </div>
+                          <div class="tooltipContent"> <a href="#" data-toggle="tooltip" class="tip-right" data-original-title="If you cannot find your major, select a similar one or your second choice. If you are interested in multiple majors, choose one for now and resubmit this form with your other major(s)."><i class="fa fa-info-circle "></i>
+                          </a> </div>
+                    </div>
+					 <?php 
+                                $i=0;
+                                
+                               
+                     foreach ($res['majors'] as $major){?>
+                     
+                    <div id="m<?php echo $i;?>" class="hidemajor alert alert-info alert-dismissable">
+                      <h4><i class="icon fa fa-info"></i><?php echo $major['major'];?></h4>
+                      <p><?php echo $major['description'];?></p>
+                    </div>
+                    
+                    <?php 
+                     $i++;
+                     }?>
+
+                    <!-- Colleges with Your Major -->
+                    <div class="box box-default box-solid">
+                      <div class="box-header bg-purple " data-widget="collapse" data-collapse="custom">
+                        <h3 class="box-title">Colleges with your Major</h3>
+                        <div class="box-tools pull-right">
+                          <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                        </div><!-- /.box-tools -->
+                      </div><!-- /.box-header -->
+
+                      
+
+                      <div class="box-body table-responsive">
+                        <p>
+                        <i>Impacted Major:  When a Major has more students applying than the college can accommodate, that Major becomes <b><u>Impacted</u></b>.  As a result, an Impacted Major is more competitive/harder to be admitted to versus a Non-Impacted Major. </i>
+                      </p>
+                        <table class="table table-bordered courseTable">
+                        <thead>
+                          <tr>
+                            <th class="td-md-width">Name of College</th>
+                            
+                            <th class="td-sm-width">Is Your Major Impacted</th>
+                           
+                          </tr>
+                        </thead>
+                        <tbody id="tblbody">
+                          
+                        </tbody>
+                      </table>
+
+                      </div><!-- /.box-body -->
+                    </div><!-- /.widget box -->
+
+                    
+                    </div>
+                  <div class="box-footer">
+                    
+                  <div class="alert alert-success" id="majarsaveupdate" role="alert" style="display: none;">
+                      <h4 id=""><i class="icon fa fa-check "></i>
+                      <span class="info-text" id="msaveupdatetext">
+                    </span>
+                      </h4>
+                 </div>
+                    <div class="text-center">
+                     <?php if($this->planflag=="1"){?>
+                    <button type="button" id="major-submit" value="update" class="btn btn-danger "  data-complete-text="Update My Information">Update My Information</button>    
+                     <button type="button" id="major-next" value="update" class="btn btn-danger pull-right" >Next: Testing</button>                  
+                    
+                    <?php }else{?>
+                    <button type="button" id="major-submit" value="save" class="btn btn-danger "  data-complete-text="Update My Information">Save My Information</button>       
+                     <button type="button" id="major-next" value="save" class="btn btn-danger pull-right" >Next: Testing</button>               
+                    <?php }?>
+                    
+                                     
+                    </div>
+                                  
+                    
+                  </div><!-- /.box-footer -->
+             
+              </div><!-- /.box -->
+                
+            </div>
+            
+            
+
+          </div><!-- /.row -->
+          <div class="clearfix"></div>
+          <!-- My Notes for devices -->
+          <div class="rightSideContainer">
+            <div id="myAffix" class="box box-default hidden-lg" >
+                    <div class="box-header with-border">
+                      <h3 class="box-title"><i class="fa fa-pencil"></i> My Notes</h3>
+                    </div>
+                  <div class="box-body">
+                        <textarea class="form-control cusnote" rows="3" placeholder="Coming Soon..." name="note2" id="note2" readonly="readonly"><?php if(isset($this->note)){ echo $this->note;}?></textarea>
+                        <button class="btn btn-default marginTop"  id="savenote" disabled="true">Save My Notes </button>
+                  </div><!-- /.box-body -->
+                </div><!-- /.box -->
+                
+                <input type="hidden" name="note"  id="note" value="<?php if(isset($res['notes'][0])){ echo $res['notes'][0];}?>">
+           </div>
+        </section><!-- /.content -->
+      </div><!-- /.content-wrapper -->
+
+      <!-- Main Footer -->
+     </form>
+      
+    </div><!-- ./wrapper -->
+    
+    
+     <div class="modal fade" id="success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header btn-danger">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title " id="myModalLabel">Success</h4>
+	      </div>
+	      <div class="modal-body" id="modalsuccessbody">
+	        Your Major information has been saved into our datastore.
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <!-- <button type="button" class="btn btn-primary">Save changes</button>-->
+	      </div>
+	    </div>
+	  </div>
+	</div>
+      
+       <div class="modal fade" id="failure" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header btn-danger">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title " id="myModalLabel">Failure</h4>
+	      </div>
+	      <div class="modal-body" id="modalfailbody">
+	        Oops!  Looks like something went wrong.  Please try again later. Error message goes here
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <!-- <button type="button" class="btn btn-primary">Save changes</button>-->
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+    <!-- REQUIRED JS SCRIPTS -->
+
+    <!-- jQuery 2.1.4 -->
+    <script src="/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <!-- Bootstrap 3.3.2 JS -->
+    <script src="/dist/js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- InputMask -->
+    <script src="/plugins/input-mask/jquery.inputmask.js" type="text/javascript"></script>
+    <script src="/plugins/input-mask/jquery.inputmask.date.extensions.js" type="text/javascript"></script>
+    <script src="/plugins/input-mask/jquery.inputmask.extensions.js" type="text/javascript"></script>
+
+    <!-- ChartJS 1.0.1 -->
+    <script src="/plugins/chartjs/Chart.min.js" type="text/javascript"></script>
+
+	  <!-- Slimscroll -->
+    <script src="/plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <!-- FastClick -->
+    <script src='/plugins/fastclick/fastclick.min.js'></script>
+    <!-- AdminLTE App -->
+    <script src="/dist/js/app.min.js" type="text/javascript"></script>
+    <!-- Custom Script -->
+    <script src="/dist/js/custom.js" type="text/javascript"></script>
+
+    <!-- jquery scrollbar Script -->
+    <script src="/dist/js/jquery.scrollbar.min.js" type="text/javascript"></script>
+<script>
+
+
+
+$(function () {
+	index=$('#selectindex').val();
+	$('#m'+index).show();
+	major=$('#majorselect option:selected').text();	
+	var data = {"action": "gpa", "mode" : $(this).val(), "major": major, "uid" : '' };
+	data =  $.param(data);
+		$.ajax({
+		      type: "POST",
+		      dataType: "json",
+		      url: "/plan/majorJSON", 
+		      data: data,
+		      success: function(data) {
+			  $("#tblbody").html("");
+		    	  $.each( data['response'].sort(), function( key, value ) {
+		    		  if(value.indexOf("*") >= 0){
+		    			  $("#tblbody").append('<tr><td>'+value.substring(0,value.indexOf("*"))+'</td><td>Yes</td></tr>');
+		    			}else{
+		    				 $("#tblbody").append('<tr><td>'+value+'</td><td>No</td></tr>');
+		    		 }
+			 	});
+		     }
+		      });
+		 
+});
+
+
+$('.cusnote').change(function(e){
+
+	 $('#note').val($(this).val());
+	
+});
+
+
+$('#major-next').click(function(e){
+
+	var btn = $(this)
+	  btn.button('loading');
+	
+	major=$('#majorselect option:selected').text();	
+
+	  var data = {
+		      "action": "major",
+		      "mode" : $(this).val(),
+		      "majorselect" : major
+		    };
+	 	    data = $("#majorform").serialize() + "&" + $.param(data);
+
+		    $.ajax({
+		      type: "POST",
+		      dataType: "json",
+		      url: "/plan/majorsaveupdateJSON", 
+		      data: data,
+		      success: function(data) {
+	  		     // alert(data['response']['error']);
+	  		      
+				  if(data['ecode']=='0'){
+					  window.location.href="/plan/testing";
+					  }else{
+						  window.location.href="/plan/testing";
+   		      }
+		      },
+		      error: function(xhr, textStatus, errorThrown){
+		          alert('Whoops!  It looks like there was a problem submitting your request. Please try again. If the problem persists, please contact us.');
+		         
+		       },
+		       complete: function(xhr, textStatus){
+			  		  btn.button('reset');
+			  		}
+		    });
+		    return false;
+      
+});
+
+
+
+$('#major-submit').click(function(e){
+
+	var btn = $(this)
+	  btn.button('loading');
+	
+	major=$('#majorselect option:selected').text();	
+
+	  var data = {
+		      "action": "major",
+		      "mode" : $(this).val(),
+		      "majorselect" : major
+		    };
+	 	    data = $("#majorform").serialize() + "&" + $.param(data);
+
+		    $.ajax({
+		      type: "POST",
+		      dataType: "json",
+		      url: "/plan/majorsaveupdateJSON", 
+		      data: data,
+		      success: function(data) {
+	  		     // alert(data['response']['error']);
+	  		      
+				  if(data['ecode']=='0'){
+
+					  $("#majarsaveupdate").show();
+					  $("#msaveupdatetext").html('Your Major infomation has been successfully saved');
+					  setTimeout(function(){ $('#majarsaveupdate').hide(); }, 10000);	
+					  $('#major-submit').val('update');
+					  btn.button('complete');
+					 /* majarsaveupdate
+					  $("#modalsuccessbody").html("Your Major infomation successfully stored in Database");
+					  $('#success').modal('show');*/
+				  }else{
+					  $("#modalfailbody").html("Oops!  Looks like something went wrong.  Please try again later");
+   		        	 $('#failure').modal('show');
+					  btn.button('reset');
+   		      }
+		      },
+		      error: function(xhr, textStatus, errorThrown){
+		          alert('Whoops!  It looks like there was a problem submitting your request. Please try again. If the problem persists, please contact us.');
+		          btn.button('reset');
+		       },
+		       complete: function(xhr, textStatus){
+			  		 
+			  		}
+		    });
+		    return false;
+      
+});
+
+
+$('#savenote').click(function(e){
+
+	var btn = $(this)
+	  btn.button('loading');
+	
+	major=$('#majorselect option:selected').text();	
+
+	  var data = {
+		      "action": "major",
+		      "mode" : 'update',
+		      "majorselect" : major
+		    };
+	 	    data = $("#majorform").serialize() + "&" + $.param(data);
+
+		    $.ajax({
+		      type: "POST",
+		      dataType: "json",
+		      url: "/plan/majorsaveupdateJSON", 
+		      data: data,
+		      success: function(data) {
+	  		     // alert(data['response']['error']);
+	  		      
+				  if(data['ecode']=='0'){
+
+					  $('#savenote').html('Saved');
+					  
+
+					//  $("#notesuccess").show();
+					 // $("#notesuccesstext").html('Note has been successfully saved');
+					  setTimeout(function(){  $('#savenote').html('Save My Notes'); }, 10000);	
+					  
+					 /* majarsaveupdate
+					  $("#modalsuccessbody").html("Your Major infomation successfully stored in Database");
+					  $('#success').modal('show');*/
+				  }else{
+					  $("#modalfailbody").html("Oops!  Looks like something went wrong.  Please try again later.");
+   		        	 $('#failure').modal('show');
+   		      }
+		      },
+		      error: function(xhr, textStatus, errorThrown){
+		          alert('Whoops!  It looks like there was a problem submitting your request. Please try again. If the problem persists, please contact us.');
+		         
+		       },
+		       complete: function(xhr, textStatus){
+			  		  btn.button('reset');
+			  		}
+		    });
+		    return false;
+      
+});
+$('#majorselect').change(function() {
+
+		
+	$('.hidemajor').hide();
+	major=$('#majorselect option:selected').text();	 
+    $("#m"+$(this).val()).show();
+
+    if(major == "Select"){
+    	 $("#majarchangeerror").show();
+		  $("#mtexterror").html('Please select a valid major from the list');
+		  setTimeout(function(){ $('#majarchangeerror').hide(); }, 10000);
+		  btn.button('reset');
+		  return false;	
+    }
+
+    var data = {
+		      "action": "gpa",
+		      "mode" : $(this).val(),
+		      "major": major,
+		      "uid" : ''
+		    };
+	 	    data =  $.param(data);
+
+		    $.ajax({
+		      type: "POST",
+		      dataType: "json",
+		      url: "/plan/majorJSON", 
+		      data: data,
+		      success: function(data) {
+
+
+		    	  $("#tblbody").html("");
+		    	  $.each( data['response'].sort(), function( key, value ) {
+		    		  if(value.indexOf("*") >= 0){
+		    			  $("#tblbody").append('<tr><td>'+value.substring(0,value.indexOf("*"))+'</td><td>Yes</td></tr>');
+		    			}else{
+		    				 $("#tblbody").append('<tr><td>'+value+'</td><td>No</td></tr>');
+		    		 }
+			    		
+		    	});
+				
+		  		     
+				  if(data['ecode']=='0'){
+
+					  $("#majarchange").show();
+					  $("#mtext").html('Here is a list of all campuses that have the '+major+' major!');
+					  setTimeout(function(){ $('#majarchange').hide(); }, 10000);	
+					  
+					 
+				  }else{
+					  $("#modalfailbody").html("Server Internal error");
+   		        	 $('#failure').modal('show');
+   		      }
+		      },
+		      error: function(xhr, textStatus, errorThrown){
+		          alert('Whoops!  It looks like there was a problem submitting your request. Please try again. If the problem persists, please contact us.');
+		         
+		       }
+		    });
+		    return false;
+
+});
+
+</script>
+
+
+<script>
+     $('.targetDiv').hide();
+
+     $(function(){
+           $('.showSingle').click(function(){
+             var index = $(this).parent().index(),
+                 newTarget = $('.targetDiv').eq(index);
+             $('.targetDiv').not(newTarget).fadeOut('fast');
+             newTarget.delay('fast').fadeToggle('fast');
+             return false;
+           });
+           $('.targetDiv').click(function(e){
+             e.stopPropagation();
+           });
+
+       });
+     $(function(){
+       $(document).click(function(){
+         var $el = $(".targetDiv");
+         if($el.is(":visible")){
+           $el.fadeOut(200);
+         }
+       });
+     });
+
+   </script>
+
+<!-- Feedbacify -->
+<script type="text/javascript">
+var fby = fby || [];
+fby.push(['showTab', {id: '9871', position: 'right', color: '#EB0000'}]);
+
+(function () {
+   var f = document.createElement('script'); f.type = 'text/javascript'; f.async = true;
+   f.src = '//cdn.feedbackify.com/f.js';
+   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(f, s);
+})();
+</script>
+
+<!-- Fixed container - Mynotes and social media -->
+<script>
+var fixmeTop = $('.myNotes').offset().top;
+$(window).scroll(function() {
+    var currentScroll = $(window).scrollTop() + 60;
+    if (currentScroll >= fixmeTop) {
+        $('.myNotes').css({
+            position: 'fixed',
+            top: '60px',
+            right: '20'
+        });
+    } else {
+        $('.myNotes').css({
+            position: 'static'
+        });
+    }
+});
+</script>
+
+<!-- Carousel control -->
+<script>
+$('.carousel-control').click(function(e){
+    e.stopPropagation();
+    var goTo = $(this).data('slide');
+    if(goTo=="prev") {
+        $('#myCarousel').carousel('prev'); 
+    } else {
+        $('#myCarousel').carousel('next'); 
+    }
+});
+</script>

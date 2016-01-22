@@ -1,0 +1,1683 @@
+<?php
+use Common\Utilities\Constants;
+$allstates=explode(",",Constants::COUNTY);
+
+$allSATTests=explode(",", Constants::PLAN_TESTING_SATTESTS);
+$allAPTests=explode(",", Constants::PALN_TESTING_APTESTS);
+$allIBTests=explode(",", Constants::PALN_TESTING_IBTESTS);
+
+
+
+$res=$this->result;
+$uid=$this->uid;
+?>
+
+<form class="form-horizontal" name="stdtest" id="stdtest">
+ <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper pscontentContainer">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+            <i class="fa fa-wrench"></i> Testing
+            <small>SAT, ACT, AP, IB </small>
+          </h1>
+          <ol class="breadcrumb">
+            <li><a href="/user/index"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li><a href="/plan/index"><i class="ion ion-gear-b"></i> Plan</a></li>
+            <li class="active">Testing</li>
+          </ol>
+        </section>
+   
+        <!-- Main content -->
+        <section class="content">
+        <!-- Testing Form -->
+          <div class="row">
+            <!-- Right side content -->
+            <div class="col-lg-3 col-lg-push-9 col-md-12 col-sm-12 col-xs-12 rightSideContainer">
+                <div class="box box-warning ">
+                    <div class="box-header with-border">
+                      <h3 class="box-title"><i class="fa fa-file-video-o"></i> Hear from An Expert</h3>
+                    </div>
+                  <div class="box-body" >
+                    <!-- <div class="embed-responsive embed-responsive-16by9">
+                      <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/sqpw3NynsTE"></iframe>
+                    </div>-->
+                    <div id="myCarousel" class="carousel slide">
+                      <!-- <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1" class=""></li>
+                      </ol>-->
+                      <div class="carousel-inner">
+                        <div class="item active">
+                          <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/08MiiMCZNac?showinfo=0&amp;" allowfullscreen></iframe>
+                          </div>
+                        </div>
+                        <div class="item">
+                          <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/ue7yNS8xj0Y?showinfo=0&amp;" allowfullscreen></iframe>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- <a class="left carousel-control" href="#myCarousel" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
+                      <a class="right carousel-control" href="#myCarousel" data-slide="next"><i class="fa fa-chevron-right"></i></a>-->
+
+                      <!-- Controls buttons -->
+                      <div class="videoPagnination" >
+                          <input type = "button" class = "btn slide-one active" value = "1">
+                          <input type = "button" class = "btn slide-two" value = "2">            
+                      </div>
+                    </div>
+                  
+                  </div><!-- /.box-body -->
+                </div><!-- /.box -->           
+                <div id="myAffix" class="box box-default visible-lg" data-spy="affix" data-offset-top="300">
+                    <div class="box-header with-border">
+                      <h3 class="box-title"><i class="fa fa-pencil"></i> My Notes</h3>
+                    </div>
+                  <div class="box-body">
+                        <textarea class="form-control cusnote" rows="3" placeholder="Coming Soon..." name="note1" id="note1" readonly="readonly"><?php if(isset($res['notes'][0])){ echo $res['notes'][0];}?></textarea>
+                        <button class="btn btn-default marginTop" id="savenote" disabled="true">Save My Notes </button>
+                  </div><!-- /.box-body -->
+
+                  
+                </div><!-- /.box -->
+                
+                <!-- social media -->
+                <div id="myAffix1" class="box box-solid visible-lg" data-spy="affix" data-offset-top="300">
+                    <div class="box-header ">
+                      <h3 class="box-title"><i class="fa fa-share-alt"></i> Follow Us</h3>
+                      <div class=" pull-right " >
+                        <div  class="fixedBtn"><a href="https://www.facebook.com/askuceazy" class="bg-facebook" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a></div>
+                        <div class="fixedBtn"><a href="https://twitter.com/Uaskuceazy?lang=en" class="bg-twitter" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></div>
+                        <div class="fixedBtn"><a href="https://www.linkedin.com/company/uceazy" class="bg-linkedin" target="_blank" title="Linkedin"><i class="fa fa-linkedin"></i></a></div>
+  
+						<!-- <div class="fixedBtn"><a href="#" class="bg-google-plus"><i class="fa fa-google-plus"></i></a></div>
+                        <div class="fixedBtn"><a href="#" class="bg-instagram"><i class="fa fa-instagram"></i></a></div>
+                        <div class="fixedBtn"><a href="#" class="bg-pinterest"><i class="fa fa-pinterest"></i></a></div>-->
+                      </div>  
+                    </div>
+                </div>
+            </div>
+            <!-- ./Right side content -->
+
+            <div class="col-lg-9 col-lg-pull-3 col-md-12 col-sm-12 col-xs-12">           
+              
+              <input type="hidden" id="uid" name="uid" value="<?php echo $uid;?>">
+
+              <div class="box box-default box-solid">
+                <div class="box-header bg-green-active">
+                  <h3 class="box-title">Please enter your information</h3>
+                </div><!-- /.box-header -->
+                <!-- form start -->
+                <div class="box-body">
+                <!-- SAT -->
+                  <div class="box box-default box-solid" >
+                    <div class="box-header bg-green" data-widget="collapse" data-collapse="custom" >
+                      <h3 class="box-title">SAT</h3>
+                      <div class="box-tools pull-right">
+                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                      </div><!-- /.box-tools -->
+                    </div><!-- /.box-header -->
+                  
+                  <div class="box-body  table-responsive">
+                  <div class="row">
+                  
+                  
+                    <div id="saterror" class="alert alert-danger col-sm-12" style="display: none;">
+               	<div class="info-text-container-failure ">
+                  	<i class="fa fa-close "></i> 
+                    <span class="info-text" id=""> Please enter the valid SAT score(Range between 200 and 800) and date and try again.
+                    </span>
+                </div>
+              	</div>
+                  </div>
+                  
+                      <table class="table table-bordered courseTable">
+                        <thead>
+                          <tr>
+                            <th class="td-sm-width">Date Taken / Planned</th>
+                            <th class="td-sm-width">Critical Reading</th>
+                            <th class="td-sm-width">Math</th>
+                            <th class="td-sm-width">Writing</th>
+                            <th class="td-xs-width">&nbsp;</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        
+                        <?php 
+                     	$sats=isset($res['sats'])?$res['sats']:array();
+						if(count($sats)>0){
+							$minusFlag=false;
+                        foreach ($sats as $sat){
+                        ?>
+                          <tr>
+                            <td><input type="hidden" name="T_1_grade[]" value="1"> 
+                              <div class="input-group inputBtn" id="datetimepicker1">
+                               
+                              <!--   <input id="satdatetaken" name="satdatetaken[]" type="text" value="<?php echo $sat['year'];?>" class="form-control " placeholder="" list="satexamdate"> -->
+                              
+                               
+                               <select  name="satdatetaken[]" id="satdatetaken"  class="form-control td-lg-width">
+                                <option>Select</option>
+                               <?php 
+                               $sdates = explode(":", Constants::SAT_TESTING_DATE);
+                               foreach ($sdates as $date){
+                               ?>
+                               <option <?php if($sat['year']==$date){?> selected="selected" <?php }?>> <?php echo $date;?></option>
+                               
+                               <?php }?>
+                               </select>
+                                <div class="input-group-addon">
+                                 <!--  <button id="calendar" class="btn btn-default" ><i class="fa fa-calendar"></i></button> -->
+                                </div>
+                              </div>
+                            </td>
+                            <td><input type="text" class="form-control" name="satcr[]"  value="<?php echo $sat['criticalReading'];?>"  placeholder="" maxlength="3" data-validate="yes" data-rules="type:numeric,max_length:3,min:200,max:800,divide_by:10" /></td>
+                            <td><input type="text" class="form-control" name="satmath[]"   value="<?php echo $sat['math'];?>"  placeholder="" maxlength="3" data-validate="yes" data-rules="type:numeric,max_length:3,min:200,max:800,divide_by:10" /></td>
+                            <td><input type="text" class="form-control" name="satwriting[]"  value="<?php echo $sat['writing'];?>"  placeholder="" maxlength="3" data-validate="yes" data-rules="type:numeric,max_length:3,min:200,max:800,divide_by:10" /></td>
+                            <td class="text-center">
+                            <?php 
+                            if($minusFlag===false){?>
+                            <button value="T_SAT" class="btn btn-default plusbtn" ><i class="fa fa-plus"></i></button>
+                            <?php }else{?>
+                             <button value="T_SAT" class="btn btn-default minusbtn" ><i class="fa fa-minus"></i></button>
+                            <?php } $minusFlag=true; ?>
+                            </td>
+                          </tr>
+                          <?php 
+                         
+                        } } else {?>
+                           <tr>
+                            <td><input type="hidden" name="T_1_grade[]" value="1"> 
+                              <div class="input-group inputBtn">
+                                <!-- <input id="satdatetaken" name="satdatetaken[]" type="text" value="" class="form-control " placeholder="" >-->
+                                 <select name="satdatetaken[]" id="satdatetaken" class="form-control td-lg-width">
+                                 <option>Select</option>
+                               <?php 
+                               $sdates = explode(":", Constants::SAT_TESTING_DATE);
+                               foreach ($sdates as $date){
+                               ?>
+                               <option > <?php echo $date;?></option>
+                               
+                               <?php }?>
+                               </select>
+                                <div class="input-group-addon">
+                                  <!-- <button id="calendar" class="btn btn-default" ><i class="fa fa-calendar"></i></button> -->
+                                </div>
+                              </div>
+                            </td>
+                            <td><input type="number"   class="form-control" name="satcr[]"  placeholder="" maxlength="3" data-validate="yes" data-rules="type:numeric,max_length:3,min:200,max:800,divide_by:10" /></td>
+                            <td><input type="text" class="form-control" name="satmath[]"   placeholder="" maxlength="3" data-validate="yes" data-rules="type:numeric,max_length:3,min:200,max:800,divide_by:10" /></td>
+                            <td><input type="text" class="form-control" name="satwriting[]" placeholder="" maxlength="3" data-validate="yes" data-rules="type:numeric,max_length:3,min:200,max:800,divide_by:10" /></td>
+                            <td class="text-center"><button value="T_SAT" class="btn btn-default plusbtn" ><i class="fa fa-plus"></i></button></td>
+                          </tr>
+                          <?php }?>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div><!-- /.widget box -->
+
+                  <!-- ACT -->
+                  <div class="box box-default box-solid collapsed-box">
+                    <div class="box-header bg-green" data-widget="collapse" data-collapse="custom">
+                      <h3 class="box-title">ACT</h3>
+                      <div class="box-tools pull-right">
+                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                      </div><!-- /.box-tools -->
+                    </div><!-- /.box-header -->
+                  
+                  <div class="box-body  table-responsive">
+                  
+                  <div class="row">
+                  
+                    <div id="acterror" class="alert alert-danger col-sm-12" style="display: none;">
+               	<div class="info-text-container-failure ">
+                  	<i class="fa fa-close "></i> 
+                    <span class="info-text" id=""> Please enter the valid ACT score(Range between 1 and 36) and date and try again
+                    </span>
+                </div>
+              	</div>
+                  </div>
+                      <table class="table table-bordered courseTable">
+                        <thead>
+                          <tr>
+                            <th class="td-lg-width">Date Taken / Planned</th>
+                            <!-- <th class="td-sm-width">Composite</th>-->
+                            <th class="td-sm-width">English</th>
+                            <th class="td-sm-width">Math</th>
+                            <th class="td-sm-width">Reading</th>
+                            <th class="td-sm-width">Science</th>
+                            <th class="td-sm-width">Writing</th>
+                            <th class="td-xs-width">&nbsp;</th>
+                          </tr>
+                        </thead>
+                        
+                        <tbody>
+                        
+                        
+                         <?php 
+                        
+			       		$acts=isset($res['acts'])?$res['acts']:array();;
+						if(count($acts)>0){
+							$minusFlag=false;
+                        foreach ($acts as $act){
+                        ?>
+                          <tr>
+                            <td><input type="hidden" name="T_2_grade[]" value="2"> 
+                              <div class="input-group inputBtn">
+                               <!--  <input id="actdatetaken" name="actdatetaken[]" value="<?php echo $act['year'];?>" type="text" class="form-control " placeholder=""> -->
+                                 <select name="actdatetaken[]" id="actdatetaken" class="form-control td-lg-width ">
+                                 <option>Select</option>
+                               <?php 
+                               $sdates = explode(":", Constants::ACT_TESTING_DATE);
+                               foreach ($sdates as $date){
+                               ?>
+                               <option <?php if($act['year']==$date){?> selected="selected" <?php }?>> <?php echo $date;?></option>
+                               
+                               <?php }?>
+                               </select>
+                                <div class="input-group-addon">
+                                  <!-- <button id="calendar" class="btn btn-default" ><i class="fa fa-calendar"></i></button> -->
+                                </div>
+                              </div>
+                            </td>
+                            <!-- <td><input type="text" class="form-control" name="actcomposite[]"  value="<?php echo $act['composite'];?>"  placeholder="" maxlength="2" data-validate="yes" data-rules="type:numeric,max_length:2,min:1,max:36" /></td>-->
+                            <td><input type="text" class="form-control" name="actenglish[]" value="<?php echo $act['english'];?>"  placeholder="" maxlength="2" data-validate="yes" data-rules="type:numeric,max_length:2,min:1,max:36" /></td>
+                            <td><input type="text" class="form-control" name="actmath[]"  value="<?php echo $act['math'];?>" placeholder="" maxlength="2" data-validate="yes" data-rules="type:numeric,max_length:2,min:1,max:36" /></td>
+                            <td><input type="text" class="form-control" name="actreading[]"  value="<?php echo $act['reading'];?>" placeholder="" maxlength="2" data-validate="yes" data-rules="type:numeric,max_length:2,min:1,max:36" /></td>
+                            <td><input type="text" class="form-control" name="actscience[]"  value="<?php echo $act['science'];?>" placeholder="" maxlength="2" data-validate="yes" data-rules="type:numeric,max_length:2,min:1,max:36" /></td>
+                            <td><input type="text" class="form-control" name="actwriting[]"  value="<?php echo $act['writing'];?>" placeholder="" maxlength="2" data-validate="yes" data-rules="type:numeric,max_length:2,min:1,max:36" /></td>
+                            <td class="text-center">
+                            <?php 
+                            if($minusFlag===false){?>
+                            <button value="T_ACT" class="btn btn-default plusbtn" ><i class="fa fa-plus"></i></button>
+                            <?php }else{?>
+                             <button value="T_ACT" class="btn btn-default minusbtn" ><i class="fa fa-minus"></i></button>
+                            <?php } $minusFlag=true; ?>
+                            </td></tr>
+                          
+                          <?php }}else{ ?>
+                           <tr>
+                            <td><input type="hidden" name="T_2_grade[]" value="2"> 
+                              <div class="input-group inputBtn">
+                                <!-- <input id="actdatetaken" name="actdatetaken[]" type="text" class="form-control " placeholder=""> -->
+                                 <select name="actdatetaken[]" id="actdatetaken" class="form-control td-lg-width">
+                                 <option>Select</option>
+                               <?php 
+                               $sdates = explode(":", Constants::ACT_TESTING_DATE);
+                               foreach ($sdates as $date){
+                               ?>
+                               <option > <?php echo $date;?></option>
+                               
+                               <?php }?>
+                               </select>
+                                <div class="input-group-addon">
+                                  <!-- <button id="calendar" class="btn btn-default" ><i class="fa fa-calendar"></i></button> -->
+                                </div>
+                              </div>
+                            </td>
+                            <!-- <td><input type="text" class="form-control" name="actcomposite[]" placeholder="" maxlength="2" data-validate="yes" data-rules="type:numeric,max_length:2,min:1,max:36"/></td>-->
+                            <td><input type="text" class="form-control" name="actenglish[]" placeholder="" maxlength="2" data-validate="yes" data-rules="type:numeric,max_length:2,min:1,max:36" /></td>
+                            <td><input type="text" class="form-control" name="actmath[]" placeholder="" maxlength="2" data-validate="yes" data-rules="type:numeric,max_length:2,min:1,max:36" /></td>
+                            <td><input type="text" class="form-control" name="actreading[]" placeholder="" maxlength="2" data-validate="yes" data-rules="type:numeric,max_length:2,min:1,max:36" /></td>
+                            <td><input type="text" class="form-control" name="actscience[]" placeholder="" maxlength="2" data-validate="yes" data-rules="type:numeric,max_length:2,min:1,max:36" /></td>
+                            <td><input type="text" class="form-control" name="actwriting[]" placeholder="" maxlength="2" data-validate="yes" data-rules="type:numeric,max_length:2,min:1,max:36" /></td>
+                            <td class="text-center"><button value="T_ACT" class="btn btn-default plusbtn" ><i class="fa fa-plus"></i></button></td>
+                          </tr>
+                          <?php } ?>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div><!-- /.widget box -->
+
+                  <!-- PSAT -->
+                  <div class="box box-default box-solid collapsed-box">
+                    <div class="box-header bg-green" data-widget="collapse" data-collapse="custom">
+                      <h3 class="box-title">PSAT</h3>
+                      <div class="box-tools pull-right">
+                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                      </div><!-- /.box-tools -->
+                    </div><!-- /.box-header -->
+                  
+                  <div class="box-body  table-responsive">
+                  
+                   <div class="row">
+                  
+                    <div id="psaterror" class="alert alert-danger col-sm-12" style="display: none;">
+               	<div class="info-text-container-failure ">
+                  	<i class="fa fa-close "></i> 
+                    <span class="info-text" id=""> Please enter vaild PSAT score(Range between 20 and 80) and select valid grade and try again
+                    </span>
+                </div>
+              	</div>
+                  </div>
+                      <table class="table table-bordered courseTable">
+                        <thead>
+                          <tr>
+                            <th class="td-md-width">Grade Took the PSAT</th>
+                            <th class="td-sm-width">Critical Reading</th>
+                            <th class="td-sm-width">Math</th>
+                            <th class="td-sm-width">Writing</th>
+                            <th class="td-xs-width">&nbsp;</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        
+                        <?php 
+                        
+                        $psats=isset($res['psats'])?$res['psats']:array();
+                        if(count($psats)>0){
+                        	$minusFlag=false;
+                        	foreach ($psats as $psat){
+                        		?>
+                           <tr>
+                            <td><input type="hidden" name="T_3_grade[]" value="3"> 
+                              <select class="form-control td-lg-width" name="psatgrade[]">
+                                <option value="-1" <?php if($psat['gradeTaken']=='-1'){?>  selected="selected" <?php }?>>Select</option>
+                                <option value="9-"  <?php if($psat['gradeTaken']=='9-'){?>  selected="selected" <?php }?>>Before 9th Grade</option>
+                                <option value="9"  <?php if($psat['gradeTaken']=='9'){?>  selected="selected" <?php }?>>9th Grade</option>
+                                <option value="10"  <?php if($psat['gradeTaken']=='10'){?>  selected="selected" <?php }?>>10th Grade</option> 
+                                <option value="11"  <?php if($psat['gradeTaken']=='11'){?>  selected="selected" <?php }?>>11th Grade</option> 
+                              </select>
+                            </td>
+                            <td><input type="text" class="form-control" placeholder="" name="psatcr[]" value="<?php echo $psat['criticalReading'];?>" maxlength="2" data-validate="yes" data-rules="type:numeric,max_length:2,min:20,max:80" /></td>
+                            <td><input type="text" class="form-control" placeholder="" name="psatmath[]" value="<?php echo $psat['math'];?>" maxlength="2" data-validate="yes" data-rules="type:numeric,max_length:2,min:20,max:80" /></td>
+                            <td><input type="text" class="form-control" placeholder="" name="psatwriting[]" value="<?php echo $psat['writing'];?>" maxlength="2" data-validate="yes" data-rules="type:numeric,max_length:2,min:20,max:80" /></td>
+                            <td class="text-center">
+                            <?php 
+                            if($minusFlag===false){?>
+                            <button value="T_PSAT" class="btn btn-default plusbtn" ><i class="fa fa-plus"></i></button>
+                            <?php }else{?>
+                             <button value="T_PSAT" class="btn btn-default minusbtn" ><i class="fa fa-minus"></i></button>
+                            <?php } $minusFlag=true; ?>
+                            </td>
+                          </tr>
+                        
+                        <?php }}else{?>
+                          <tr>
+                            <td><input type="hidden" name="T_3_grade[]" value="3"> 
+                              <select class="form-control td-lg-width" name="psatgrade[]">
+                                <option>Select</option>
+                                <option value="9-">Before 9th Grade</option>
+                                <option value="9">9th Grade</option>
+                                <option value="10">10th Grade</option> 
+                                <option value="11">11th Grade</option> 
+                              </select>
+                            </td>
+                            <td><input type="text" class="form-control" placeholder="" name="psatcr[]" maxlength="2" data-validate="yes" data-rules="type:numeric,max_length:2,min:20,max:80" /></td>
+                            <td><input type="text" class="form-control" placeholder="" name="psatmath[]" maxlength="2" data-validate="yes" data-rules="type:numeric,max_length:2,min:20,max:80" /></td>
+                            <td><input type="text" class="form-control" placeholder="" name="psatwriting[]" maxlength="2" data-validate="yes" data-rules="type:numeric,max_length:2,min:20,max:80" /></td>
+                            <td  class="text-center"><button value="T_PSAT" class="btn btn-default plusbtn" ><i class="fa fa-plus"></i></button></td>
+                          </tr>
+                        
+                        <?php }?>
+                        
+                        
+                        
+                        </tbody>
+                      </table>
+                    </div>
+                  </div><!-- /.widget box -->
+
+                  <!-- Conversion -->
+                  <div class="box box-default box-solid collapsed-box">
+                    <div class="box-header bg-green" data-widget="collapse" data-collapse="custom">
+                      <h3 class="box-title">Convert my Score</h3>
+                      <div class="box-tools pull-right">
+                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                      </div><!-- /.box-tools -->
+                    </div><!-- /.box-header -->
+                  
+                    <div class="box-body">
+                      <div class="form-group">
+                        <label for="" class="col-sm-3 control-label">SAT</label>
+                        <div class="col-sm-4">
+                            <select name="sattoactyear" id="satconv" class="form-control">
+                              <?php 
+                              
+                              $sats=isset($res['sats'])?$res['sats']:array();
+                              foreach ($sats as $sat){
+                              ?>
+                            <option><?php echo $sat['year'];?></option>  
+                              <?php }?>
+                              
+                            </select>
+                        </div>
+                        <div class="tooltipContent"> <a href="#" data-toggle="tooltip" class="tip-right" data-original-title="Convert your SAT score to an ACT score (and vice versa)!"><i class="fa fa-info-circle "></i></a>
+                        
+                        <button type="button" id="sattoactbutton" class="btn btn-success pull-right" style="position:relative; right:200px;" >Convert to ACT</button> </div>
+                        
+                      </div>
+                      <div class="  table-responsive">
+                        <table class="table table-bordered courseTable">
+                          <thead>
+                            <tr>
+                              <th class="td-sm-width">Date Taken</th>
+                              <th class="td-sm-width">SAT (Critical Reading + Math)</th>
+                              <th class="td-sm-width">ACT Composite</th>
+                              <th class="td-sm-width">SAT Writing</th>
+                              <th class="td-sm-width">ACT English / Writing</th>
+                              
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td id="sattoactdatetaken">
+                                0
+                              </td>
+                              <td id="sattoactsatcrm">0</td>
+                              <td id="sattoactcomposite">0</td>
+                              <td id="sattoactsatwriting">0</td>
+                              <td id="sattoactacteng">0</td>
+                              
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+
+                      <div class="form-group marginTop">
+                        <label for="" class="col-sm-3 control-label">ACT</label>
+                        <div class="col-sm-4">
+                             <select name="acttosatyear" id="actconv" class="form-control">
+                              
+                              <?php 
+                             
+                              $acts=isset($res['acts'])?$res['acts']:array();
+                              foreach ($acts as $act){
+                              ?>
+                            <option><?php echo $act['year'];?></option>  
+                              <?php }?>
+                              
+                            </select>
+                        </div>
+                        <div class="tooltipContent"> <a href="#" data-toggle="tooltip" class="tip-right" data-original-title="Convert your SAT score to an ACT score (and vice versa)!"><i class="fa fa-info-circle "></i></a>
+                        
+                        <button type="submit" id="acttosatbutton" class="btn btn-success pull-right" style="position:relative; right:200px;" >Convert to SAT</button> </div>
+                        
+                      </div>
+                      <div class="  table-responsive">
+                        <table class="table table-bordered courseTable">
+                          <thead>
+                            <tr>
+                              <th class="td-sm-width">Date Taken</th>
+                              <th class="td-sm-width">ACT Composite</th>
+                              <th class="td-sm-width">SAT (Critical Reading + Math)</th>
+                              <th class="td-sm-width">ACT English / Writing</th>
+                              <th class="td-sm-width">SAT Writing</th>
+                              
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td id="acttosatdatetaken">
+                                0
+                              </td>
+                              <td id="acttosatactcomposite">0</td>
+                              <td id="acttosatcrm">0</td>
+                              <td id="acttosatactew">0</td>
+                              <td id="acttosatw">0</td>
+                              
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>   
+                    </div>
+                  </div><!-- /.widget box -->
+
+                  <!-- SAT Subject -->
+                  <div class="box box-default box-solid collapsed-box">
+                    <div class="box-header bg-green" data-widget="collapse" data-collapse="custom">
+                      <h3 class="box-title">SAT Subject Tests<i> (Not required but strongly recommended for science, math, and engineering related majors)</i></h3>
+
+                      <div class="box-tools pull-right">
+                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                      </div><!-- /.box-tools -->
+                    </div><!-- /.box-header -->
+                  
+                  <div class="box-body  table-responsive">
+                  
+                  <div class="row">
+                  
+                    <div id="satsuberror" class="alert alert-danger col-sm-12" style="display: none;">
+               	<div class="info-text-container-failure ">
+                  	<i class="fa fa-close "></i> 
+                    <span class="info-text" id=""> Please enter vaild SAT Subject(Range between 200 and 800) Test information and Grade and try again
+                    </span>
+                </div>
+              	</div>
+                  </div>
+                      <table class="table table-bordered courseTable">
+                        <thead>
+                          <tr>
+                            <th class="td-md-width">Subject Test(s)</th>
+                            <th class="td-lg-width">Test Date</th>
+                            <th class="td-sm-width">Score</th>
+                            <th class="td-xs-width">&nbsp;</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        
+                          
+                        <?php 
+                       
+                        
+                        $subjectSats=isset($res['subjectSats'])?$res['subjectSats']:array();
+                        
+                        
+                        if(count($subjectSats)>0){
+                        	$minusFlag=false;
+                        	foreach ($subjectSats as $row){
+                        		?>
+                        
+                          <tr>
+                            <td><input type="hidden" name="T_4_grade[]" value="4"> 
+                              <select class="form-control td-lg-width" name="satsubtest[]">
+                                <option value="-1">Select</option>
+                                <?php 
+                                foreach ($allSATTests as $tmp){
+                                ?>
+                                <option value="<?php echo $tmp;?>"  <?php if($tmp==$row['subject']){?> selected="selected" <?php }?>> <?php echo $tmp;?></option>
+                                <?php }?>
+                              </select>
+                            </td>
+                            <td>
+                              <div class="input-group inputBtn">
+                                <!-- <input id="" name="satsubtestdate[]" value="<?php echo $row['year'];?>" type="text" class="form-control " placeholder=""> -->
+                                
+                                <select name="satsubtestdate[]" class="form-control td-lg-width">
+                                <option value="-1">Select</option>
+                               <?php 
+                               $sdates = explode(":", Constants::SAT_SUB_TESTING_DATE);
+                               foreach ($sdates as $date){
+                               ?>
+                               <option <?php if( $row['year']==$date){?> selected="selected" <?php }?>> <?php echo $date;?></option>
+                               
+                               <?php }?>
+                                </select>
+                                
+                                <div class="input-group-addon">
+                                  <!-- <button id="calendar" class="btn btn-default" ><i class="fa fa-calendar"></i></button> -->
+                                </div>
+                              </div>
+                            </td>
+                            <td><input type="text" name="satsubscore[]"  value="<?php echo $row['score'];?>" class="form-control" placeholder="" maxlength="3" data-validate="yes" data-rules="type:numeric,max_length:3,min:200,max:800,divide_by:10" /></td>
+                            <td class="text-center">
+                            <?php 
+                            if($minusFlag===false){?>
+                            <button value="T_SAT_SUB" class="btn btn-default plusbtn" ><i class="fa fa-plus"></i></button>
+                            <?php }else{?>
+                             <button value="T_SAT_SUB" class="btn btn-default minusbtn" ><i class="fa fa-minus"></i></button>
+                            <?php } $minusFlag=true; ?>
+                            </td>
+                          </tr>
+                          <?php }}else{?>
+                           <tr>
+                            <td><input type="hidden" name="T_4_grade[]" value="4"> 
+                              <select class="form-control td-lg-width" name="satsubtest[]">
+                                <option value="-1">Select</option>
+                                <?php 
+                                foreach ($allSATTests as $tmp){
+                                ?>
+                                <option value="<?php echo $tmp;?>"> <?php echo $tmp;?></option>
+                                <?php }?>
+                              </select>
+                            </td>
+                            <td>
+                              <div class="input-group inputBtn">
+                                <!-- <input id="" name="satsubtestdate[]" type="text" class="form-control " placeholder="">-->
+                                    <select name="satsubtestdate[]" class="form-control td-lg-width">
+                                <option value="-1">Select</option>
+                               <?php 
+                               $sdates = explode(":", Constants::SAT_SUB_TESTING_DATE);
+                               foreach ($sdates as $date){
+                               ?>
+                               <option > <?php echo $date;?></option>
+                               
+                               <?php }?>
+                                </select>
+                                <div class="input-group-addon">
+                                  <!-- <button id="calendar" class="btn btn-default" ><i class="fa fa-calendar"></i></button> -->
+                                </div>
+                              </div>
+                            </td>
+                            <td><input type="text" name="satsubscore[]" class="form-control" placeholder="" maxlength="3" data-validate="yes" data-rules="type:numeric,max_length:3,min:200,max:800,divide_by:10" /></td>
+                            <td class="text-center"><button value="T_SAT_SUB" class="btn btn-default plusbtn" ><i class="fa fa-plus"></i></button></td>
+                          </tr>
+                          <?php }?>
+                          
+                        </tbody>
+                      </table>
+                    </div>
+                  </div><!-- /.widget box -->
+                  <!-- AP Exams -->
+                  <div class="box box-default box-solid collapsed-box">
+                    <div class="box-header bg-green" data-widget="collapse" data-collapse="custom">
+                      <h3 class="box-title">AP Exams <i>(If you are enrolled in an AP class but did not/will not take a test, do NOT include it here.)</i></h3>
+
+                      <div class="box-tools pull-right">
+                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                      </div><!-- /.box-tools -->
+                    </div><!-- /.box-header -->
+                  
+                  <div class="box-body  table-responsive">
+                     <div class="row">
+                  
+                    <div id="aperror" class="alert alert-danger col-sm-12" style="display: none;">
+               	<div class="info-text-container-failure ">
+                  	<i class="fa fa-close "></i> 
+                    <span class="info-text" id=""> Please enter vaild AP Exam scores (Range between 1 and 5) details and try again
+                    </span>
+                </div>
+              	</div>
+                  </div>
+                      <table class="table table-bordered courseTable">
+                        <thead>
+                          <tr>
+                            <th class="td-md-width">Exam Taken/Planned</th>
+                            <th class="td-lg-width">Exam Date</th>
+                            <th class="td-sm-width">Score</th>
+                            <th class="td-xs-width">&nbsp;</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                       
+                        <?php 
+                        $subjectAPs=isset($res['subjectAPs'])?$res['subjectAPs']:array();
+                       
+                        if(count($subjectAPs)>0){
+                        	$minusFlag=false;
+                        	foreach ($subjectAPs as $row){
+                        		?>
+                       
+                       
+                          <tr>
+                            <td><input type="hidden" name="t_8_grade[]" value="8"> 
+                              <select class="form-control td-lg-width" name="apexam[]">
+                                <option value="-1">Select</option>
+                               
+                              
+                                <?php 
+                                foreach ( $allAPTests as $tmp){
+                                ?>
+                                <option value="<?php echo $tmp;?>"  <?php if($tmp==$row['subject']){?> selected="selected" <?php }?>> <?php echo $tmp;?></option>
+                                <?php }?>
+                               
+                              </select>
+                            </td>
+                            <td>
+                              <div class="input-group inputBtn">
+                               <!--  <input id="" name="apexamdate[]" type="text"  value="<?php echo $row['year'];?>" class="form-control " placeholder="">-->
+                                   <select name="apexamdate[]" class="form-control ">
+                                <option value="-1">Select</option>
+                               <?php 
+                               $sdates = explode(":", Constants::AP_TESTING_DATE);
+                               foreach ($sdates as $date){
+                               ?>
+                               <option <?php if($row['year']==$date){?> selected="selected" <?php }?> > <?php echo $date;?></option>
+                               
+                               <?php }?>
+                                </select>
+                                <div class="input-group-addon">
+                                  <!-- <button id="calendar" class="btn btn-default" ><i class="fa fa-calendar"></i></button> -->
+                                </div>
+                              </div>
+                            </td>
+                            <td><input type="text" name="apexamscore[]" class="form-control" value="<?php echo $row['score'];?>" placeholder="" maxlength="1" data-validate="yes" data-rules="type:numeric,max_length:1,min:1,max:5" /></td>
+                            <td class="text-center">
+                            <?php 
+                            if($minusFlag===false){?>
+                            <button value="T_AP" class="btn btn-default plusbtn" ><i class="fa fa-plus"></i></button>
+                            <?php }else{?>
+                             <button value="T_AP" class="btn btn-default minusbtn" ><i class="fa fa-minus"></i></button>
+                            <?php } $minusFlag=true; ?>
+                            </td>
+                          </tr>
+                          
+                          <?php }}else{?>
+                           <tr>
+                            <td><input type="hidden" name="t_8_grade[]" value="8"> 
+                              <select class="form-control td-lg-width" name="apexam[]">
+                                <option value="-1">Select</option>
+                                 <?php 
+                                foreach ( $allAPTests as $tmp){
+                                ?>
+                                <option value="<?php echo $tmp;?>" > <?php echo $tmp;?></option>
+                                <?php }?>
+                              </select>
+                            </td>
+                            <td>
+                              <div class="input-group inputBtn">
+                              <!--   <input id="" name="apexamdate[]" type="text" class="form-control " placeholder="">-->
+                                <select name="apexamdate[]" class="form-control td-lg-width">
+                                <option value="-1">Select</option>
+                               <?php 
+                               $sdates = explode(":", Constants::AP_TESTING_DATE);
+                               foreach ($sdates as $date){
+                               ?>
+                               <option > <?php echo $date;?></option>
+                               
+                               <?php }?>
+                                </select>
+                                <div class="input-group-addon">
+                                  <!-- <button id="calendar" class="btn btn-default" ><i class="fa fa-calendar"></i></button> -->
+                                </div>
+                              </div>
+                            </td>
+                            <td class="text-center"><input type="text" name="apexamscore[]" class="form-control" placeholder="" maxlength="1" data-validate="yes" data-rules="type:numeric,max_length:1,min:1,max:5" /></td>
+                            <td class="text-center"><button value="T_AP" class="btn btn-default plusbtn" ><i class="fa fa-plus"></i></button></td>
+                          </tr>
+                          <?php }?>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div><!-- /.widget box -->
+
+                  <!-- IB Exams -->
+                  <div class="box box-default box-solid collapsed-box">
+                    <div class="box-header bg-green" data-widget="collapse" data-collapse="custom">
+                      <h3 class="box-title">International Baccalaureate</h3>
+
+                      <div class="box-tools pull-right">
+                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                      </div><!-- /.box-tools -->
+                    </div><!-- /.box-header -->
+                  
+                  <div class="box-body  table-responsive">
+                     <div class="row">
+                  
+                    <div id="iberror" class="alert alert-danger col-sm-12" style="display: none;">
+               	<div class="info-text-container-failure ">
+                  	<i class="fa fa-close "></i> 
+                    <span class="info-text" id=""> Please enter vaild IB Exam(Range between 1 and 7) scores and try again
+                    </span>
+                </div>
+              	</div>
+                  </div>
+                      <table class="table table-bordered courseTable">
+                        <thead>
+                          <tr>
+                            <th class="td-lg-width">Exam(s)</th>
+                            <th class="td-sm-width">Level</th>
+                            <th class="td-sm-width">Date(s)</th>
+                            <th class="td-sm-width">Score(s)</th>
+                            <th class="td-xlg-width">Are You an IB Diploma Candidate?</th>
+                             <th class="td-xs-width">&nbsp;</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        
+                         <?php 
+                         $subjectIBs=isset($res['intBacs'])?$res['intBacs']:array();
+                          
+                        
+                        if(count($subjectIBs)>0){
+                        	$minusFlag=false;
+                        	foreach ($subjectIBs as $row){
+                        		?>
+                       
+                        
+                          <tr>
+                            <td><input type="hidden" name="t_6_grade[]" value="6">
+                              <select class="form-control td-md-width" name="ibexam[]">
+                                <option value="-1">Select</option>
+                                
+                               
+                                 <?php 
+                                foreach ( $allIBTests as $tmp){
+                                ?>
+                                <option value="<?php echo $tmp;?>"  <?php if($tmp==$row['subject']){?> selected="selected" <?php }?>> <?php echo $tmp;?></option>
+                                <?php }?>
+                              </select>
+                            </td>
+                            <td>
+                              <select class="form-control td-md-width" name="iblevel[]">
+                                <option value="-1">Select</option>
+                                <option <?php if($row['level']=="HL"){?> selected="selected" <?php }?>>HL</option>
+                                <option <?php if($row['level']=="SL"){?> selected="selected" <?php }?>>SL</option>
+                              </select>
+                            </td>
+                            <td>
+                              <div class="input-group inputBtn">
+                             <!--    <input id="" name="ibdate[]" type="text" class="form-control " value="<?php echo $row['year'];?>" placeholder="">-->
+                              <select name="ibdate[]" class="form-control ">
+                                <option value="-1">Select</option>
+                               <?php 
+                               $sdates = explode(":", Constants::IB_TESTING_DATE);
+                               foreach ($sdates as $date){
+                               ?>
+                               <option <?php if($row['year']==$date){?> selected="selected" <?php }?>> <?php echo $date;?></option>
+                               
+                               <?php }?>
+                                </select>
+                                <div class="input-group-addon">
+                                  <!-- <button id="calendar" class="btn btn-default" ><i class="fa fa-calendar"></i></button> -->
+                                </div>
+                              </div>
+                            </td>
+                            <td>
+                              <select class="form-control " name="ibscore[]">
+                                <option value="-1">Select</option>
+                                <option <?php if($row['score']=="1"){?> selected="selected" <?php }?>>1</option>
+                                <option <?php if($row['score']=="2"){?> selected="selected" <?php }?>>2</option>
+                                <option <?php if($row['score']=="3"){?> selected="selected" <?php }?>>3</option>
+                                <option <?php if($row['score']=="4"){?> selected="selected" <?php }?>>4</option>
+                                <option <?php if($row['score']=="5"){?> selected="selected" <?php }?>>5</option>
+                                <option <?php if($row['score']=="6"){?> selected="selected" <?php }?>>6</option>
+                                <option <?php if($row['score']=="7"){?> selected="selected" <?php }?>>7</option>
+                                <option <?php if($row['score']=="999"){?> selected="selected" <?php }?> value="999">I have not received my scores yet</option>
+                              </select>
+                            </td>
+                            
+                            <td><input type="checkbox" name="isibdiplomo[]" value="true" <?php if(isset($row['diplomaCandidate']) && $row['diplomaCandidate']==true){?> checked="checked" <?php }?>/></td>
+                            <td class="text-center">
+                            <?php 
+                            if($minusFlag===false){?>
+                            <button value="T_IB" class="btn btn-default plusbtn" ><i class="fa fa-plus"></i></button>
+                            <?php }else{?>
+                             <button value="T_IB" class="btn btn-default minusbtn" ><i class="fa fa-minus"></i></button>
+                            <?php } $minusFlag=true; ?>
+                            </td>
+                          </tr>
+                          <?php }}else{?>
+                           
+                          <tr>
+                            <td><input type="hidden" name="t_5_grade[]" value="5">
+                              <select class="form-control td-md-width" name="ibexam[]">
+                                <option value="-1">Select</option>
+                                
+                              </select>
+                            </td>
+                            <td>
+                              <select class="form-control td-md-width" name="iblevel[]">
+                                <option value="-1">Select</option>
+                                <option>HL</option>
+                                <option>SL</option>
+                              </select>
+                            </td>
+                            <td>
+                              <div class="input-group inputBtn">
+                                <!-- <input id="" name="ibdate[]" type="text" class="form-control " placeholder="">-->
+                                <select name="ibdate[]" class="form-control ">
+                                <option value="-1">Select</option>
+                               <?php 
+                               $sdates = explode(":", Constants::IB_TESTING_DATE);
+                               foreach ($sdates as $date){
+                               ?>
+                               <option > <?php echo $date;?></option>
+                               
+                               <?php }?>
+                                </select>
+                               
+                                <div class="input-group-addon">
+                                  <!-- <button id="calendar" class="btn btn-default" ><i class="fa fa-calendar"></i></button> -->
+                                </div>
+                              </div>
+                            </td>
+                            <td>
+                              <select class="form-control td-sm-width" name="ibscore[]">
+                                <option value="-1">Select</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option value="999">I have not received my scores yet</option>
+                              </select>
+                            </td>
+                            
+                            <td><input type="checkbox" name="isibdiplomo[]" value="yes"/></td>
+                            <td class="text-center"><button value="T_IB" class="btn btn-default plusbtn" ><i class="fa fa-plus"></i></button></td>
+                          </tr>
+                          <?php }?>
+                          
+                        </tbody>
+                      </table>
+                    </div>
+                  </div><!-- /.widget box -->
+                    
+                </div><!-- /.box-body -->
+
+
+
+                  <div class="box-footer">
+					
+					<div id="page_error" class="alert alert-danger col-sm-12" style="display:none" >
+						<div class="info-text-container-failure ">
+							<i class="fa fa-close "></i> 
+							<span class="info-text" id="errortext"> Please enter the valid input</span>
+						</div>
+					</div>
+					
+					<div id="page_success" class="alert alert-success col-sm-12" style="display:none" >
+						<div class="info-text-container-success ">
+							<i class="fa fa-check-square "></i> 
+							<span class="info-text" id="successtext"></span>
+						</div>
+					</div>
+					     <div class="text-center">
+                    <button type="submit" class="btn bg-default bg-orange pull-left" id="gpa-submit2" value="gpaweight">Best Testing Score</button>
+                     <?php if($this->planflag=="1"){?>
+                    <button type="button" id="std-submit" value="update" class="btn btn-danger" >Update My Information</button>   
+                    <button type="button" id="testing-next" value="update" class="btn btn-danger pull-right" >Next: GPA</button>                     
+                    <input type="hidden" name="mode" id="mode" value="update">
+                    <?php }else{?>
+                    <button type="button" id="std-submit" value="save" class="btn btn-danger" data-complete-text="Update My Information">Save My Information</button>    
+                    <button type="button" id="testing-next" value="save" class="btn btn-danger pull-right" >Next: GPA</button>      
+                    <input type="hidden" name="mode" id="mode" value="save">              
+                    <?php }?>
+                    
+                    
+                      
+                    </div>              
+                  </div><!-- /.box-footer -->
+   
+              </div><!-- /.box -->
+                
+            </div>
+            
+            <input type="hidden" name="triggeridsat" id="triggeridsat" value="0"/>
+            <input type="hidden" name="triggeridact" id="triggeridact" value="0"/>
+            
+                         </form>
+
+            
+
+
+          </div><!-- /.row -->
+
+          <div class="clearfix"></div>
+          <!-- My Notes for devices -->
+          <div class="rightSideContainer">
+            <div id="myAffix" class="box box-default hidden-lg" >
+                    <div class="box-header with-border">
+                      <h3 class="box-title"><i class="fa fa-pencil"></i> My Notes</h3>
+                    </div>
+                  <div class="box-body">
+                        <textarea class="form-control cusnote" rows="3" placeholder="Coming Soon..." name="note2" id="note2" readonly="readonly"><?php if(isset($res['notes'][0])){ echo $res['notes'][0];}?></textarea>
+                        <button class="btn btn-default marginTop"  id="savenote" disabled="true">Save My Notes </button>
+                         <input type="hidden" name="note"  id="note" value="<?php if(isset($res['notes'][0])){ echo $res['notes'][0];}?>" />
+                  </div><!-- /.box-body -->
+                </div><!-- /.box -->
+           </div>
+        </section><!-- /.content -->
+      </div><!-- /.content-wrapper -->
+
+      
+    </div><!-- ./wrapper -->
+    
+     <div class="modal fade" id="success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header btn-success">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title " id="myModalLabel">Success</h4>
+	      </div>
+	      <div class="modal-body" id="modalsuccessbody">
+	        Your information has been saved.
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <!-- <button type="button" class="btn btn-primary">Save changes</button>-->
+	      </div>
+	    </div>
+	  </div>
+	</div>
+      
+       <div class="modal fade" id="failure" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header btn-danger">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title " id="myModalLabel">Failure</h4>
+	      </div>
+	      <div class="modal-body" id="modalfailbody">
+	        Oops!  Looks like something went wrong.  Please try again later.
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <!-- <button type="button" class="btn btn-primary">Save changes</button>-->
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+	
+	<div class="modal fade" id="best_score" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="box box-default box-solid">
+	      <div class="box-header bg-green">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="box-title" id="myModalLabel">Best Testing Score</h4>
+	      </div>
+	      <div class="box-body" id="modalsuccessbody">
+				<div class="table-responsive">
+                            <table class="table table-bordered courseTable" id="bestScore_table">
+                              <thead>
+                                <tr bgcolor="#666">
+                                  <th colspan="4" class="GPAscoreTitle">SAT</th>
+                                </tr>
+                                <tr>
+                                  <th class="td-md-width">Date</th>
+                                  <th class="td-sm-width">Critical Reading</th>
+                                  <th class="td-sm-width">Math</th>
+                                  <th class="td-sm-width">Writing</th>
+                                </tr>
+                              </thead>
+                              <tbody id="bestscore">
+                                       <tr></tr>                         
+                              </tbody>
+                            </table>
+                          </div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <!-- <button type="button" class="btn btn-primary">Save changes</button>-->
+	      </div>
+	    </div>
+	  </div>
+	</div>
+      
+
+<div class="modal fade" id="best_score_act" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header btn-danger">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title " id="myModalLabel">Best Testing Score</h4>
+	      </div>
+	      <div class="modal-body" id="modalsuccessbody">
+				<div class="table-responsive">
+                            <table class="table table-bordered courseTable" id="bestScore_table">
+                              <thead>
+                                <tr bgcolor="#666">
+                                  <th colspan="4" class="GPAscoreTitle">ACT</th>
+                                </tr>
+                                <tr>
+                                  <th class="td-md-width">Date</th>
+                                  <th class="td-sm-width">Composite</th>
+                                  <th class="td-sm-width">English</th>
+                                  <th class="td-sm-width">Math</th>
+                                  <th class="td-sm-width">Science</th>
+                                  
+                                  <th class="td-sm-width">Reading</th>
+                                  
+                                  <th class="td-sm-width">Writing</th>
+                                  
+                                </tr>
+                              </thead>
+                              <tbody id="bestscore_act">
+                                       <tr></tr>                         
+                              </tbody>
+                            </table>
+                          </div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <!-- <button type="button" class="btn btn-primary">Save changes</button>-->
+	      </div>
+	    </div>
+	  </div>
+	</div>
+      
+
+    
+    <!-- REQUIRED JS SCRIPTS -->
+
+    <!-- jQuery 2.1.4 -->
+    <script src="/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <!-- Bootstrap 3.3.2 JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js" type="text/javascript"></script>
+    
+    <script src="/dist/js/bootstrap.min.js" type="text/javascript"></script>
+    
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.14.30/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+
+     <!-- InputMask -->
+    <script src="/plugins/input-mask/jquery.inputmask.js" type="text/javascript"></script>
+    <script src="/plugins/input-mask/jquery.inputmask.date.extensions.js" type="text/javascript"></script>
+    <script src="/plugins/input-mask/jquery.inputmask.extensions.js" type="text/javascript"></script>
+
+    <!-- ChartJS 1.0.1 -->
+    <script src="/plugins/chartjs/Chart.min.js" type="text/javascript"></script>
+
+	  <!-- Slimscroll -->
+    <script src="/plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <!-- FastClick -->
+    <script src='/plugins/fastclick/fastclick.min.js'></script>
+    <!-- AdminLTE App -->
+    <script src="/dist/js/app.min.js" type="text/javascript"></script>
+    <!-- Custom Script -->
+    <script src="/dist/js/custom.js" type="text/javascript"></script>
+
+    <!-- jquery scrollbar Script -->
+    <script src="/dist/js/jquery.scrollbar.min.js" type="text/javascript"></script>
+	 <!-- custom validation Script -->
+	<script src="/dist/js/validation.js"></script>
+    
+    
+    
+    
+    
+    
+    <script type="text/javascript">
+
+
+    $(document).on('change', 'select[name="satdatetaken[]"]', function(){
+        var total = 0;
+        $('#satconv').empty();
+        $('select[name="satdatetaken[]"]').each(function(){
+           var dt = $(this).val();
+    		if(dt!='Select'){
+    		$('#satconv').append($('<option>', {
+    			    value: dt,
+    			    text: dt
+    			}));
+    		}
+        });
+      
+    });
+
+    $(document).on('change', 'select[name="actdatetaken[]"]', function(){
+        var total = 0;
+        $('#actconv').empty();
+        $('select[name="actdatetaken[]"]').each(function(){
+           var dt = $(this).val();
+    		if(dt!='Select'){
+    		$('#actconv').append($('<option>', {
+    			    value: dt,
+    			    text: dt
+    			}));
+    		}
+        });
+      
+    });
+  
+    
+	$(function(){		
+				
+		if($('#satconv option:nth-child(1)').val().toLowerCase()!=='select'){
+			$('#sattoactbutton').attr('data-trigger', 'manual');
+			$("#sattoactbutton").click();
+			
+		}
+		if($('#actconv option:nth-child(1)').val().toLowerCase()!=='select'){
+			$('#acttosatbutton').attr('data-trigger', 'manual');
+			$('#acttosatbutton').click();
+		}
+		
+		
+		
+	});	
+
+
+	$('.cusnote').change(function(e){
+
+		 $('#note').val($(this).val());
+		
+	});
+		
+	
+    //$('#stdtest').on('submit', function(e){
+	
+   $('#sattoactbutton').click(function(e){
+   	 e.preventDefault();
+   var $btn = $(this);
+   $btn.button('loading');
+    	 var data = {
+   		      "action": "testing",
+   		      "mode" : "sattoactbutton"
+   		    };
+   	 	    data = $("#stdtest").serialize() + "&" + $.param(data);
+  
+   		    $.ajax({
+   		      type: "POST",
+   		      dataType: "json",
+   		      url: "/plan/SATtoACT", 
+   		      data: data,
+   		      success: function(data) {
+   	  		    if(data['ecode']=='0'){
+
+   	  		   val = JSON.parse(data['request']);
+	    		 // alert(val['year']);
+   	   	  		    
+   		    	    
+   		    		$('#sattoactdatetaken').html(data['date']);
+   		    		$('#sattoactsatcrm').html(val['criticalReadingAndMath']);
+   		    		$('#sattoactcomposite').html(data['response']['composite']);
+   		    		$('#sattoactsatwriting').html(val['writing']);
+   		    		$('#sattoactacteng').html(data['response']['writing']);
+
+   		    		
+   		    		/* if(!$('#sattoactbutton').attr('data-trigger')){
+						$('#success').modal('show');
+					}$('#sattoactbutton').removeAttr('data-trigger');*/
+
+					if($("#triggeridsat").val()!="0"){
+   		    		swal({   title: "Success!",   text: "SAT score to ACT score conversion successful.",   type: "success",   confirmButtonText: "Close" });
+					}
+
+					$("#triggeridsat").val("1");
+				  }else{
+					/*$("#modalfailbody").html(data['error']);
+					if(!$('#sattoactbutton').attr('data-trigger')){	
+						$('#failure').modal('show');
+					}$('#sattoactbutton').removeAttr('data-trigger');*/
+     		      } 
+   		      },
+   		      error: function(xhr, textStatus, errorThrown){
+   		   	swal({   title: "Whoops!",   text: "It looks like there was a problem submitting your request. Please try again. If the problem persists, please contact us.",   type: "error",   confirmButtonText: "Close" });
+   	  		
+     		         
+   		       }
+   		    });
+   		 $btn.button('reset');
+   		    return false;
+    });
+
+    $('#acttosatbutton').click(function(e){
+
+    	var btn = $(this)
+  	  btn.button('loading');
+		 e.preventDefault();
+  	  var data = {
+    		      "action": "testing",
+    		      "mode" : "acttosatbutton"
+    		    };
+    	 	    data = $("#stdtest").serialize() + "&" + $.param(data);
+    		    $.ajax({
+    		      type: "POST",
+    		      dataType: "json",
+    		      url: "/plan/ACTtoSAT", 
+    		      data: data,
+    		      success: function(data) {
+    		    	  if(data['ecode']=='0'){
+
+    		    		  val = JSON.parse(data['request']);
+    		    		  
+    		    		  $('#acttosatdatetaken').html(data['date']);
+    		    		  $('#acttosatactcomposite').html(val['composite']);
+    		    		  $('#acttosatcrm').html(data['response']['criticalReadingAndMath']);
+    		    		  $('#acttosatactew').html(val['writing']);
+    		    		  
+    		    		  $('#acttosatw').html(data['response']['writing']);	
+					
+    		    		  if($("#triggeridact").val()=="1"){
+        		    		  
+    		    			swal({   title: "Success!",   text: "ACT score to SAT score conversion successful.",   type: "success",   confirmButtonText: "Close" });
+    	   	  		   								
+    		    		  }
+
+    		    		  $("#triggeridact").val("1");
+    					  /* if(!$('#acttosatbutton').attr('data-trigger')){
+							$('#success').modal('show');
+						  }$('#acttosatbutton').removeAttr('data-trigger'); */
+						 
+    				  }else{
+    					  $("#modalfailbody").html(data['error']);
+						 if(!$('#acttosatbutton').attr('data-trigger')){	
+							$('#failure').modal('show');
+						 }$('#acttosatbutton').removeAttr('data-trigger');
+         		      }
+    		    	  btn.button('reset');
+  				
+    		      },
+    		      error: function(xhr, textStatus, errorThrown){
+    		         
+
+    		      	swal({   title: "Error!",   text: "Whoops!  It looks like there was a problem submitting your request. Please try again. If the problem persists, please contact us.",   type: "error",   confirmButtonText: "Close" });
+	   	  		   	
+        		          btn.button('reset');
+    		       }
+    		    });
+    		    return false;
+          
+  });
+    
+
+    $('#savenote').click(function(e){
+		 e.preventDefault();
+   	 // if(page_has_error()){
+   	 
+   	 	var btn = $(this)
+	  btn.button('loading');
+	
+   	  var data = {
+     		      "action": "gpa",
+     		      "mode" :"update"
+     		    };
+     	 	    data = $("#stdtest").serialize() + "&" + $.param(data);
+    
+     		    $.ajax({
+     		      type: "POST",
+     		      dataType: "json",
+     		      url: "/plan/testingJSON", 
+     		      data: data,
+     		      success: function(data) {
+     	  		     // alert(data['response']['error']);
+     	  		      
+   				  if(data['ecode']=='0'){
+
+   					$('#savenote').html('Saved');
+   		    		
+					 setTimeout(function(){  $('#savenote').html('Save My Notes'); }, 10000);	
+
+   					//  $("#modalsuccessbody").html("Your testing infomation successfully stored in Database");
+   					 // $('#success').modal('show');
+   					  
+   				  }else{
+   					  $("#modalfailbody").html("Oops!  Looks like something went wrong.  Please try again later");
+        		        	 $('#failure').modal('show');
+        		      }
+     		      },
+     		      error: function(xhr, textStatus, errorThrown){
+     		          alert('Whoops!  It looks like there was a problem submitting your request. Please try again. If the problem persists, please contact us.');
+     		         
+     		       }
+     		    });
+     		    return false;
+   	 // }else{		  
+   	//	$('#page_error').show();
+      //  	setTimeout(function(){ $('#page_error').hide();}, 10000);
+       // 	return false;
+   	//  } 
+   });
+
+    
+    
+
+    $('#testing-next').click(function(e){
+    	var btn = $(this)
+  	  btn.button('loading');
+		 e.preventDefault();
+	 // if(page_has_error()){
+	  var data = {
+ 		      "action": "gpa",
+ 		      "mode" : $(this).val()
+ 		    };
+ 	 	    data = $("#stdtest").serialize() + "&" + $.param(data);
+
+ 		    $.ajax({
+ 		      type: "POST",
+ 		      dataType: "json",
+ 		      url: "/plan/testingJSON", 
+ 		      data: data,
+ 		      success: function(data) {
+ 	  		     // alert(data['response']['error']);
+ 	  		      
+				  if(data['ecode']=='0'){
+
+					  
+					  
+				  }else{
+					  
+    		      }
+ 		      },
+ 		      error: function(xhr, textStatus, errorThrown){
+ 		          
+ 		         
+ 		       },
+		       complete: function(xhr, textStatus){
+		    	   window.location.href="/plan/gpa";
+			  		  btn.button('reset');
+			  		}
+ 		    });
+ 		    return false;
+	 // }else{		  
+	//	$('#page_error').show();
+  //  	setTimeout(function(){ $('#page_error').hide();}, 10000);
+   // 	return false;
+	//  } 
+});
+	
+    $('#std-submit').click(function(e){
+    	var btn = $(this)
+  	  btn.button('loading');
+		 e.preventDefault();
+	 // if(page_has_error()){
+	  var data = {
+  		      "action": "gpa",
+  		      "mode" : $(this).val(),
+  		    'buttonaction':'a12'
+  		    };
+  	 	    data = $("#stdtest").serialize() + "&" + $.param(data);
+ 
+  		    $.ajax({
+  		      type: "POST",
+  		      dataType: "json",
+  		      url: "/plan/testingJSON", 
+  		      data: data,
+  		      success: function(data) {
+  	  		     // alert(data['response']['error']);
+  	  		      
+				  if(data['ecode']=='0'){
+
+					  $("#page_success").show();
+					 $("#successtext").html('Your testing information has been saved'  );
+					  setTimeout(function(){  $('#page_success').hide(); }, 10000);
+					//  $("#modalsuccessbody").html("Your testing infomation successfully stored in Database");
+					 // $('#success').modal('show');
+					  btn.button('reset');
+					  $('#std-submit').val('update');
+					  btn.button('complete');
+					  
+				  }else{
+					  $("#modalfailbody").html("Oops!  Looks like something went wrong.  Please try again later");
+     		        	 $('#failure').modal('show');
+						  btn.button('reset');
+     		      }
+  		      },
+  		      error: function(xhr, textStatus, errorThrown){
+  		          alert('Whoops!  It looks like there was a problem submitting your request. Please try again. If the problem persists, please contact us.');
+  		          btn.button('reset');
+  		       },
+		       complete: function(xhr, textStatus){
+			  		 
+			  		}
+  		    });
+  		    return false;
+	 // }else{		  
+	//	$('#page_error').show();
+   //  	setTimeout(function(){ $('#page_error').hide();}, 10000);
+    // 	return false;
+	//  } 
+});
+
+ $('#gpa-submit2').click(function(e){
+	 var btn = $(this)
+	  btn.button('loading');
+	 e.preventDefault();
+		var uid=$("#uid").val();
+		
+		var data = {
+	  		      "action": "gpa",
+	  		      "mode" : $('#mode').val(),
+	  		      'buttonaction':'bestscore'
+	  		    };
+		 data = $("#stdtest").serialize() + "&" + $.param(data);
+		    $.ajax({
+		      type: "POST",
+		      dataType: "json",
+		      url: "/plan/testingJSON", 
+		      data: data,
+		      success: function(data) {
+
+			      
+
+					if(data['error']!=null){
+						swal({   title: "Error!",   text: data['error'],   type: "error",   confirmButtonText: "Close" });
+						return false;
+						}else{
+
+							
+					    	  $.ajax({
+					  		      type: "POST",
+					  		      dataType: "json",
+					  		      url: "/plan/getBestTestScore", 
+					  		      data : { uid : uid },
+					  		      success: function(data) {
+					  	  		     // alert(data['response']['error']);
+					  	  		      
+									  if(data['ecode']=='0'){
+										$('#std-submit').val('update');
+										$("#bestscore").children( 'tr:not(:first)' ).remove();
+										$("#bestscore_act").children( 'tr:not(:first)' ).remove();
+
+										var max = 0;
+										var actmax=0;
+
+										if(data['response'].sats!=null)
+										var max=data['response'].sats.length;
+
+										if(data['response'].acts!=null)
+										var actmax=data['response'].acts.length;
+										
+										var newRow=''; 
+										if(max>0){
+											for(var i=0;i<max;i++){
+												newRow = "<tr><td>"+data['response'].sats[i].year +"</td><td>"+data['response'].sats[i].criticalReading +"</td><td>"+data['response'].sats[i].math +"</td><td>"+data['response'].sats[i].writing +"</td></tr>";
+												 $("#bestscore tr:last").after(newRow);
+												 newRow='';
+											}
+											$('#best_score').modal('show');
+										}
+										if(actmax>0){
+											for(var i=0;i<actmax;i++){
+												newRow = "<tr><td>"+data['response'].acts[i].year +"</td><td>"+data['response'].acts[i].composite +
+												"</td><td>"+data['response'].acts[i].english +"</td><td>"+data['response'].acts[i].math +
+												"</td><td>"+data['response'].acts[i].science +"</td><td>"+data['response'].acts[i].reading +"</td><td>"+data['response'].acts[i].writing +"</td></tr>";
+												 $("#bestscore_act tr:last").after(newRow);
+												 newRow='';
+											}
+											$('#best_score_act').modal('show');
+										}
+									  
+									  }else{
+
+
+											swal({   title: "Error!",   text: data['error'],   type: "error",   confirmButtonText: "Close" });
+								   	  		  
+										  
+										  $("#modalfailbody").html("Whoops!  It looks like we don't have any SAT and/or ACT test scores on file.  If you have taken any standardized testing, please enter your scores in the Testing section");
+					     		        	 $('#failure').modal('show');
+					     		      }
+					  		      },
+					  		      error: function(xhr, textStatus, errorThrown){
+					  		          alert('Whoops!  It looks like there was a problem submitting your request. Please try again. If the problem persists, please contact us.');
+					  		         
+					  		       },
+							       complete: function(xhr, textStatus){
+								  		  btn.button('reset');
+								  	}
+					  		    });
+
+					}
+				
+
+			      
+		      },
+  		      error: function(xhr, textStatus, errorThrown){
+  		          alert('Whoops!  It looks like there was a problem submitting your request. Please try again. If the problem persists, please contact us.');
+  		         
+  		       },
+		       complete: function(xhr, textStatus){
+			  		  btn.button('reset');
+			  	}
+  		    });
+		
+	 
+  		    return false;
+
+ });
+
+
+function page_has_error(){
+		var cnt =0;
+		$('[data-haserror="yes"]').each(function() {
+			cnt+=1;
+		});
+		if(cnt>0)
+			return false;
+		else
+			return true;
+	}
+
+
+</script>
+<style>	
+	.has_error{background-color:#f3cb5f}
+</style>    
+
+
+<script>
+     $('.targetDiv').hide();
+
+     $(function(){
+           $('.showSingle').click(function(){
+             var index = $(this).parent().index(),
+                 newTarget = $('.targetDiv').eq(index);
+             $('.targetDiv').not(newTarget).fadeOut('fast');
+             newTarget.delay('fast').fadeToggle('fast');
+             return false;
+           });
+           $('.targetDiv').click(function(e){
+             e.stopPropagation();
+           });
+
+       });
+     $(function(){
+       $(document).click(function(){
+         var $el = $(".targetDiv");
+         if($el.is(":visible")){
+           $el.fadeOut(200);
+         }
+       });
+     });
+
+   </script>
+
+<!-- Feedbacify -->
+<script type="text/javascript">
+var fby = fby || [];
+fby.push(['showTab', {id: '9871', position: 'right', color: '#EB0000'}]);
+
+(function () {
+   var f = document.createElement('script'); f.type = 'text/javascript'; f.async = true;
+   f.src = '//cdn.feedbackify.com/f.js';
+   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(f, s);
+})();
+</script>
+
+<!-- Carousel control -->
+<script>
+$('.carousel-control').click(function(e){
+    e.stopPropagation();
+    var goTo = $(this).data('slide');
+    if(goTo=="prev") {
+        $('#myCarousel').carousel('prev'); 
+    } else {
+        $('#myCarousel').carousel('next'); 
+    }
+});
+</script>
+
+<!-- Fixed container - Mynotes and social media -->
+<script>
+var fixmeTop = $('.myNotes').offset().top;
+$(window).scroll(function() {
+    var currentScroll = $(window).scrollTop() + 60;
+    if (currentScroll >= fixmeTop) {
+        $('.myNotes').css({
+            position: 'fixed',
+            top: '60px',
+            right: '20'
+        });
+    } else {
+        $('.myNotes').css({
+            position: 'static'
+        });
+    }
+});
+</script>

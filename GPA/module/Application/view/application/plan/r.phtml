@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>UC and CSU Admissions Made Easy</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <!-- Bootstrap 3.3.4 -->
+    <link href="/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- Font Awesome Icons -->
+    <!--<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />-->
+    <link href="/dist/font-awesome-4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <!-- Ionicons -->
+    <!--<link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />-->
+    <link href="/dist/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+    <!-- Theme style -->
+    <link href="/dist/css/AdminLTE.css" rel="stylesheet" type="text/css" />
+    <link href="/dist/css/skins/skin-black.css" rel="stylesheet" type="text/css" />
+    <!-- Custom style -->
+    <link href="/dist/css/adminstyle.css" rel="stylesheet" type="text/css" />
+
+    <!-- Jquery Scroll bar style -->
+    <link href="/dist/css/jquery.scrollbar.css" rel="stylesheet" type="text/css" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  
+  <body class="skin-black fixed sidebar-collapse">
+    <div class="wrapper">
+      <!-- Main Header -->
+      <header class="main-header">
+      <!-- Logo -->
+        <a href="/index.html" class="logo">
+          <!-- mini logo for sidebar mini 50x50 pixels 
+          <span class="logo-mini"><b>A</b>LT</span>-->
+          <!-- logo for regular state and mobile devices -->
+          <span class="logo-lg"><img src="/dist/img/logo-uceazy.png"</span>
+        </a>
+
+        <!-- Header Navbar -->
+        <nav class="navbar navbar-static-top" role="navigation">
+          <!-- Sidebar toggle button-->
+          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+          </a>
+          <!-- Navbar Right Menu -->
+          <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+              <!-- Notifications Menu -->
+              <li class="dropdown notifications-menu">
+                <!-- Menu toggle button -->
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="fa fa-bell-o"></i>
+                  <span class="label label-warning">10</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="header">You have 10 notifications</li>
+                  <li>
+                    <!-- Inner Menu: contains the notifications -->
+                    <ul class="menu">
+                      <li><!-- start notification -->
+                        <a href="#">
+                          <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                        </a>
+                      </li><!-- end notification -->
+                    </ul>
+                  </li>
+                  <li class="footer"><a href="#">View all</a></li>
+                </ul>
+              </li>
+              <!-- Tasks Menu -->
+              <li class="dropdown tasks-menu">
+                <!-- Menu Toggle Button -->
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="fa fa-flag-o"></i>
+                  <span class="label label-danger">4</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="header">Plan Module partially Completed</li>
+                  <li>
+                    <!-- Inner menu: contains the tasks -->
+                    <ul class="menu">
+                      <li><!-- Task item -->
+                        <a href="#">
+                          <!-- Task title and progress text -->
+                          <h3>
+                            GPA
+                            <small class="pull-right">20%</small>
+                          </h3>
+                          <!-- The progress bar -->
+                          <div class="progress xs">
+                            <!-- Change the css width attribute to simulate progress -->
+                            <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                              <span class="sr-only">20% Complete</span>
+                            </div>
+                          </div>
+                        </a>
+                      </li>
+                      <li><!-- Task item -->
+                        <a href="#">
+                          <!-- Task title and progress text -->
+                          <h3>
+                            Testing
+                            <small class="pull-right">40%</small>
+                          </h3>
+                          <!-- The progress bar -->
+                          <div class="progress xs">
+                            <!-- Change the css width attribute to simulate progress -->
+                            <div class="progress-bar progress-bar-aqua" style="width: 40%" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
+                              <span class="sr-only">40% Complete</span>
+                            </div>
+                          </div>
+                        </a>
+                      </li>
+                      <!-- end task item -->
+                    </ul>
+                  </li>
+                  <li class="footer">
+                    <a href="#">View all tasks</a>
+                  </li>
+                </ul>
+              </li>
+              <!-- language -->
+              <li class="dropdown notifications-menu">
+                <!-- Menu toggle button -->
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="fa fa-language"></i> English
+                  
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="header">Select Language</li>
+                  <li>
+                    <!-- Inner Menu: contains the notifications -->
+                    <ul class="menu">
+                      <li><!-- start notification -->
+                        <a href="#">
+                          <i class="fa fa-language text-aqua"></i> Espanol
+                        </a>
+                      </li><!-- end notification -->
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <!-- User Account Menu -->
+              <li class="dropdown user user-menu">
+                <!-- Menu Toggle Button -->
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <!-- The user image in the navbar-->
+                  <img src="/dist/img/satish.jpg" class="user-image" alt="User Image"/>
+                  <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                  <span class="hidden-xs">Satish Kumar</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <!-- The user image in the menu -->
+                  <li class="user-header">
+                    <img src="/dist/img/satish.jpg" class="img-circle" alt="User Image" />
+                    <p>
+                      Satish Kumar Palanisamy
+                      <small>Subtitle</small>
+                    </p>
+                  </li>
+                  <!-- Menu Body -->
+                  <li class="user-body">
+                    <div class="col-xs-6 text-center">
+                      <a href="#">Change Password</a>
+                    </div>
+                    <div class="col-xs-6 text-center">
+                      <a href="#">Preferences</a>
+                    </div>
+                  </li>
+                  <!-- Menu Footer-->
+                  <li class="user-footer">
+                    <div class="pull-left">
+                      <a href="#" class="btn btn-default btn-flat">Profile</a>
+                    </div>
+                    <div class="pull-right">
+                      <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <!-- Left side column. contains the logo and sidebar -->
+      <aside class="main-sidebar">
+
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+          <!-- Sidebar Menu -->
+          <ul class="sidebar-menu">
+            <li class="header">HEADER</li>
+            <!-- Optionally, you can add icons to the links -->
+            <li class="active"><a href="#"><i class='fa fa-link'></i> <span>Link</span></a></li>
+            <li><a href="#"><i class='fa fa-link'></i> <span>Another Link</span></a></li>
+            <li class="treeview">
+              <a href="#"><i class='fa fa-link'></i> <span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li><a href="#">Link in level 2</a></li>
+                <li><a href="#">Link in level 2</a></li>
+              </ul>
+            </li>
+          </ul><!-- /.sidebar-menu -->
+        </section>
+        <!-- /.sidebar -->
+      </aside>
+
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+            Resume
+            <small>Extra-Curricular Activities, Work, Awards</small>
+          </h1>
+          <ol class="breadcrumb">
+            <li><a href="index.html"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li><a href="plan.html"><i class="ion ion-gear-b"></i> Plan</a></li>
+            <li class="active">Resume</li>
+          </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+        <!-- Testing Form -->
+          <div class="row">
+            <div class="col-lg-8">
+              <form class="form-horizontal">
+
+              <div class="box box-default">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Please enter in your information</h3>
+                </div><!-- /.box-header -->
+                <!-- form start -->
+                <div class="box-body">
+                <!-- Educational Prep Program(s) -->
+                  <div class="box box-primary">
+                    <div class="box-header with-border">
+                      <h3 class="box-title">Educational Prep Program(s)</h3>
+                      <div class="box-tools pull-right">
+                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                      </div><!-- /.box-tools -->
+                    </div><!-- /.box-header -->
+                  
+                  <div class="box-body  table-responsive">
+                      <table class="table table-bordered courseTable">
+                        <thead>
+                          <tr>
+                            <th rowspan="2" class="td-lg-width"><a href="#" data-toggle="tooltip" class="tip-right" data-original-title="Please specify &#34;None&#34;, if you do not have any program to specify.">Name of Program </a>
+                          </div></th>
+                            <th rowspan="2" class="td-xlg-width">Description of Activity</th>
+                            <th rowspan="2" class="td-lg-width">Your Title/Role</th>
+                            <th rowspan="2" class="td-sm-width">Years Involved</th>
+                            <th colspan="2" >Time Spent</th>
+                            <th rowspan="2" class="td-xs-width">&nbsp;</th>
+                          </tr>
+                          <tr>
+                            <th class="td-xs-width">Hrs / Week</th>
+                            <th class="td-xs-width">Weeks / Year</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><input type="text" class="form-control" placeholder=""/></td>
+                            <td><input type="text" class="form-control" placeholder=""/></td>
+                            <td><input type="text" class="form-control" placeholder=""/></td>
+                            <td>
+                                <select class="form-control">
+                                <option>9</option>
+                                <option>10</option>
+                                <option>11</option>
+                                <option>12</option>
+                              </select>
+                            </td>
+                            <td><input type="text" class="form-control" placeholder=""/></td>
+                            <td><input type="text" class="form-control" placeholder=""/></td>
+                            <td><button value="" class="btn btn-default plusbtn" ><i class="fa fa-plus"></i></button></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div><!-- /.widget box -->
+
+                  <!-- Volunteer and Community Service -->
+                  <div class="box box-primary  collapsed-box">
+                    <div class="box-header with-border">
+                      <h3 class="box-title">Volunteer and Community Service</h3>
+                      <div class="box-tools pull-right">
+                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                      </div><!-- /.box-tools -->
+                    </div><!-- /.box-header -->
+                  
+                  <div class="box-body  table-responsive">
+                      <table class="table table-bordered courseTable">
+                        <thead>
+                          <tr>
+                            <th rowspan="2" class="td-lg-width"><a href="#" data-toggle="tooltip" class="tip-right" data-original-title="Please specify &#34;None&#34;, if you do not have any organization to specify.">Name of Organization</a></th>
+                            <th rowspan="2" class="td-xlg-width">Description</th>
+                            <th rowspan="2" class="td-lg-width">Your Title/Role</th>
+                            <th rowspan="2" class="td-sm-width">Years Involved</th>
+                            <th colspan="2" >Time Spent</th>
+                            <th rowspan="2" class="td-xs-width">&nbsp;</th>
+                          </tr>
+                          <tr>
+                            <th class="td-xs-width">Hrs / Week</th>
+                            <th class="td-xs-width">Weeks / Year</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><input type="text" class="form-control" placeholder=""/></td>
+                            <td><input type="text" class="form-control" placeholder=""/></td>
+                            <td><input type="text" class="form-control" placeholder=""/></td>
+                            <td>
+                                <select class="form-control">
+                                <option>9</option>
+                                <option>10</option>
+                                <option>11</option>
+                                <option>12</option>
+                              </select>
+                            </td>
+                            <td><input type="text" class="form-control" placeholder=""/></td>
+                            <td><input type="text" class="form-control" placeholder=""/></td>
+                            <td><button value="" class="btn btn-default plusbtn" ><i class="fa fa-plus"></i></button></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div><!-- /.widget box -->
+
+                  <!-- Work Experience -->
+                  <div class="box box-primary  collapsed-box">
+                    <div class="box-header with-border">
+                      <h3 class="box-title">Work Experience</h3>
+                      <div class="box-tools pull-right">
+                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                      </div><!-- /.box-tools -->
+                    </div><!-- /.box-header -->
+                  
+                  <div class="box-body  table-responsive">
+                      <table class="table table-bordered courseTable">
+                        <thead>
+                          <tr>
+                            <th rowspan="2" class="td-lg-width"><a href="#" data-toggle="tooltip" class="tip-right" data-original-title="Please specify &#34;None&#34;, if you do not have any work to specify.">Name of Work</a></th>
+                            <th rowspan="2" class="td-xlg-width">Description</th>
+                            <th rowspan="2" class="td-lg-width">Your Title/Role</th>
+                            <th rowspan="2" class="td-sm-width">Years Involved</th>
+                            <th colspan="2" >Time Spent</th>
+                             <th rowspan="2" class="td-lg-width" >Start Date</th>
+                            <th rowspan="2" class="td-lg-width" >End Date</th>
+                            <th rowspan="2" class="td-xs-width">&nbsp;</th>
+                          </tr>
+                          <tr>
+                            <th  class="td-xs-width">During Summer</th>
+                            <th class="td-xs-width">During School Year</th>
+                           
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><input type="text" class="form-control" placeholder=""/></td>
+                            <td><input type="text" class="form-control" placeholder=""/></td>
+                            <td><input type="text" class="form-control" placeholder=""/></td>
+                            <td>
+                                <select class="form-control col-md-6">
+                                <option>9</option>
+                                <option>10</option>
+                                <option>11</option>
+                                <option>12</option>
+                              </select>
+                            </td>
+                            <td><input type="text" class="form-control" placeholder=""/></td>
+                            <td><input type="text" class="form-control" placeholder=""/></td>
+                            <td>
+                              <div class="floatLeft">
+                                <select class="form-control"  >
+                                  <option>MM</option>
+                                  <option>Jan</option>
+                                  <option>Feb</option>
+                                  <option>.</option>
+                                  <option>Dec</option>
+                                </select>
+                              </div>
+                              <div class="floatLeft">
+                                <select class="form-control col-md-6">
+                                  <option>YYYY</option>
+                                  <option>2005</option>
+                                  <option>2006</option>
+                                  <option>.</option>
+                                  <option>2025</option>
+                                </select>
+                              </div>
+                            </td>
+                            <td>
+                              <div class="floatLeft">
+                                <select class="form-control"  >
+                                  <option>MM</option>
+                                  <option>Jan</option>
+                                  <option>Feb</option>
+                                  <option>.</option>
+                                  <option>Dec</option>
+                                </select>
+                              </div>
+                              <div class="floatLeft">
+                                <select class="form-control col-md-6">
+                                  <option>YYYY</option>
+                                  <option>2005</option>
+                                  <option>2006</option>
+                                  <option>.</option>
+                                  <option>2025</option>
+                                </select>
+                              </div>
+                            </td>
+                            <td><button value="" class="btn btn-default plusbtn" ><i class="fa fa-plus"></i></button></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div><!-- /.widget box -->
+
+                  <!-- Extracurricular Activities -->
+                  <div class="box box-primary  collapsed-box">
+                    <div class="box-header with-border">
+                      <h3 class="box-title">Extracurricular Activities</h3>
+                      <div class="box-tools pull-right">
+                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                      </div><!-- /.box-tools -->
+                    </div><!-- /.box-header -->
+                  
+                  <div class="box-body  table-responsive">
+                      <table class="table table-bordered courseTable">
+                        <thead>
+                          <tr>
+                            <th rowspan="2" class="td-lg-width"><a href="#" data-toggle="tooltip" class="tip-right" data-original-title="Please specify &#34;None&#34;, if you do not have any activity to specify.">Name of Activity</a></th>
+                            <th rowspan="2" class="td-xlg-width">Description</th>
+                            <th rowspan="2" class="td-lg-width">Your Title/Role</th>
+                            <th rowspan="2" class="td-sm-width">Years Involved</th>
+                            <th colspan="2" >Time Spent</th>
+                            <th rowspan="2" class="td-xs-width">&nbsp;</th>
+                          </tr>
+                          <tr>
+                            <th class="td-xs-width">Hrs / Week</th>
+                            <th class="td-xs-width">Weeks / Year</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><input type="text" class="form-control" placeholder=""/></td>
+                            <td><input type="text" class="form-control" placeholder=""/></td>
+                            <td><input type="text" class="form-control" placeholder=""/></td>
+                            <td>
+                                <select class="form-control">
+                                <option>9</option>
+                                <option>10</option>
+                                <option>11</option>
+                                <option>12</option>
+                              </select>
+                            </td>
+                            <td><input type="text" class="form-control" placeholder=""/></td>
+                            <td><input type="text" class="form-control" placeholder=""/></td>
+                            <td><button value="" class="btn btn-default plusbtn" ><i class="fa fa-plus"></i></button></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div><!-- /.widget box -->
+
+                  <!-- Awards and Honors -->
+                  <div class="box box-primary  collapsed-box">
+                    <div class="box-header with-border">
+                      <h3 class="box-title">Awards and Honors</h3>
+                      <div class="box-tools pull-right">
+                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                      </div><!-- /.box-tools -->
+                    </div><!-- /.box-header -->
+                  
+                  <div class="box-body  table-responsive">
+                      <table class="table table-bordered courseTable">
+                        <thead>
+                          <tr>
+                            <th class="td-lg-width"><a href="#" data-toggle="tooltip" class="tip-right" data-original-title="Please specify &#34;None&#34;, if you do not have any award to specify.">Name of Award</a></th>
+                            <th class="td-md-width">Level</th>
+                            <th class="td-xlg-width">Description</th>
+                            <th class="td-md-width">Type</th>
+                            <th class="td-md-width">Date Received</th>
+                            <th class="td-xs-width">&nbsp;</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><input type="text" class="form-control" placeholder=""/></td>
+                            <td>
+                              <select class="form-control">
+                                <option>School</option>
+                                <option>District</option>
+                                <option>State</option>
+                                <option>National</option>
+                                <option>International</option>
+                              </select>
+                            </td>
+                            <td><input type="text" class="form-control" placeholder=""/></td>
+                            <td>
+                                <select class="form-control">
+                                <option>Academic</option>
+                                <option>Other</option>
+                              </select>
+                            </td>
+                            <td><input type="text" class="form-control" placeholder=""/></td>
+                            <td><button value="" class="btn btn-default plusbtn" ><i class="fa fa-plus"></i></button></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div><!-- /.widget box -->
+
+                  <!-- Coursework other than A-G -->
+                  <div class="box box-primary collapsed-box">
+                    <div class="box-header with-border">
+                      <h3 class="box-title">Coursework other than A-G</h3>
+                      <div class="box-tools pull-right">
+                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                      </div><!-- /.box-tools -->
+                    </div><!-- /.box-header -->
+                  
+                  <div class="box-body  table-responsive">
+                      <table class="table table-bordered courseTable">
+                        <thead>
+                          <tr>
+                            <th rowspan="2" class="td-lg-width"><a href="#" data-toggle="tooltip" class="tip-right" data-original-title="Please specify &#34;None&#34;, if you do not have any course to specify.">Name of Course</a></th>
+                            <th rowspan="2" class="td-xlg-width">Course Description</th>
+                            <th rowspan="2" class="td-md-width">Years Involved</th>
+                            <th colspan="2" >Time Spent</th>
+                            <th rowspan="2" class="td-xs-width">&nbsp;</th>
+                          </tr>
+                          <tr>
+                            <th class="td-xs-width">Hrs / Week</th>
+                            <th class="td-xs-width">Weeks / Year</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><input type="text" class="form-control" placeholder=""/></td>
+                            <td><input type="text" class="form-control" placeholder=""/></td>
+                            <td>
+                                <select class="form-control">
+                                <option>9</option>
+                                <option>10</option>
+                                <option>11</option>
+                                <option>12</option>
+                              </select>
+                            </td>
+                            
+                            <td><input type="text" class="form-control" placeholder=""/></td>
+                            <td><input type="text" class="form-control" placeholder=""/></td>
+                            <td><button value="" class="btn btn-default plusbtn" ><i class="fa fa-plus"></i></button></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div><!-- /.widget box -->
+                    
+                </div><!-- /.box-body -->
+
+
+
+                  <div class="box-footer">
+                    
+                    <button type="submit" class="btn btn-danger pull-right" >Save My Information</button>                    
+                    
+                  </div><!-- /.box-footer -->
+                </form>
+              </div><!-- /.box -->
+                
+            </div>
+            <div class="col-lg-4">
+                
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                      <h3 class="box-title"><i class="fa fa-pencil"></i> My Notes</h3>
+                    </div>
+                  <div class="box-body">
+                        <textarea class="form-control" rows="3" placeholder="Coming Soon." readonly="readonly"></textarea>
+                        <button class="btn btn-default marginTop"><i class="fa fa-plus"></i> Add Note </button>
+                  </div><!-- /.box-body -->
+                </div><!-- /.box -->
+                
+
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                      <h3 class="box-title"><i class="fa fa-file-video-o"></i> Related Videos</h3>
+                    </div>
+                  <div class="box-body" >
+                    <div style="background:#eee; width:100%; height:200px; padding:20px;">Video </div>
+                        <!--<div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/i1nHtq10HD4"></iframe>
+                        </div>-->
+                  </div><!-- /.box-body -->
+                </div><!-- /.box -->
+
+                 <button class="btn btn-default marginBottom"><i class="fa fa-download"></i> Download Instructions </button>
+            </div>
+          </div><!-- /.row -->
+        </section><!-- /.content -->
+      </div><!-- /.content-wrapper -->
+
+      <!-- Main Footer -->
+      <footer class="main-footer">
+        <!-- To the right -->
+        <div class="pull-right hidden-xs">
+          Explore My Chances
+        </div>
+        <!-- Default to the left -->
+        <strong>Copyright &copy; 2015 <a href="#">UCEazy</a>.</strong> All rights reserved.
+      </footer>
+      
+    </div><!-- ./wrapper -->
+
+<!-- REQUIRED JS SCRIPTS -->
+
+    <!-- jQuery 2.1.4 -->
+    <script src="/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <!-- Bootstrap 3.3.2 JS -->
+    <script src="/dist/js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- InputMask -->
+    <script src="/plugins/input-mask/jquery.inputmask.js" type="text/javascript"></script>
+    <script src="/plugins/input-mask/jquery.inputmask.date.extensions.js" type="text/javascript"></script>
+    <script src="/plugins/input-mask/jquery.inputmask.extensions.js" type="text/javascript"></script>
+
+    <!-- ChartJS 1.0.1 -->
+    <script src="/plugins/chartjs/Chart.min.js" type="text/javascript"></script>
+
+    <!-- Slimscroll -->
+    <script src="/plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <!-- FastClick -->
+    <script src='/plugins/fastclick/fastclick.min.js'></script>
+    <!-- AdminLTE App -->
+    <script src="/dist/js/app.min.js" type="text/javascript"></script>
+    <!-- Custom Script -->
+    <script src="/dist/js/custom.js" type="text/javascript"></script>
+
+    <!-- jquery scrollbar Script -->
+    <script src="/dist/js/jquery.scrollbar.min.js" type="text/javascript"></script>
+
+
+</body>
+</html>

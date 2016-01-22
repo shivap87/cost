@@ -1,0 +1,1581 @@
+<?php 
+ use Common\ActionForms\ExplorerForm;
+ use Common\Utilities\Constants;
+ use Zend\Session\SessionManager;
+ use Zend\Session\Container;
+ $session = new Container('user');
+ $form = new ExplorerForm();
+ //$form = new ExplorerForm();
+ $allstates=explode(",",Constants::COUNTY);
+ $allmajor=explode(",",Constants::MAJORS);
+ 
+ 
+ $school_names = $this->result;
+?>
+
+ <style>
+
+path{
+  transition: 0.7s;
+}
+
+path:hover {
+   -webkit-transform: scale(0.97);
+    -moz-transform: scale(0.97);
+    -o-transform: scale(0.97);
+}
+
+/*.arc:hover > path{
+  fill: #b565a7;
+}*/
+
+  </style>
+
+<!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+           <h1>
+            <i class="ion ion-android-compass"></i>Explore
+            <small>Create your college list</small>
+          </h1>
+          <ol class="breadcrumb">
+            <li><a href="/user/index"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li class="active">Explore</li>
+          </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content pscontentContainer">
+        <!-- GPA Form -->
+          <div class="row">
+            <!-- Right side content -->
+            <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 col-lg-push-9 rightSideContainer">
+                <div class="box box-warning ">
+                    <div class="box-header with-border">
+                      <h3 class="box-title"><i class="fa fa-file-video-o"></i> Hear from An Expert</h3>
+                    </div>
+                  <div class="box-body" >
+                    <!-- <div class="embed-responsive embed-responsive-16by9">
+                      <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/sqpw3NynsTE"></iframe>
+                    </div>-->
+                    <div id="myCarousel" class="carousel slide" data-interval="false">
+                      <!-- <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1" class=""></li>
+                      </ol>-->
+                      <div class="carousel-inner">
+                        <div class="item active">
+                          <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/EyJgYt1m-qk?showinfo=0&amp;" allowfullscreen></iframe>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+                      <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>-->
+                    </div>
+                  
+                  </div><!-- /.box-body -->
+                </div><!-- /.box -->           
+                
+                <!-- social media -->
+                <div id="myAffix3" class="box box-solid visible-lg " data-spy="affix" data-offset-top="300">
+                    <div class="box-header ">
+                      <h3 class="box-title"><i class="fa fa-share-alt"></i> Follow Us</h3>
+                      <div class=" pull-right " >
+                        <div  class="fixedBtn"><a href="https://www.facebook.com/askuceazy" class="bg-facebook" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a></div>
+                        <div class="fixedBtn"><a href="https://twitter.com/Uaskuceazy?lang=en" class="bg-twitter" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></div>
+                        <div class="fixedBtn"><a href="https://www.linkedin.com/company/uceazy" class="bg-linkedin" target="_blank" title="Linkedin"><i class="fa fa-linkedin"></i></a></div>
+						<div class="fixedBtn"><a href="https://instagram.com/uceazy/" class="bg-instagram"  target="_blank"><i class="fa fa-instagram"></i></a></div>
+                        <!-- <div class="fixedBtn"><a href="#" class="bg-google-plus"><i class="fa fa-google-plus"></i></a></div>
+                        <div class="fixedBtn"><a href="#" class="bg-instagram"><i class="fa fa-instagram"></i></a></div>
+                        <div class="fixedBtn"><a href="#" class="bg-pinterest"><i class="fa fa-pinterest"></i></a></div>-->
+                      </div>  
+                    </div>
+                </div>
+            </div>
+            <!-- ./Right side content -->
+
+            <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12 col-lg-pull-3">
+              <form class="form-horizontal" method="post" id="advexploreform" name="advexploreform">
+  
+              <div class="box box-default box-solid">
+                <div class="box-header  bg-green1">
+                  <h3 class="box-title">Please enter your information</h3>
+                </div><!-- /.box-header -->
+                <!-- form start -->
+                  <div class="box-body">
+                  
+                   <div id="advexperrordiv" class="alert alert-danger col-sm-12" style="display: none;">
+               	<div class="info-text-container-failure ">
+                  	<i class="fa fa-close "></i> 
+                    <span class="info-text" id="advexperror">
+                    </span>
+                </div>
+              	</div>
+                  <div id="advexpsuccessdiv" class="alert alert-success col-sm-12" style="display: none;">
+                <div class="info-text-container-success ">
+                  	<i class="fa fa-check "></i> 
+                    <span class="info-text" id="advexpsuccess">
+                    </span>
+                 </div>
+              </div> 
+              
+                        <div class="form-group">
+                          <label for="currentState" class="col-sm-3 control-label">Current State <span class="mandatory">*</span></label>
+                          <div class="col-sm-7">
+                            <div class="radio" >
+                                <label class="radio-inline" >
+                              <input type="radio" name="state"  value="CA" id="cal" >
+                                  California
+                                </label>
+                                <label class="radio-inline">
+                                <input type="radio" name="state" value="AUS" id="aus" >
+                                  Another US State
+                                </label>
+                                <label class="radio-inline">
+                              <input type="radio"  name="state" value="OUS" id="ous" >
+                                  Outside US
+                                </label>
+                             </div>
+                          </div>
+                        </div>
+                        
+                        <div class="form-group">
+                          <label for="californiaCounty" class="col-sm-3 control-label">California County <span class="mandatory">*</span></label>
+                          <span class="tooltipContent visible-xs-inline"> <a href="#" data-toggle="tooltip" data-html="true" class="tip-right" data-original-title="Which county do you currently live in?">
+                            <i class="fa fa-info-circle "></i></a> 
+                          </span>
+                          <div class="col-sm-5">
+                              <select name="county" id="county" class="form-control">
+                                <option>Select</option>
+                                  <?php foreach ($allstates as $val){?>
+                	                 <option value="<?php echo $val;?>" ><?php echo $val;?></option>
+                                 <?php }?>
+                                  
+                              </select>
+                          </div>
+                          <div class="tooltipContent hidden-xs"> <a href="#" data-toggle="tooltip" data-html="true" class="tip-right" data-original-title="Which county do you currently live in?">
+                            <i class="fa fa-info-circle "></i></a> 
+                          </div>
+                        </div>
+                        
+                        <div class="form-group" >
+                          <div id="schoolName">
+                            <label for="highSchoolName" class="col-sm-3 control-label">Current School Name <span class="mandatory">*</span></label>
+                            <span class="tooltipContent visible-xs-inline"> <a href="#" data-toggle="tooltip" data-html="true" class="tip-right" data-original-title="What high school are you currently attending?">
+                            <i class="fa fa-info-circle "></i></a> 
+                          </span>
+                            <div class="col-sm-5">
+                              <input id="schoolname" name="schoolname" type="text" class="form-control timepicker" placeholder="Enter School Name" >    
+							             </datalist>								  
+                            </div><!-- /.input group -->
+                          
+                            <div class="tooltipContent hidden-xs"> <a href="#" data-toggle="tooltip" class="tip-right" data-original-title="What high school are you currently attending?">
+                              <i class="fa fa-info-circle "></i></a> 
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="highSchoolName" class="col-sm-3 control-label">Standardized Test(s) <span class="mandatory">*</span></label>
+                          <span class="tooltipContent visible-xs-inline"> <a href="#" data-toggle="tooltip" data-html="true" class="tip-right" data-original-title="Enter your scores from either the <b>SAT/ACT</b>. If you have taken a test more than once, choose the one with the highest total score. Do not mix scores from multiple tests. A <b>PSAT</b> or sample scores will suffice if you do not have SAT/ACT scores yet.">
+                            <i class="fa fa-info-circle "></i></a> 
+                          </span>
+                          <div class="col-sm-5">
+                         
+                              <label class="cbox btn btn-default " ><input type="radio" name="exam" id="act" value="act" ><span class="st-radio-inline"> ACT</span></label>
+                              <label class="cbox btn btn-default" ><input type="radio" name="exam" id="sat" value="sat"><span class="st-radio-inline"> SAT</span></label>
+                              <label class="cbox btn btn-default" ><input type="radio" name="exam" id="psat" value="psat"><span class="st-radio-inline"> PSAT</span></label>
+                         
+                          </div>                        
+                          <div class="tooltipContent hidden-xs"> <a  data-toggle="tooltip" data-html="true" class="tip-right" data-original-title="Enter your scores from either the <b>SAT/ACT</b>. If you have taken a test more than once, choose the one with the highest total score. Do not mix scores from multiple tests. A <b>PSAT</b> or sample scores will suffice if you do not have SAT/ACT scores yet.">
+                              <i class="fa fa-info-circle "></i></a> 
+                          </div>
+                        </div><!-- /Standardized Test(s) -->
+
+                        <!-- hidden divs -->
+                        <div class="act testsContainer" >
+                          <div class="form-group ">
+                            <label for="score" class="col-sm-3 control-label">ACT Composite <span class="mandatory">*</span></label>
+                            <div class="col-sm-5">
+                              <div class="sliderContainer">
+                                <div class="slider col-lg-10 col-md-10 col-sm-9 col-xs-9" id="slider1" data-begin="1" data-end="36" data-step="1"></div>
+                                <input type="number" value="0" min="1" name="act" max="36" class="score ticker" id="slider1_score"  maxlength="2" data-validate="yes" data-rules="type:numeric,max_length:2,min:1,max:36" />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group ">
+                            <label for="score" class="col-sm-3 control-label">ACT Combined English / Writing <span class="mandatory">*</span></label>
+                            <div class="col-sm-5">
+                              <div class="sliderContainer">
+                                <div class="slider col-lg-10 col-md-10 col-sm-9 col-xs-9" id="slider2" data-begin="1" data-end="36" data-step="1"></div>
+                                <input type="number" value="1" min="1" name="actew" max="36" class="score ticker" id="slider2_score" maxlength="2" data-validate="yes" data-rules="type:numeric,max_length:2,min:1,max:36" />
+                              </div>
+                            </div>
+                          </div>                          
+                        </div><!-- /ACT -->
+
+                        <div class="sat testsContainer" >
+                          <div class="form-group ">
+                            <label for="score" class="col-sm-3 control-label">Critical Reading <span class="mandatory">*</span></label>
+                            <div class="col-sm-5">
+                              <div class="sliderContainer">
+                                <div class="slider col-lg-10 col-md-10 col-sm-9 col-xs-9" id="slider3" data-begin="200" data-end="800" data-step="10" ></div>
+                                <input type="number" value="200" min="200" name="satread" step="10" max="800" class="score ticker" id="slider3_score" maxlength="3" data-validate="yes" data-rules="type:numeric,max_length:3,min:200,max:800,divide_by:10" />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group ">
+                            <label for="score" class="col-sm-3 control-label">Math <span class="mandatory">*</span></label>
+                            <div class="col-sm-5">
+                              <div class="sliderContainer">
+                                <div class="slider col-lg-10 col-md-10 col-sm-9 col-xs-9" id="slider4" data-begin="200" data-end="800" data-step="10"></div>
+                                <input type="number" value="200" min="200" max="800"  name="satmath"  step="10" class="score ticker" id="slider4_score" maxlength="3" data-validate="yes" data-rules="type:numeric,max_length:3,min:200,max:800,divide_by:10" />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                           <label for="score" class="col-sm-3 control-label">Writing <span class="mandatory">*</span></label>
+                            <div class="col-sm-5">
+                              <div class="sliderContainer">
+                                <div class="slider col-lg-10 col-md-10 col-sm-9 col-xs-9" id="slider5" data-begin="200" data-end="800" data-step="10"  maxlength="3" data-validate="yes" data-rules="type:numeric,max_length:3,min:200,max:800,divide_by:10"></div>
+                                <input type="number" value="200" min="200" max="800"  name="satwrite"  step="10" class="score ticker" id="slider5_score" />
+                              </div>
+                            </div>
+                          </div>
+                        </div><!-- /SAT -->
+
+                        <div class="psat testsContainer" >
+                          <div class="form-group ">
+                            <label for="score" class="col-sm-3 control-label">Critical Reading <span class="mandatory">*</span></label>
+                            <div class="col-sm-5">
+                              <div class="sliderContainer">
+                                <div class="slider col-lg-10 col-md-10 col-sm-9 col-xs-9" id="slider6" data-begin="20" data-end="80" data-step="1"></div>
+                                <input type="number" value="20" min="20" max="80" class="score ticker"  name="psatread" id="slider6_score" maxlength="2" data-validate="yes" data-rules="type:numeric,max_length:2,min:20,max:80" />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group ">
+                            <label for="score" class="col-sm-3 control-label">Math <span class="mandatory">*</span></label>
+                            <div class="col-sm-5">
+                              <div class="sliderContainer">
+                                <div class="slider col-lg-10 col-md-10 col-sm-9 col-xs-9" id="slider7" data-begin="20" data-end="80" data-step="1"></div>
+                                <input type="number" value="20" min="20" max="80" class="score ticker" name="psatmath" id="slider7_score" maxlength="2" data-validate="yes" data-rules="type:numeric,max_length:2,min:20,max:80" />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                           <label for="score" class="col-sm-3 control-label">Writing <span class="mandatory">*</span></label>
+                            <div class="col-sm-5">
+                              <div class="sliderContainer">
+                                <div class="slider col-lg-10 col-md-10 col-sm-9 col-xs-9" id="slider8" data-begin="20" data-end="80" data-step="1"></div>
+                                <input type="number" value="20" min="20" max="80" class="score ticker"  name="psatwrite" id="slider8_score" maxlength="2" data-validate="yes" data-rules="type:numeric,max_length:2,min:20,max:80" />
+                              </div>
+                            </div>
+                          </div>
+                        </div><!-- /PSAT -->
+                        <!-- /hidden divs -->
+
+                        <div class="form-group">
+                          <label for="highSchoolName" class="col-sm-3 control-label">Weighted GPA <span class="mandatory">*</span></label>
+                          <span class="tooltipContent visible-xs-inline"> <a href="#" data-toggle="tooltip" data-html="true" class="tip-right" data-original-title="Enter your UC/CSU GPA. Another alternative is your 10-12th grade weighted GPA.">
+                            <i class="fa fa-info-circle "></i></a> 
+                          </span>
+                          <div class="col-sm-5">
+                            <div class="sliderContainer">
+                              <div class="slider col-lg-10 col-md-10 col-sm-9 col-xs-9"  id="slider9" data-begin="2" data-end="5" data-step="0.01"></div>
+                              <input type="number" value="1" min="1" max="5" name="gpa" class="score ticker" id="slider9_score"  step="0.01" maxlength="4" data-validate="yes" data-rules="type:decimal,max_length:4,min:1.00,max:5.00"/>
+                            </div>
+                          </div>  
+                          <div class="tooltipContent hidden-xs"> <a href="#" data-toggle="tooltip" data-html="true" class="tip-right" data-original-title="Enter your UC/CSU GPA. Another alternative is your 10-12th grade weighted GPA.">
+                              <i class="fa fa-info-circle "></i></a> 
+                          </div>                      
+                        </div><!-- /Weighted GPA -->
+
+                        <div class="form-group">
+                          <label for="currentState" class="col-sm-3 control-label">Applying to <span class="mandatory">*</span></label>
+                          <span class="tooltipContent visible-xs-inline"> <a href="#" data-toggle="tooltip" data-html="true" class="tip-right" data-original-title="Why don't I see an option for private colleges?  UCEazy focuses only on public universities.">
+                            <i class="fa fa-info-circle "></i></a> 
+                          </span>
+                          <div class="col-sm-5">
+                            <div class="radio" >
+                                <label class="radio-inline" >
+                                  <input type="radio" name="us" value="UC" id="usuc" >
+                                  UC Only
+                                </label>
+                                <label class="radio-inline">
+                                  <input type="radio" name="us" value="CSU" id="uscsu" >
+                                  CSU Only
+                                </label>
+                                <label class="radio-inline">
+                                  <input type="radio" name="us" value="both" id="usboth" >
+                                  UC and CSU
+                                </label>
+                             </div>
+                          </div>
+                          <div class="tooltipContent hidden-xs"> <a data-toggle="tooltip" data-html="true"  class="tip-right" data-original-title="Why don't I see an option for private colleges?  UCEazy focuses only on public universities.">
+                              <i class="fa fa-info-circle "></i></a> 
+                          </div> 
+                        </div> 
+
+                        <div class="form-group">
+                          <label for="californiaCounty" class="col-sm-3 control-label">Major</label>
+                          <span class="tooltipContent visible-xs-inline"> <a href="#" data-toggle="tooltip" data-html="true" class="tip-right" data-original-title="If you cannot find your major, select a similar one or your second choice.  If you are interested in multiple majors, choose one for now and resubmit this form with your other major(s).">
+                            <i class="fa fa-info-circle "></i></a> 
+                          </span>
+                          <div class="col-sm-5">
+                              <select name="major" id="major" class="form-control">
+                                        <option value="-1">Select One</option>
+                                <?php foreach ($allmajor as $major){
+                                if($major=="zzz"){
+                                ?>
+                               
+                                <?php }else{?>
+                                
+                                <option value="<?php echo $major;?>" ><?php echo $major;?></option> 
+                                <?php }}?>
+                              </select>
+                          </div>
+                          <div class="tooltipContent hidden-xs"> <a data-toggle="tooltip" data-html="true" class="tip-right" data-original-title="If you cannot find your major, select a similar one or your second choice.  If you are interested in multiple majors, choose one for now and resubmit this form with your other major(s).">
+                            <i class="fa fa-info-circle "></i></a> 
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="currentState" class="col-sm-3 control-label">Campus Size</label>
+                          <span class="tooltipContent visible-xs-inline"> <a href="#" data-toggle="tooltip" data-html="true" class="tip-right" data-original-title="<b>Small</b>  is < 7000 undergrad and grad students <br/ > <br /><b>Large</b> is > 7000 undergrad and grad students">
+                            <i class="fa fa-info-circle "></i></a> 
+                          </span>
+                          <div class="col-sm-5">
+                            <div class="radio" >
+                                <label class="radio-inline" >
+                                  <input type="radio" name="csize" value="S" >
+                                  Small
+                                </label>
+                                <label class="radio-inline">
+                                  <input type="radio" name="csize" value="L" >
+                                  Large
+                                </label>
+                                <label class="radio-inline">
+                                  <input type="radio" name="csize" value="A"  checked="checked">
+                                  No Preference
+                                </label>
+                             </div>
+                          </div>
+                          <div class="tooltipContent hidden-xs"> <a href="#" data-toggle="tooltip" data-html="true" class="tip-right" data-original-title="<b>Small</b>  is < 7000 undergrad and grad students <br/ > <br /><b>Large</b> is > 7000 undergrad and grad students">
+                              <i class="fa fa-info-circle "></i></a> 
+                          </div> 
+                        </div>
+                        <div class="form-group">
+                          <label for="currentState" class="col-sm-3 control-label">Campus Preference</label>
+                          <span class="tooltipContent visible-xs-inline"> <a href="#" data-toggle="tooltip" data-html="true" class="tip-right" data-original-title="Campus Preference is the 'feel' of a campus. An urban campus will have tall buildings, busy streets, and in/near a city. A suburban campus will have trees and residential neighborhoods. A rural campus will have wide open spaces, nature, and be far from a city.">
+                            <i class="fa fa-info-circle "></i></a> 
+                          </span>
+                          <div class="col-sm-5">
+                            <div class="radio" >
+                                <label class="radio-inline" >
+                                  <input type="radio"  name="cpref" value="U">
+                                  Urban
+                                </label>
+                                <label class="radio-inline">
+                                  <input type="radio"  name="cpref" value="S"  >
+                                  Suburban
+                                </label>
+                                <label class="radio-inline">
+                                  <input type="radio"  name="cpref" value="R"  >
+                                  Rural
+                                </label>
+                                <label class="radio-inline">
+                                  <input type="radio"  name="cpref" value="A" checked="checked" >
+                                  No Preference
+                                </label>
+                             </div>
+                          </div>
+                          <div class="tooltipContent hidden-xs"> <a data-html="true" data-toggle="tooltip" class="tip-right abc" data-original-title="Campus Preference is the 'feel' of a campus. An urban campus will have tall buildings, busy streets, and in/near a city. A suburban campus will have trees and residential neighborhoods. A rural campus will have wide open spaces, nature, and be far from a city.">
+                              <i class="fa fa-info-circle "></i></a> 
+                          </div> 
+                        </div>
+                    </div><!-- /.widget box -->
+
+                  <div class="box-footer text-center">
+                  
+                   <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                     <button type="button"  id="exploreadvancesearchbtn"  class="btn btn-danger" data-loading-text="Loading...." data-reset-text="Show Me My List" >Show Me My List</button>
+                     </div>
+                     <div class="col-lg-3 col-md-3 col-xs-3 col-xs-3">&nbsp;
+                     </div>
+                                        
+                  </div><!-- /.box-footer -->
+                </form>
+              </div><!-- /.box -->
+
+              <!-- Result -->
+              <form id="shareresultform">
+              <div id="result" class="resultContainer">
+                <div class="box box-default ">
+
+                  <div class="box-header with-border text-center">
+                    <h3 class="box-title">My List</h3>
+                    <a href="#" data-toggle="tooltip" data-html="true" class="tip-right" data-original-title="<b>Reach</b>: A college whose average test scores/GPA are HIGHER than yours. It will be harder to get admitted to these colleges. <br /> <br /> <b>Target</b>: A college whose average test scores/GPA are CLOSE to yours. You will probably be admitted to these colleges. <br/><br/><b> Safety</b>: A college whose average test scores/GPA are BELOW yours. You will very likely be admitted to these colleges. <br/><br/> <b> Cost of Attendance </b> = Estimated Tuition, Fees, Room/Board, Books/Supplies, Transportation, Personal Expenses">
+                                <i class="fa fa-info-circle "></i></a> 
+                  </div><!-- /.box-header -->
+                <!-- form start -->
+                  <div class="box-body">
+                    <div class="alert alert-info alert-dismissable text-center">
+                      <h4>Freshmen Application Submission Deadline is November 30th</h4>                      
+                    </div>
+                    <div class="chart-holder  ">
+                      <div class="donut_chart text-center" id="donut">
+                    </div>
+                  </div>
+
+                  <div class="box-footer text-center">
+				  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <button type="button"  id="showall"  class="btn btn-danger " data-loading-text="Loading...." data-reset-text="All College List" >All College List</button> 
+                    <!--<button id="saveadvexp" type="button" name="saveresult" value="saveresult" class="btn btn-danger" data-loading-text="Loading...." data-reset-text="Save My Result">Save My Results </button> -->
+                    <button id="semailbut" type="button" class="btn btn-danger" data-loading-text="Loading...." data-reset-text="Email My Result">Email My Results</button>
+
+                    <a href="/plan/index" id="gpa-next" value="next" class="btn btn-danger pull-right" >Next: Plan</a>                    
+                  </div><!-- /.box-footer -->
+                </div>
+              </div>
+
+              </div> 
+              
+              <div class="box box-default " id="semail">
+                <div class="box-body">
+                  <div class="row" id="semail" class="text-center"  class="sendMailContainer">
+                      <div class="col-sm-6 col-sm-offset-2 label-title">
+                        <input type="text" name="shareemail" class="form-control col-sm-6 " id="inputemail" placeholder="Enter Your Email Address Here">
+                      </div>
+                      <div class="col-sm-3 text-left">
+                        <button type="submit"  name="sendmail"  value="sendmail" class="btn btn-danger" id="emailsendresult">Send</button>
+                      </div>
+                   </div>
+                </div>
+              </div>
+              </form>
+
+            </div>
+            
+            
+
+          </div><!-- /.row -->
+        </section><!-- /.content -->
+      </div><!-- /.content-wrapper -->
+      
+     
+      
+     
+
+    
+    <!-- REQUIRED JS SCRIPTS -->
+
+      
+      
+      
+      
+      <!-- Model -->
+       <div  id="collegeList" class="modal " role="dialog" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+       
+       <form id="allform" >
+       
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header bg-green1">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">College List</h4>
+                  </div>
+                  <div class="modal-body">
+                  
+                      <div id="advexpsuccessdivpop" class="alert alert-success col-sm-12" style="display: none;">
+                <div class="info-text-container-success ">
+                  	<i class="fa fa-check "></i> 
+                    <span class="info-text" id="advexpsuccesspop">
+                    </span>
+                 </div>
+              </div>
+                  
+                    <div style="margin-bottom:15px;">
+                     
+                      <label class="cbox btn btn-default" ><input type="checkbox" name="collegelist[]" id="reach" value="reach" checked><span class="st-radio-inline"> Reach</span></label>
+                      <label class="cbox btn btn-default" ><input type="checkbox" name="collegelist[]" id="target" value="target" checked><span class="st-radio-inline"> Target</span></label>
+                      <label class="cbox btn btn-default" ><input type="checkbox" name="collegelist[]" id="safety" value="safety" checked><span class="st-radio-inline"> Safety</span></label>
+                    </div>
+                    <div id="reachdiv">
+                      <h4><strong>Reach</strong></h4>
+                      <div class="table-responsive">
+                        <table class="table table-bordered courseTable">
+                          <thead  > 
+                            <tr>
+                              <th>College Name</th>
+                              <th>University System</th>
+                              <th>Average GPA</th>
+                              <th>Total Student Population</th>
+                              <th>Cost - Living on Campus ($)</th>
+                              <th>Cost - Living with Parent/Guardian ($)</th>
+                            </tr>
+                          </thead>
+                          <tbody id="reachbody"> 
+                           <tr></tr>
+                          </tbody>
+                        </table>
+                     </div>
+                   </div>
+                     <div id="targetdiv">
+                      <h4><strong>Target</strong></h4>
+                      <div class="table-responsive">
+                        <table class="table table-bordered courseTable">
+                          <thead > 
+                            <tr>
+                              <th>College Name</th>
+                              <th>University System</th>
+                              <th>Average GPA</th>
+                              <th>Total Student Population</th>
+                              <th>Cost - Living on Campus ($)</th>
+                              <th>Cost - Living with Parent/Guardian ($)</th>
+                            </tr>
+                          </thead>
+                          <tbody id="targetbody"> 
+                            <tr></tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <div id="safetydiv">
+                      <h4><strong>Safety</strong></h4>
+                    <div class="table-responsive">
+                      <table class="table table-bordered courseTable">
+                        <thead > 
+                          <tr>
+                            <th>College Name</th>
+                            <th>University System</th>
+                            <th>Average GPA</th>
+                            <th>Total Student Population</th>
+                            <th>Cost - Living on Campus ($)</th>
+                            <th>Cost - Living with Parent/Guardian ($)</th>
+                          </tr>
+                        </thead>
+                        <tbody id="safetybody"> 
+                         <tr></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" id="sendall">Send Email</button>
+                  </div>
+                  
+                  <div class="box box-default " id="sendallemail">
+                <div class="box-body">
+                  <div class="row" id="semail" class="text-center"  class="sendMailContainer">
+                      <div class="col-sm-6 col-sm-offset-2 label-title">
+                        <input type="text" name="shareemail" class="form-control col-sm-6 " id="inputemail" placeholder="Email id">
+                      </div>
+                      <div class="col-sm-3 text-left">
+                        <button type="submit"  name="sendmail"  value="sendmail" class="btn btn-danger" id="allemailsendresult">Send</button>
+                      </div>
+                   </div>
+                </div>
+              </div>
+                  
+                  
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+              
+              </form>
+              </div><!-- /.modal -->
+      </div>
+       
+      
+<!-- REQUIRED JS SCRIPTS -->
+
+    <!-- d3 chart scripts -->
+    <script src="/dist/js/d3/jquery2.min.js"></script>
+    <script src="/dist/js/d3/d3.min.js"></script>
+    <script src="/dist/js/d3/underscore-min.js"></script>
+
+    <!-- jQuery 2.1.4 -->
+    <script src="/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <!-- uislider -->
+    <script src="/dist/js/jquery-ui.min.js"></script>
+	<script src="/dist/js/jquery.ui.touch-punch.min.js"></script>
+    <!-- Bootstrap 3.3.2 JS -->
+    <script src="/dist/js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- InputMask -->
+    <script src="/plugins/input-mask/jquery.inputmask.js" type="text/javascript"></script>
+    <script src="/plugins/input-mask/jquery.inputmask.date.extensions.js" type="text/javascript"></script>
+    <script src="/plugins/input-mask/jquery.inputmask.extensions.js" type="text/javascript"></script>
+
+    <!-- ChartJS 1.0.1 -->
+    <script src="/plugins/chartjs/Chart.min.js" type="text/javascript"></script>
+
+    <!-- Slimscroll -->
+    <script src="/plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <!-- FastClick -->
+    <script src='/plugins/fastclick/fastclick.min.js'></script>
+    <!-- AdminLTE App -->
+    <script src="/dist/js/app.min.js" type="text/javascript"></script>
+    <!-- Custom Script -->
+    <script src="/dist/js/custom.js" type="text/javascript"></script>
+
+    <!-- jquery scrollbar Script -->
+    <script src="/dist/js/jquery.scrollbar.min.js" type="text/javascript"></script>
+	
+	 <!-- custom validation Script -->
+	<script src="/dist/js/validation.js"></script>
+
+<style>	
+	.has_error{background-color:#f3cb5f}
+</style>  
+	
+	
+	<script>
+  $(function() {
+    var availableTags = <?php echo $this->allschool; ?>;
+    $( "#schoolname" ).autocomplete({
+    	 maxResults: 10,
+    	    source: function(request, response) {
+    	        var results = $.ui.autocomplete.filter(availableTags, request.term);
+    	        
+    	        response(results.slice(0, this.options.maxResults));
+    	    }
+     
+    });
+  });
+  </script>
+	
+    <script>
+    // When the DOM is ready, run this function
+      $(document).ready(function() {
+          //tool tip
+        $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+        });
+      });
+    </script>
+
+<!-- Rande slider -->
+<script>
+
+var restSlider = function(){
+
+	 $(".slider").each(function () {
+         var begin = $(this).data("begin"),
+             end = $(this).data("end");
+         	step = $(this).data("step");
+
+         $(this).slider({
+             range: "min",
+             value: 1,
+             min: begin,
+             step: step,
+             max: end,
+             slide: function (event, ui) {
+                 //update text box quantity
+                 var sliderscore = ("#" + $(this).attr("id") + "_score");
+                 $(sliderscore).val(ui.value);
+
+             }
+         });
+
+         //initialise text box quantity
+         var sliderscore = ("#" + $(this).attr("id") + "_score");
+         $(sliderscore).val($(this).slider("value"));
+		  
+		 
+     });
+  	
+}
+
+$('#aus').click(function(){
+ 	$("#county").prop("disabled", true);
+  $("#schoolname").attr("autocomplete","off");
+$("#schoolname").removeAttr("list");
+ 	restSlider();
+ 
+ });
+
+ $('#cal').click(function(){
+ $("#schoolname").attr("list","school_names");
+ $("#schoolname").attr("autocomplete","on");
+
+ 	$("#county").prop("disabled", false);
+ 	restSlider();
+ });
+ $('#ous').click(function(){
+ 	$("#county").prop("disabled", true);
+  $("#schoolname").attr("autocomplete","off");
+  $("#schoolname").removeAttr("list");
+ 	restSlider();
+ });
+
+    
+    $(function () {
+      $(".slider").each(function () {
+        var begin = $(this).data("begin"),
+            end = $(this).data("end");
+        	step = $(this).data("step");
+
+        $(this).slider({
+            range: "min",
+            value: 1,
+            min: begin,
+            step: step,
+            max: end,
+            slide: function (event, ui) {
+                //update text box quantity
+                var sliderscore = ("#" + $(this).attr("id") + "_score");
+                $(sliderscore).val(ui.value);				
+				$(sliderscore).trigger("keyup");
+            }
+        });
+
+        //initialise text box quantity
+        var sliderscore = ("#" + $(this).attr("id") + "_score");
+        $(sliderscore).val($(this).slider("value"));
+    });
+    
+    $('.score').change(function () {
+         var value = this.value,
+             selector = $("#" + this.id.split('_')[0]);
+         selector.slider("value", value);
+     });
+
+    /* Show/Hide divs */
+	var last_val='';
+    $("#result").hide();
+    $("#semail").hide();
+    $(".sat").hide(), $(".act").hide(), $(".psat").hide();
+    $('input[type="radio"]').click(function(){   
+		if($(this).attr("value")=="sat" && last_val!="sat"){
+            $(".sat").toggle();
+            $(".psat").hide();
+            $(".act").hide();
+            $("#result").hide();
+        }
+        if($(this).attr("value")=="act" && last_val!="act"){
+            $(".act").toggle();
+            $(".psat").hide();
+            $(".sat").hide();
+            $("#result").hide();
+        }
+        if($(this).attr("value")=="psat" && last_val!="psat"){
+            $(".psat").toggle();
+            $(".act").hide();
+            $(".sat").hide();
+            $("#result").hide();
+        
+        }		
+		last_val=$(this).attr("value");
+    });
+  });
+</script>
+
+
+
+<!-- Result NEW - Chart -->
+
+
+<!--  -->
+
+<script>
+
+
+
+
+/* d3.json("./input2.json", function(error, data){
+  input_data = data;
+ 
+}); */
+
+function rows(jdata) {
+
+	var input_data;
+
+	var all_arc_size = [];
+	var def_gap_size = 0.5;
+	var def_arc_size = 10;
+	var color_dict = {};
+	var group_size;
+	var iter_count = 0
+	var outer_dict_count = 0;
+	//outer arc
+	var outer_arc_size = [];
+
+	var width = 600,
+	    height = 600,
+	    radius = Math.min(width-50, height-50) / 2;
+
+	var color = d3.scale.category20();
+
+	var pie = d3.layout.pie()
+	    .sort(null);
+
+	var arc = d3.svg.arc()
+	    .innerRadius(radius - 100)
+	    .outerRadius(radius - 20);
+
+	var outer_arc = d3.svg.arc()
+	    .innerRadius(radius - 5)
+	    .outerRadius(radius - 15);
+
+ var empty_content = {"Safety": ["Why is this empty?", "There are many possibilities. You might need to", "change or widen some of your criteria (for example, ", "being open to both UC and CSU systems). Your grades ", "and/or standardized test scores also may be lower than", " the colleges you have selected. If the latter is true, ", "community college might be a great option to look in to."],
+  "Target": ["Why is this empty?", "There are many possibilities.","You might need to change or widen some of your criteria","(for example, the major you selected might be "," limiting your list)."," There may also be no target colleges that fit your criteria."],
+  "Reach":["Why is this empty?", "There are many possibilities.", "Your grades and standardized test scores could be", "extremely strong.", "There may also be no reach colleges that fit your criteria"]
+  }
+	
+	input_data = JSON.parse(jdata);
+  var key_value_lenth = {}
+  var color_dict = _.object(_.keys(input_data),  ["#9adcfd", "#FFA500", "#00ff00"]);
+  var outer_color_dict = _.object(_.keys(input_data),  ["#065EC8", "#CE8600", "#006a00"]);
+  //var outer_color_dict = _.object(_.keys(input_data), ["#AE5CF0", "#0099FF", "#FF3399"]);
+  _.each(_.keys(input_data), function(d){
+    var i =0;
+    _.each(_.values(input_data[d]), function(d){
+      all_arc_size.push(def_arc_size);
+      i++;
+    });
+    if (i >0)
+    {
+      outer_arc_size.push(i*10);
+    }
+    all_arc_size.push(def_gap_size);
+    outer_arc_size.push(def_gap_size);
+    key_value_lenth[d] = input_data[d].length;
+  })
+
+  var group_keys = _.keys(key_value_lenth);
+  var group_lengths = _.values(key_value_lenth); // Gives me an array of lengths by group.
+  group_size = group_lengths[0];
+  var group_iter_count = -1
+// Outer SVG
+  d3.ns.prefix.xmlns = "https://www.w3.org/1999/xlink"
+  var svg = d3.select(".donut_chart").append("svg")
+              .attr("id", "svg-circle")
+              .attr("width", width)
+              .attr ("height", height)
+              .attr("xmlns:xlink", "https://www.w3.org/1999/xlink")
+              .append("g")
+              .attr("class", "donut_container");
+
+  var outer_radius = 400
+  var outer_arcs = svg.append("g").attr("transform", "translate(" + (radius + 20) + "," + (radius + 20) + ")")
+                      .selectAll("path")
+                      .data(pie(all_arc_size))
+                      .enter()
+                      .append("g")
+                      .attr("class","arc");
+
+      outer_arcs.append("path")
+          .attr("fill", function(d, i) { return color_generator(d, i); })
+          .attr("id", function(d,i){ return set_label_id(d, i); })
+          .attr("d", outer_arc);
+var text1 = outer_arcs.append("text")
+                      .attr("x", 100)
+                      .attr("dy", -10);
+
+    text1.append("textPath")
+                .attr("fill",function(d, i) { return color_generator_text(d, i); })
+                .attr("font-family", "sans-serif")
+                .attr("font-size", "23px")
+				.attr("font-weight", "bold")
+                //.attr("stroke-width", "0.5")
+                .attr("xlink:href",function(d,i){ return "#"+ set_label_id(d, i); })
+                .text(function(d, i) { return set_label_id(d,i); });
+
+function set_label_id(d, i) {
+  if (i < group_size) {
+    group_iter_count = group_iter_count + 1;
+    if (group_iter_count === 0) {
+      return group_keys[iter_count];
+    }
+  } else {
+    update_counter();
+  }
+  return " ";
+}
+//==========================
+// Inner SVG
+//==========================
+  var arcs = svg.append("g").attr("transform", "translate(" + (radius + 20) +"," + (radius + 20) +")").selectAll("path")
+                .data(pie(all_arc_size))
+                .enter()
+                .append("g")
+                .attr("class","arc")
+                //.attr("transform", "translate(" + radius + "," + radius + ")");
+                //.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
+
+      arcs.append("path")
+          .attr("stroke","#FFF")
+          .attr("id", function(d,i){ return set_pathId(d, i); })
+          .attr("fill", function(d, i) { return color_generator(d, i); })
+          .attr("d", arc)
+          .on("mouseover", dynamic_info_display);
+
+  // Add a text label.
+  var text = arcs.append("a")
+      .attr("xlink:href", function(d, i) { return set_url(d,i); })
+      .attr("target", "_blank")
+      .append("text")
+      .attr("dx", 20)
+      .attr("dy", 40);
+
+      text.append("textPath")
+          .attr("fill","black")
+          .attr("font-family", "sans-serif")
+          .attr("font-size", "16px")
+          //.attr("stroke-width", "0.5")
+          .attr("xlink:href",function(d,i){ return "#"+ set_pathId(d, i); })
+          .text(function(d, i) { return display_label(d,i); });
+
+  function set_pathId(d, i) {
+    if (i < group_size) {
+      group_iter_count = group_iter_count + 1;
+      return group_keys[iter_count]+"_"+group_iter_count;
+    } else {
+      update_counter();
+      return "seperator";
+    }
+  }
+  function color_generator(d, i) {
+    if (i < group_size) {
+      return color_dict[group_keys[iter_count]];
+    } else if(group_size === i) {
+      update_counter();
+      return '#FFF';
+    } else{
+      return '#000';
+    }
+  }
+  function color_generator_text(d, i) {
+      if (i < group_size) {
+        return outer_color_dict[group_keys[iter_count]];
+      } else if(group_size === i) {
+        update_counter();
+        return '#FFF';
+      } else{
+        return '#000';
+      }
+    }
+
+  function set_url(d, i) {
+    if (i < group_size) {
+        group_iter_count = group_iter_count + 1;
+        if (typeof input_data[group_keys[iter_count]][group_iter_count].url === 'undefined')
+        {
+          return "#"
+        }
+        else {
+          return input_data[group_keys[iter_count]][group_iter_count].url;
+        }
+    } else {
+        update_counter();
+        return '#';
+    }
+  }
+
+  function display_label(d, i) {
+    if (i < group_size) {
+        group_iter_count = group_iter_count + 1;
+        if (typeof input_data[group_keys[iter_count]][group_iter_count].name === 'undefined')
+        {
+          return input_data[group_keys[iter_count]][group_iter_count];
+        }
+        else {
+          return input_data[group_keys[iter_count]][group_iter_count].name;
+        }
+    } else {
+        update_counter();
+        return '';
+    }
+  }
+
+  function update_counter(){
+    group_iter_count = -1;
+    iter_count = iter_count + 1;
+    if (iter_count === group_lengths.length) {
+      group_size = group_lengths[0];
+      iter_count = 0
+    } else {
+      group_size = group_size + group_lengths[iter_count] + 1
+    }
+  }
+
+  var info_display_cont = svg.append("g")
+                          .attr("id", "info_container")
+                          .attr("transform", "translate(" + (radius+20) + "," + (radius+20)+ ")");
+
+      info_display_cont.append("circle")
+                                    .attr("fill","#ddd")
+                                    .attr("r", "190")
+
+      info_display_cont.append("g")
+                        .attr("id", "dynamic_content")
+                        .append("text")
+                        .attr("text-anchor", "middle")
+                        //.attr("x", -50)
+                        .attr("dy", -100)
+                        .attr("fill","white")
+                        .attr("fill","#000")
+                        .attr("font-size","24px")
+                        //.text("Name of the college");
+
+  var display_content = '';
+  function dynamic_info_display(d){
+    var hover_id = d3.select(this).attr("id");
+    //console.log(hover_id);
+    //d3.select(this).transition()
+    //      //.attr("x",320)
+    //      .ease("elastic");
+
+    if (hover_id !== "seperator") {
+          splitted_id = hover_id.split("_");
+
+      key = splitted_id[0];
+      value = splitted_id[1];
+      display_content = input_data[key][value];
+
+      d3.selectAll("#dynamic_content").remove();
+      if (display_content != "No College Found"){
+        data = _.keys(display_content);
+        if (typeof data !== 'undefined' && data.length > 0) {
+            data = ["name", "universitySystem", "gpa", "size", "Cost of Attendance", "onCampusCOA", "relativeCOA", "url"]
+          }
+      } else {
+        //console.log(empty_content[splitted_id[0]])
+        data = empty_content[splitted_id[0]]
+      }
+
+     // data="name,relativeCOA,onCampusCOA,size,universitySystem,environment";
+     //d3.transition()
+     //   .ease("linear")
+     //   .each(function() {
+     //     d3.selectAll("#dynamic_content").transition()
+     //       .style("opacity", 0)
+     //       .remove();
+     //   })
+
+      d3.select("g#info_container").selectAll("#dynamic_content")
+        .data(data)
+        .enter()
+        .append("g")
+        .attr("id", "dynamic_content")
+        .attr("transform", "translate(" + -90 + "," + -60 + ")")
+        .append("text")
+        .attr("x", function(d, i){ return (i==0) ? "20":"-50"} )
+        .attr("dy",  function(d,i){ return (i==0) ? "-40" : (26 * i) -20 })
+        .attr("fill","#000")
+        .attr("font-size",function(d, i){
+          if (display_content != "No College Found") {
+            return (i==0) ? "18px":"16px"
+          } else {
+            return (i==0) ? "18px":"12px"
+          }
+        })
+        .attr("font-weight", function(d, i){ return ((i==0 | i==4) & (display_content != "No College Found")) ? "bold":""} )
+        .text(function(d){
+          if (display_content != "No College Found") {
+            return dynamic_text_info(d)
+          } else {
+            console.log(data)
+            console.log(d)
+            return d
+          }
+        });
+    }
+  }
+
+// var info_label_dict = {"name":"Name", "relativeCOA": "Relative Cost of Attendance", "onCampusCOA": "On Campus Cost of Attendance", "offCampusCOA":"Offcampus Cost of Attendance", "size":"Size", "universitySystem":"University System", "environment": "Environment"}
+//  var info_label_dict = {"name":"Name", "relativeCOA": "COA Staying with Relatives", "onCampusCOA": "COA On Campus", "offCampusCOA":"COA Off Campus", "size":"Size", "universitySystem":"University System", "environment": "Environment"}
+   var info_label_dict = {"name":"", "gpa":"Average GPA", "universitySystem":"University System", "size":"Total student population", "onCampusCOA": "Living on campus", "relativeCOA": "Living with parents/relatives"}
+
+  function dynamic_text_info(key_reference){
+    // alert(key_reference);
+    if(info_label_dict.hasOwnProperty(key_reference)){
+          var labelname = info_label_dict[key_reference];
+    } else if(key_reference == "Cost of Attendance"){
+            return key_reference;
+    } else {
+      return ;
+    }
+
+    if(key_reference=='offCampusCOA'){
+        return null;
+    }
+    else if(key_reference.indexOf("COA") > -1){
+        label = labelname +":  $" + formatNumber(display_content[key_reference])
+    } else if(key_reference=='name'){
+        label = display_content[key_reference]
+    }else if(key_reference=='size'){
+        label = labelname +": " + formatNumber(display_content[key_reference])
+    }
+    else {
+        label = labelname +": " + display_content[key_reference]
+    }
+    return label;
+  }
+//var simple_info_label_dict = {"Name", "Date of application : 30-May-2015", "Date of admission : 05-Sep-2015"}
+  function simple_dynamic_text_info(key_reference){
+    if(simple_info_label_dict.hasOwnProperty(key_reference)){
+      var labelname = simple_info_label_dict[key_reference];
+    } else {
+      var labelname = key_reference;
+    }
+
+    if(key_reference.indexOf("COA") > -1){
+      label = labelname +":  $" + display_content[key_reference]
+    } else {
+      label = labelname +": " + display_content[key_reference]
+    }
+    return label;
+  }
+}
+
+function formatNumber (num) {
+  if( isNaN(num)){
+    return num;
+  }
+  return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+}
+
+</script>
+
+
+
+<script>
+
+
+$('#county').on('change input',function(){
+	var inp=this.value;
+
+	// call ajax call to get schools names 
+	
+	
+	  var data = {
+		      "county": inp
+		    };
+
+	  $.ajax({
+	      type: "POST",
+	      dataType: "json",
+	      url: "/service/getschoolsByCounty", 
+	      data: data,
+	      success: function(data) {
+	    	  if(data['schools']!=null){
+	    		  
+				
+	    		  availableTags = JSON.parse(data['schools']);
+	    		    $( "#schoolname" ).autocomplete({
+	    		    	 maxResults: 10,
+	    		    	    source: function(request, response) {
+	    		    	        var results = $.ui.autocomplete.filter(availableTags, request.term);
+	    		    	        
+	    		    	        response(results.slice(0, this.options.maxResults));
+	    		    	    }
+	    		     
+	    		    });
+	    		 
+	        }else{
+		        
+		        
+		        }
+	      },
+	      error: function(xhr, textStatus, errorThrown){
+	          alert('Whoops!  It looks like there was a problem submitting your request. Please try again. If the problem persists, please contact us.');
+	       },
+	       complete: function(xhr, textStatus){
+		   		  
+		   		}
+	    });
+		
+});
+  
+
+
+  $('#exploreadvancesearchbtn').click(function(e){
+
+	  var btn = $(this)
+	  btn.button('loading');
+	
+	  
+  	var data = {"mode": "exp"};
+  	data = $("#advexploreform").serialize() + "&" + $.param(data);
+	// $("#result").show();
+  	// drawWheel();
+  	$("#advexperror").html("");
+  	$("#advexpsuccess").html("");
+  	 $("#advexperrordiv").hide();
+  	 $("#advexpsuccessdiv").hide();
+
+  	 $("#result").hide();
+  	
+  	$("#donut_chart").html("");
+  	 $("#donut").html("");
+  	 
+  	 $.ajax({
+  		type: "POST",
+  	    dataType: "json",
+  	    url: "/search/advance", 
+  	    data: data,
+  	    success: function(data) {
+  			if(data['error']!=null){
+  	  		$("#advexperrordiv").show();
+
+  	  		setTimeout(function(){ $('#advexperrordiv').hide(); }, 10000);
+  	  		
+  		  		$("html, body").animate({ scrollTop: 0 }, "slow");
+         		$("#advexperror").html(data['error']);
+     		 }else{
+     		    $("#result").show();
+     		   // $("#advexpsuccessdiv").show();
+     		  // alert(data['all']);
+     		    rows(data['res']);
+     		   $("html, body").animate({ scrollTop: $(document).height()/2 }, "slow");
+     		  //  $("#tcost").html($("#nocaval").val()+"$");
+     		  //$("#advexpsuccessdiv").show();
+     		  //  $("#advexpsuccess").html("");
+     		    }
+  		},
+  		error: function(xhr, textStatus, errorThrown){
+  			$("#advexperrordiv").show();
+		  	$("html, body").animate({ scrollTop: 0 }, "slow");
+     		$("#advexperror").html("Enter correct data and try again");
+  		},
+  		complete: function(xhr, textStatus){
+  		  btn.button('reset');
+  		}
+  	});
+  	// $btn.button('')
+  	return false;
+});
+
+
+  $('#saveadvexp').click(function(){
+
+	  var btn = $(this)
+	  btn.button('loading');
+		
+		  var data = {
+			      "action": "undefined"
+			    };
+		 	    data = $("#shareresultform").serialize() + "&" + $.param(data);
+
+		 	    
+		 	   $("#simpleexperror").html("");
+		 	   $("#simpleexpsuccess").html("");
+		 	   $("html, body").animate({ scrollTop: 0 }, "slow");
+			    $.ajax({
+			      type: "POST",
+			      dataType: "json",
+			      url: "/search/saveadvance", 
+			      data: data,
+			      success: function(data) {
+			    	  if(data['error']!=null){
+			    		  $("#advexperrordiv").show();
+			    		  $("#advexperror").html(data['error']);
+	     		       	$("#simpleexperror").html();
+	 		        }else{
+
+	 		        	$("#advexpsuccessdiv").show();
+	 		     	    $("#advexpsuccess").html("Your search result is saved in our database");
+	 		     	  setTimeout(function(){ $('#advexpsuccessdiv').hide(); }, 10000);
+	 		        }
+			      },
+			      error: function(xhr, textStatus, errorThrown){
+			          alert('Whoops!  It looks like there was a problem submitting your request. Please try again. If the problem persists, please contact us.');
+			       },
+			       complete: function(xhr, textStatus){
+			   		  btn.button('reset');
+			   		}
+			    });
+			    return false;
+	    
+	});
+
+
+  
+  $('#semail').hide();
+  $('#semailbut').click(function(){
+ 	 	$('#semail').toggle();
+  });
+
+  $('#sendallemail').hide();
+
+  $('#sendall').click(function(){
+	 	$('#sendallemail').toggle();
+});
+  
+  
+  $('#allemailsendresult').click(function(){ 
+	  var btn = $(this)
+	  btn.button('loading');
+		var data = {"action": "undefined"};
+		data = $("#allform").serialize() + "&" + $.param(data);
+		// $("#result").show();
+		// drawWheel();
+		$("#simpleexperror").html("");
+		$("#simpleexpsuccess").html('Result is being sent to given email address.');
+		$("html, body").animate({ scrollTop: 0 }, "slow");
+		$.ajax({
+			type: "POST",
+			dataType: "json",
+			url: "/search/shareresultall", 
+			data: data,
+			success: function(data) {
+			if(data['error']!=null){
+				$("#advexperrordiv").show();
+	    		  $("#advexperror").html(data['error']);
+		       	$("#simpleexperror").html();
+	 		}else{
+	 			$("#advexpsuccessdivpop").show();
+		        $("#advexpsuccesspop").html("Your search result has been sent to given email");
+		     	  setTimeout(function(){ $('#advexpsuccessdivpop').hide(); }, 10000);
+		        
+	 	    }
+	 	    },
+			error: function(xhr, textStatus, errorThrown){
+			    alert('Whoops!  It looks like there was a problem submitting your request. Please try again. If the problem persists, please contact us.');
+			},
+		       complete: function(xhr, textStatus){
+			   		  btn.button('reset');
+			   		}
+		});
+		return false;
+	});
+  
+  $('#emailsendresult').click(function(){ 
+	  var btn = $(this)
+	  btn.button('loading');
+		var data = {"action": "undefined"};
+		data = $("#shareresultform").serialize() + "&" + $.param(data);
+		// $("#result").show();
+		// drawWheel();
+		$("#simpleexperror").html("");
+		$("#simpleexpsuccess").html('Result is being sent to given email address.');
+		$("html, body").animate({ scrollTop: 0 }, "slow");
+		$.ajax({
+			type: "POST",
+			dataType: "json",
+			url: "/search/shareresult", 
+			data: data,
+			success: function(data) {
+			if(data['error']!=null){
+				$("#advexperrordiv").show();
+	    		  $("#advexperror").html(data['error']);
+		       	$("#simpleexperror").html();
+	 		}else{
+	 			$("#advexpsuccessdiv").show();
+		        $("#advexpsuccess").html("Your search result has been sent to given email");
+		     	  setTimeout(function(){ $('#advexpsuccessdiv').hide(); }, 10000);
+		        
+	 	    }
+	 	    },
+			error: function(xhr, textStatus, errorThrown){
+			    alert('Whoops!  It looks like there was a problem submitting your request. Please try again. If the problem persists, please contact us.');
+			},
+		       complete: function(xhr, textStatus){
+			   		  btn.button('reset');
+			   		}
+		});
+		return false;
+	});
+  
+</script>
+
+
+
+<script>
+
+$("#target").click(function(){
+	$("#targetdiv").toggle(this.checked);	
+	disableEmailButton();
+});
+
+$("#reach").click(function(){
+	$("#reachdiv").toggle(this.checked);
+	disableEmailButton();	
+});
+
+$("#safety").click(function(){
+	$("#safetydiv").toggle(this.checked);
+	disableEmailButton();	
+});
+
+var disableEmailButton = function (){
+	if($("#target").is(':checked') || $("#reach").is(':checked')||$("#safety").is(':checked')){
+		$('#sendall').prop('disabled', false);
+		$('#allemailsendresult').prop('disabled', false);
+		
+	
+	}else{
+		$('#sendall').prop('disabled', true);
+		$('#allemailsendresult').prop('disabled', true);
+		
+	}
+}
+
+$("#showall").click(function(){
+	
+	var data = {"mode": "show"};
+
+	  var btn = $(this)
+	  btn.button('loading');
+	
+  	data = $("#advexploreform").serialize() + "&" + $.param(data);
+  	
+  	 $.ajax({
+  		type: "POST",
+  	    dataType: "json",
+  	    url: "/search/advance", 
+  	    data: data,
+  	    success: function(data) {
+  			if(data['error']!=null){
+
+			
+ 				 	  	
+			}else{
+				var pdata =	JSON.parse(data['res']);
+
+				
+				$('#reachbody tr:not(:first)').remove();
+				$('#targetbody tr:not(:first)').remove();
+				$('#safetybody tr:not(:first)').remove();
+				
+				
+				$.each(pdata, function( index, value ){
+					if(index == 'Reach'){
+						if(value == "No College Found"){
+							$('#reachbody tr:last').after('<tr><td colspan=6>No College Found</td></tr>');
+						}else{
+							$.each(value, function( key, val ){
+								$('#reachbody tr:last').after('<tr><td>'+val['name']+'</td><td>'+val['universitySystem']+'</td><td>'+val['gpa']+'</td><td>'+val['size']+'</td><td>'+val['onCampusCOA']+'</td><td>'+val['relativeCOA']+'</td></tr>');
+
+						});
+						}
+					}
+					if(index == 'Target'){
+
+						if(value == "No College Found"){
+							$('#targetbody tr:last').after('<tr><td colspan=6>No College Found</td></tr>');
+						}else{
+							$.each(value, function( key, val ){
+								$('#targetbody tr:last').after('<tr><td>'+val['name']+'</td><td>'+val['universitySystem']+'</td><td>'+val['gpa']+'</td><td>'+val['size']+'</td><td>'+val['onCampusCOA']+'</td><td>'+val['relativeCOA']+'</td></tr>');
+
+						});
+						}
+
+					}
+					if(index == 'Safety'){
+
+						if(value == "No College Found"){
+							$('#safetybody tr:last').after('<tr><td colspan=6>No College Found</td></tr>');
+						}else{
+							$.each(value, function( key, val ){
+								$('#safetybody tr:last').after('<tr><td>'+val['name']+'</td><td>'+val['universitySystem']+'</td><td>'+val['gpa']+'</td><td>'+val['size']+'</td><td>'+val['onCampusCOA']+'</td><td>'+val['relativeCOA']+'</td></tr>');
+
+						});
+						}
+
+					}
+					
+					
+				});
+			}
+  		},
+  		error: function(xhr, textStatus, errorThrown){
+  		
+  		},
+  		complete: function(xhr, textStatus){
+    		 btn.button('reset');
+    		 $("#collegeList").modal('show');
+    		}
+  	});
+
+  		
+  	
+  	return false;
+	
+	
+	
+	
+
+});
+</script>
+
+
+<!-- fixed sidebar -->
+<script>
+      $('.targetDiv').hide();
+
+      $(function(){
+            $('.showSingle').click(function(){
+              var index = $(this).parent().index(),
+                  newTarget = $('.targetDiv').eq(index);
+              $('.targetDiv').not(newTarget).fadeOut('fast');
+              newTarget.delay('fast').fadeToggle('fast');
+              return false;
+            });
+            $('.targetDiv').click(function(e){
+              e.stopPropagation();
+            });
+
+        });
+      $(function(){
+        $(document).click(function(){
+          var $el = $(".targetDiv");
+          if($el.is(":visible")){
+            $el.fadeOut(200);
+          }
+        });
+      });
+
+    </script>
+
+<!-- Feedbacify -->
+<script type="text/javascript">
+var fby = fby || [];
+fby.push(['showTab', {id: '9871', position: 'right', color: '#EB0000'}]);
+
+(function () {
+   var f = document.createElement('script'); f.type = 'text/javascript'; f.async = true;
+   f.src = '//cdn.feedbackify.com/f.js';
+   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(f, s);
+})();
+</script>
+
+<!-- Fixed container - Mynotes and social media -->
+<script>
+var fixmeTop = $('.myNotes').offset().top;
+$(window).scroll(function() {
+    var currentScroll = $(window).scrollTop() + 60;
+    if (currentScroll >= fixmeTop) {
+        $('.myNotes').css({
+            position: 'fixed',
+            top: '60px',
+            right: '20'
+        });
+    } else {
+        $('.myNotes').css({
+            position: 'static'
+        });
+    }
+});
+</script>
+
+<!-- Carousel control -->
+<script>
+$('.carousel-control').click(function(e){
+    e.stopPropagation();
+    var goTo = $(this).data('slide');
+    if(goTo=="prev") {
+        $('#myCarousel').carousel('prev'); 
+    } else {
+        $('#myCarousel').carousel('next'); 
+    }
+});
+
+</script>
+<script>$('#slide9').draggable();</script>

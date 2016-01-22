@@ -1,0 +1,189 @@
+<?php
+use Zend\Session\SessionManager;
+use Zend\Session\Container;
+use Common\Utilities\Constants;
+$session = new Container('user');
+
+//if(isset($_GET['flag']) && isset($session->success_flag)&& $_GET['flag']==$session->success_flag){
+		
+
+
+?>
+
+<!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper pscontentContainer">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+            Pay Status
+            <!-- <small>Advice from Your UCEazy Counselor</small>-->
+          </h1>
+         <ol class="breadcrumb">
+            <li><a href="/user/index"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li><a href="/buyservice/buyEssay">Buy Essay Review Service</a></li>
+            <li class="active">Pay Status</li>
+            
+          </ol>
+        </section>
+        <section class="content">
+          <div class="introContent bg-green">
+            <div class="bg-blackTrans" style="padding:30px;">
+                <div class="inner text-center" >
+                  <h3>Thank You for Purchasing the UCEazy Essay Review</h3>
+                </div>
+              </div>
+          </div>
+          <div class="row grid-divider no-margin" >
+		    <div class="col-sm-4" >
+		      <div class="col-padding" >
+		        <h3>Send an Essay Notification Email</h3>
+		        <hr class="titleHr" />
+		        <p>If you would like to send an email to your child or parent informing them of this purchase, please enter their email below. (You will need to separately provide your user login information.)</p>
+		        <p>This email will give direction and next steps for submitting an essay for review.</p>
+		        <form class="form-horizontal btnAlign">
+				  <div class="form-group" data-div='last'>
+				    <div class="col-sm-9 col-xs-8 ">
+				      <input type="email" class="form-control " id="inputEmail3" placeholder="Email">
+				    </div>
+				    <button type="submit" class="btn btn-info col-sm-3 col-xs-4 " id="send_mail">Send</button>
+				  </div>
+				</form>
+		      </div>
+		    </div>
+		    <div class="col-sm-4">
+		      <div class="col-padding">
+		        <h3>Submitting your Essay</h3>
+		        <hr class="titleHr" />
+		        <p>You can submit your essay anytime until November 25th. We will provide detailed feedback within 3 days of receiving your essay.</p>
+		        <ul>
+		        	<li>Essays should be between 250 and 1000 words in length</li>
+		        	<li>Please spell check your essays before submission</li>
+		        	<li>Essay can not be submitted using a mobile phone or device.</li>
+		        </ul>
+		        <div class="submitEssaybtn">		        	
+		        	<a href="/buyservice/essay" class="btn btn-danger col-sm-6 col-sm-offset-3">Submit your Essay</a>
+		        </div>
+		      </div>
+		    </div>
+		    <div class="col-sm-4">
+		      <div class="col-padding">
+		        <h3>Checkout our Plan Module</h3>
+		        <hr class="titleHr" />
+		        <p>Our Plan module helps you calculate your UC/CSU GPA, report the best test scores, organize your Activities and Awards, write a compelling personal statement, and calculate college application and attendance costs.</p>
+		      </div>
+		      <div class="gotoPlanBtn">
+		        	
+		        	<a href="/plan/index" class="btn btn-info col-sm-6 col-sm-offset-3" >Go to Plan Module</a>
+		        	
+		        </div>
+		    </div>
+		    <div class="clearfix"></div>
+		    
+      </section>
+      <div class="text-center" style="padding:30px;">
+		    	UCEazy is a complete online service for admissions to the University of California (UC) and California State University (CSU).
+		    </div>
+    </div>
+    
+<!-- REQUIRED JS SCRIPTS -->
+
+    <!-- jQuery 2.1.4 -->
+    <script src="/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <!-- Bootstrap 3.3.2 JS -->
+    <script src="/dist/js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- InputMask -->
+    <script src="/plugins/input-mask/jquery.inputmask.js" type="text/javascript"></script>
+    <script src="/plugins/input-mask/jquery.inputmask.date.extensions.js" type="text/javascript"></script>
+    <script src="/plugins/input-mask/jquery.inputmask.extensions.js" type="text/javascript"></script>
+
+    <!-- ChartJS 1.0.1 -->
+    <script src="/plugins/chartjs/Chart.min.js" type="text/javascript"></script>
+
+    <!-- Slimscroll -->
+    <script src="/plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <!-- FastClick -->
+    <script src='/plugins/fastclick/fastclick.min.js'></script>
+    <!-- AdminLTE App -->
+    <script src="/dist/js/app.min.js" type="text/javascript"></script>
+    <!-- Custom Script -->
+    <script src="/dist/js/custom.js" type="text/javascript"></script>
+
+    <!-- jquery scrollbar Script -->
+    <script src="/dist/js/jquery.scrollbar.min.js" type="text/javascript"></script>
+    <script src="/dist/js/buyService.js" type="text/javascript"></script>
+	
+<script type="text/javascript">
+
+$(document).on('click', "#send_mail", function(e){
+	e.preventDefault();
+	var email= /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+	var btn = $(this);		
+	var mail_id=$("#inputEmail3").val();
+		$("#mail_err").remove();
+		
+		if(mail_id=='' ||  !(email.test(mail_id))){
+			
+			$('[data-div="last"]').after("<label style='color:red' id='mail_err'>Please enter the valid eamil id</label>");
+			}else{
+				btn.button('loading');
+		 var data = {"mail_id" : mail_id};
+				data=$.param(data);
+			    $.ajax({
+			      type: "POST",
+			      dataType: "json",
+			      url: "/buyservice/notifyOthers", 
+			      data: data,
+			      success: function(data) {				      
+		  		    if(data['status']=='sent'){
+		  		    	var mail_id=$("#inputEmail3").val('');
+		  		    	$('[data-div="last"]').after("<label style='color:green' id='mail_err'>The notification sent successfully</label>");
+	  		    	
+	  		    	setTimeout(function(){$('#mail_err').remove();},8000);
+	  		    	btn.button('reset');	
+				 
+				
+				}if(data['status']=='invalid'){
+					$('[data-div="last"]').before("<label style='color:red' id='mail_err'>The email id is invalid</label>");
+	  		    	setTimeout(function(){$('#mail_err').remove();},5000);
+	  		    	btn.button('reset');
+				}
+										
+
+			      },
+			      error: function(xhr, textStatus, errorThrown){
+			          alert('Oops!  Looks like something went wrong');
+			        btn.button('reset');
+			         
+			       },
+		  		    complete: function(xhr, textStatus){
+			   		 
+			   		}
+			    });
+			    return false;
+
+		
+		}
+		
+	
+});
+
+</script>
+
+<!-- Feedbackify -->  
+<script type="text/javascript">
+var fby = fby || [];
+fby.push(['showTab', {id: '9871', position: 'right', color: '#EB0000'}]);
+
+(function () {
+   var f = document.createElement('script'); f.type = 'text/javascript'; f.async = true;
+   f.src = '//cdn.feedbackify.com/f.js';
+   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(f, s);
+})();
+</script>  
+<?php 
+//}else {
+
+//header("location:".Constants::SITE_BASE_URL. "/buyservice/buyEssay");
+ //}
+?>
+    

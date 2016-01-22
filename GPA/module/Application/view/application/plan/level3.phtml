@@ -1,0 +1,289 @@
+ <form name="personalform" id="personalform" method="post">
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper pscontentContainer">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+            Personal Statement
+            <small>What Makes a Great Personal Statement</small>
+          </h1>
+          <ol class="breadcrumb">
+            <li><a href="/user/index"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li><a href="/plan/index"><i class="ion ion-gear-b"></i> Plan</a></li>
+            <li><a href="/plan/personal"><i class="fa fa-puzzle-piece"></i> Personal Statement</a></li>
+            <li><a href="/plan/personalhome">Game Home</a></li>
+            <li class="active">Part 3</li>
+          </ol>
+        </section>
+
+        
+        <!-- Main content -->
+
+        <section class="pscontentContainer">
+          
+            <div id="chooseLevel" class="pscontainer ">
+               <div class=" col-lg-6 col-lg-offset-3">
+                <h1>Part 3</h1>
+               
+                <div class="box box-solid bg-blue-gradient ">
+                  <div class="box-header" >
+                    <!--<i class="fa fa-question-circle"></i>-->
+                    <h3 class="box-title "><?php echo $this->title;?></h3>
+                    
+                  </div><!-- /.box-header -->
+                  
+               
+               <?php if($this->flag===true){?>
+               
+                  <div class="box-body topBorder">
+                   <?php echo $this->question['excerpt'];?>
+                  </div><!-- /.box-body -->
+                  <div class="box-footer quizControls text-black"  >
+                      <div class="row">
+                        <div class="col-xs-12 text-center">
+                          <span class="green rightBorder">
+                            <i class="fa fa-check-circle" id="correct"></i>
+                          </span>
+                          <span class="maroon">
+                            <i class="fa fa-times-circle" id="wrong"></i>
+                          </span>
+                        </div><!-- ./col -->
+                      </div><!-- /.row -->
+                    </div>
+                  </div><!-- /.box -->
+               <?php }else{
+               	$btn_array=$this->btn_array;
+               	?>
+               	
+                <div class="box-body answerBox">
+                  <h4>You have answered all questions in this part</h4>
+                 </div>
+                  </div>
+                  <?php                
+					if($btn_array['email_btn']=='yes'){
+                  ?>
+                  <hr style="border-top:1px solid #ccc;" />
+                  	<div class="text-center"  id="home">
+                  		<a href="/plan/personalhome" class="btn btn-danger pull-left">Home</a>						
+						<button type="submit" class="btn btn-danger " id="summary"><i class="fa fa- fa-envelope" style="padding-right:5px;"></i> Email Overall Summary</button>
+				<button type="submit" class="btn btn-danger pull-right" id="replay-game">Start Over</button> 
+					</div>
+					
+                  <?php }else{ ?>
+                  <hr style="border-top:1px solid #ccc;" />
+                  <div class="text-center"  id="home">
+                  	<?php  if($btn_array['btn1']=='yes'){ ?>
+                  	<a href="/plan/level1" class="btn btn-danger pull-left">Part 1</a>                  	
+                  	<?php }
+                  	if($btn_array['btn2']=='yes'){ 	?>
+                  	<a href="/plan/level2" class="btn btn-danger pull-right">Part 2</a> 
+                  	<?php }?>
+					<a href="/plan/personalhome" class="btn btn-danger">Home</a>
+				<?php }?>
+				</div>
+			<?php }?>
+                <input type="hidden" name="contextID" id="contextID" value="<?php echo  $this->question['contextId'];?>">
+                <input type="hidden" name="questionID" id="questionID" value="<?php echo  $this->question['id']; ?>">
+             
+                
+                
+                
+                
+                    <div class="alert alert-success alert-dismissable" style="display: none;" id="yes">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4>  <i class="icon fa fa-thumbs-up"></i> Hurray! The answer you chose is CORRECT!  </h4>
+                   <?php echo $this->question['correctAnswerDescription'];?>
+                </div>
+
+                <div class="alert alert-warning alert-dismissable" style="display: none;" id="no">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4><i class="icon fa fa-thumbs-down"></i>The answer you chose is WRONG! </h4>
+                  <?php echo $this->question['incorrectAnswerDescription'];?> 
+                   </div>
+                
+                <div class="text-center" style="display: none;" id="next">
+                  <button type="button" class="btn btn-danger pull-right" >Next</button>                    
+                </div>
+                
+                
+               </div>
+            </div>
+            
+        </section>
+      </div><!-- /.content-wrapper -->
+
+      
+    </div><!-- ./wrapper -->
+
+
+	 <div class="modal fade" id="success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header btn-success">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title " id="myModalLabel">Success</h4>
+	      </div>
+	      <div class="modal-body">
+	        Your personal statement information has been sent to your email id.
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <!-- <button type="button" class="btn btn-primary">Save changes</button>-->
+	      </div>
+	    </div>
+	  </div>
+	</div>
+      
+       <div class="modal fade" id="failure" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header btn-danger">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title " id="myModalLabel">Failure</h4>
+	      </div>
+	      <div class="modal-body">
+	        Oops!  Looks like something went wrong.  Please try again later.
+			</div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <!-- <button type="button" class="btn btn-primary">Save changes</button>-->
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	</form>
+    <!-- REQUIRED JS SCRIPTS -->
+
+    <!-- jQuery 2.1.4 -->
+    <script src="/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <!-- Bootstrap 3.3.2 JS -->
+    <script src="/dist/js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- InputMask -->
+    <script src="/plugins/input-mask/jquery.inputmask.js" type="text/javascript"></script>
+    <script src="/plugins/input-mask/jquery.inputmask.date.extensions.js" type="text/javascript"></script>
+    <script src="/plugins/input-mask/jquery.inputmask.extensions.js" type="text/javascript"></script>
+
+    <!-- ChartJS 1.0.1 -->
+    <script src="/plugins/chartjs/Chart.min.js" type="text/javascript"></script>
+
+	  <!-- Slimscroll -->
+    <script src="/plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <!-- FastClick -->
+    <script src='/plugins/fastclick/fastclick.min.js'></script>
+    <!-- AdminLTE App -->
+    <script src="/dist/js/app.min.js" type="text/javascript"></script>
+    <!-- Custom Script -->
+    <script src="/dist/js/custom.js" type="text/javascript"></script>
+
+    <!-- jquery scrollbar Script -->
+    <script src="/dist/js/jquery.scrollbar.min.js" type="text/javascript"></script>
+    
+    <script>
+
+    $('#correct').click(function(){
+
+
+    	$('#yes').hide();
+    	$('#no').hide();
+      $('.quizControls ').hide();
+    	
+
+    	 var data = {
+    		      "action": "personal",
+    		      "mode" : 'update',
+    		      "contextID" : $('#contextID').val() ,
+    		      "questionID" : $('#questionID').val(),
+    		      "answer" : 'Yes'
+    		    };
+    	 	    data = $.param(data);
+   
+    		    $.ajax({
+    		      type: "POST",
+    		      dataType: "json",
+    		      url: "/plan/checkAnswer", 
+    		      data: data,
+    		      
+    		      success: function(data) {
+    	  		  if(data['answer']==true){
+    	  		    	$('#yes').show();
+                  $('.quizControls ').hide();
+    	  		    	$('#correct').hide();
+    	  		    	$('#wrong').hide();
+    	  		    	$('#next').show();
+  				  }else{
+  					    $('#no').show();
+  					  	$('#correct').hide();
+  	  		    		$('#wrong').hide();
+                  $('.quizControls ').hide();
+  	  		    		$('#next').show();
+       		      }
+    		      },
+    		      error: function(xhr, textStatus, errorThrown){
+    		          alert('Whoops!  It looks like there was a problem submitting your request. Please try again. If the problem persists, please contact us.');
+    		         
+    		       }
+    		    });
+    		    return false;
+          
+
+    	
+
+     });
+
+
+    $('#next').click(function(){
+
+    	 $('#personalform').submit();
+	
+    });
+    
+    $('#wrong').click(function(){
+
+    	$('#yes').hide();
+    	$('#no').hide();
+      $('.quizControls ').hide();  
+
+
+   	 var data = {
+   		      "action": "personal",
+   		      "mode" : 'update',
+   		      "contextID" : $('#contextID').val() ,
+   		      "questionID" : $('#questionID').val(),
+   		      "answer" : 'No'
+   		    };
+   	 	    data = $.param(data);
+  
+   		    $.ajax({
+   		      type: "POST",
+   		      dataType: "json",
+   		      url: "/plan/checkAnswer", 
+   		      data: data,
+   		      
+   		      success: function(data) {
+   	  		  if(data['answer']==true){
+   	  		    	$('#yes').show();
+                $('.quizControls ').hide();
+   	  		    	$('#correct').hide();
+   	  		    	$('#wrong').hide();
+   	  		    	$('#next').show();
+ 				  }else{
+ 					    $('#no').show();
+ 					  	$('#correct').hide();
+ 	  		    		$('#wrong').hide();
+                $('.quizControls ').hide();
+ 	  		    		$('#next').show();
+      		      }
+   		      },
+   		      error: function(xhr, textStatus, errorThrown){
+   		          alert('Whoops!  It looks like there was a problem submitting your request. Please try again. If the problem persists, please contact us.');
+   		         
+   		       }
+   		    });
+   		    return false;
+         
+
+    	         
+    });
+
+    </script>
+    

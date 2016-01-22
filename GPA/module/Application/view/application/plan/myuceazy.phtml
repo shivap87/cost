@@ -1,0 +1,1077 @@
+<?php 
+use Common\Utilities\Constants;
+use Zend\Session\SessionManager;
+use Zend\Session\Container;
+$session = new Container('user');
+$dream = $this->dream;
+$schoolinfo=$this->schoolinfo;
+$schoolGPA = isset($schoolinfo['gpa'])?$schoolinfo['gpa']:"";
+$yourGPA = $this->yourgpa;
+if($yourGPA >= 3){	$color='#00FF00';}
+if($yourGPA > 2 && $yourGPA < 3){$color='#FFFF00';}
+if($yourGPA < 2){$color='#FF0000';}
+//$yourGPA =4.16;
+?>
+
+ 
+ <form name="uceazyform" id="uceazyform">
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper pscontentContainer">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+            <i class="fa fa-user"></i> My UCEazy Counselor
+            <small>Advice from Your UCEazy Counselor</small>
+          </h1>
+          <ol class="breadcrumb">
+            <li><a href="/user/index"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li><a href="/plan/index"><i class="ion ion-gear-b"></i> Plan</a></li>
+            <li class="active">My Counselor</li>
+          </ol>
+        </section>
+
+
+        <!-- Main content -->
+        <section class="content">
+          <div class="row">
+            <!-- Right side content -->
+            <div class="col-lg-3 col-lg-push-9 col-md-12 col-sm-12 col-xs-12 rightSideContainer">
+                <div class="box box-warning ">
+                    <div class="box-header with-border">
+                      <h3 class="box-title"><i class="fa fa-file-video-o"></i> Hear from An Expert</h3>
+                    </div>
+                  <div class="box-body" >
+                    <!-- <div class="embed-responsive embed-responsive-16by9">
+                      <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/sqpw3NynsTE"></iframe>
+                    </div>-->
+                    <div id="myCarousel" class="carousel slide" data-interval="false">
+                      <!-- <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1" class=""></li>
+                      </ol>-->
+                      <div class="carousel-inner">
+                        <div class="item active">
+                          <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/xPq2UWVe1IU?showinfo=0&amp;"></iframe>
+                          </div>
+                        </div>
+                        <div class="item">
+                          <div class="embed-responsive embed-responsive-16by9">
+								<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/jChUvByelj4?showinfo=0&amp;"></iframe>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- <a class="left carousel-control" href="#myCarousel" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
+                      <a class="right carousel-control" href="#myCarousel" data-slide="next"><i class="fa fa-chevron-right"></i></a>-->
+
+                      <!-- Controls buttons -->
+                      <div class="videoPagnination" >
+                          <input type = "button" class = "btn slide-one active" value = "1">
+                          <input type = "button" class = "btn slide-two" value = "2">            
+                      </div>
+                    </div>
+                  
+                  </div><!-- /.box-body -->
+                </div><!-- /.box -->           
+                <div id="myAffix" class="box box-default visible-lg" data-spy="affix" data-offset-top="300">
+                    <div class="box-header with-border">
+                      <h3 class="box-title"><i class="fa fa-pencil"></i> My Notes</h3>
+                    </div>
+                  <div class="box-body">
+                        <textarea class="form-control cusnote" rows="3" placeholder="Coming Soon..." name="note1" id="note1" readonly="readonly"><?php if(isset($this->note)){echo $this->note;}?></textarea>
+                        <button class="btn btn-default marginTop" id="savenote" disabled="true">Save My Notes </button>
+                  </div><!-- /.box-body -->
+                </div><!-- /.box -->
+
+                <!-- social media -->
+                <div id="myAffix1" class="box box-solid visible-lg" data-spy="affix" data-offset-top="300">
+                    <div class="box-header ">
+                      <h3 class="box-title"><i class="fa fa-share-alt"></i> Follow Us</h3>
+                      <div class=" pull-right " >
+                        <div  class="fixedBtn"><a href="https://www.facebook.com/askuceazy" class="bg-facebook" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a></div>
+                        <div class="fixedBtn"><a href="https://twitter.com/Uaskuceazy?lang=en" class="bg-twitter" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></div>
+                        <div class="fixedBtn"><a href="https://www.linkedin.com/company/uceazy" class="bg-linkedin" target="_blank" title="Linkedin"><i class="fa fa-linkedin"></i></a></div>
+
+                        <!-- <div class="fixedBtn"><a href="#" class="bg-google-plus"><i class="fa fa-google-plus"></i></a></div>
+                        <div class="fixedBtn"><a href="#" class="bg-instagram"><i class="fa fa-instagram"></i></a></div>
+                        <div class="fixedBtn"><a href="#" class="bg-pinterest"><i class="fa fa-pinterest"></i></a></div>-->
+                      </div>  
+                    </div>
+                </div>
+            </div>
+            <!-- ./Right side content -->
+            <div class="col-lg-9 col-lg-pull-3 col-md-12 col-sm-12 col-xs-12">
+              <!-- Notifications -->
+              <div class="box box-dafault box-solid">
+                <div class="box-header bg-blue-active">
+                  <i class="ion ion-clipboard"></i>
+                  <h3 class="box-title">Notifications</h3>
+                  <div class="box-tools pull-right">
+                    <ul class="pagination pagination-sm inline">
+                      <li><a href="#">&laquo;</a></li>
+                      <li><a href="#">1</a></li>
+                      <li><a href="#">2</a></li>
+                      <li><a href="#">3</a></li>
+                      <li><a href="#">&raquo;</a></li>
+                    </ul>
+                  </div>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+				<?php if(count($this->notification_data)>0){ ?>
+				 <ul class="todo-list">
+                    
+					<?php foreach($this->notification_data as $data){ ?>
+					
+					<li>
+                      <!-- drag handle -->
+                      <span class="handle">
+                        <i class="fa fa-ellipsis-v"></i>
+                        <i class="fa fa-ellipsis-v"></i>
+                      </span>
+                      <!-- checkbox -->
+                      <input type="checkbox" value="" name=""/>
+                      <!-- todo text -->
+                      <span class="text"><?php echo $data['name'];?></span>
+                      <!-- Emphasis label -->
+                     <?php echo $data['start_date'] ?>
+                      <!-- General tools such as edit or delete-->
+                      <p><i><?php echo $data['description'];?></i></p>
+                      <div class="tools">
+                        <i class="fa fa-edit"></i>
+                        <i class="fa fa-trash-o"></i>
+                      </div>
+                    </li>
+					<?php } ?>
+                  
+               
+                  </ul>
+				<?php } ?>
+                </div><!-- /.box-body -->
+                
+              </div><!--  /.box - Notification -->
+
+              <!-- Counselor Advice -->
+              <div id="generalPanel" class="box box-default box-solid">
+                <div class="box-header bg-blue ">
+                  <i class="fa fa-user"></i>
+                  <h3 class="box-title">Counselor Advice</h3>
+                </div><!-- /.box-header -->
+
+                <div class="box-body">
+                  <div class="board">
+                    <div class="board-inner">
+                      <ul class="nav nav-tabs" id="myTab">
+                        <li class="active">
+                          <a href="#dreamSchool" data-toggle="tab" title="dreamSchool">
+                            <span class="round-tabs one">
+                              <i class="fa fa-university"></i>
+                            </span> 
+                            <div class="sectionTitle">Dream School</div>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#eligibilityCalculator" data-toggle="tab" title="eligibilityCalculator">
+                           <span class="round-tabs two">
+                               <i class="fa fa-calculator"></i>
+                           </span> 
+                           <div class="sectionTitle">Eligibility Calculator</div>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#eligibilityCourse" data-toggle="tab" title="eligibilityCourse">
+                           <span class="round-tabs three">
+                                <i class="fa  fa-check-circle"></i>
+                           </span> 
+                           <div class="sectionTitle">Eligible Courses</div>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#competitiveCourse" data-toggle="tab" title="competitiveCourse">
+                               <span class="round-tabs four">
+                                    <i class="fa fa-trophy"></i>
+                               </span> 
+                               <div class="sectionTitle">Competitive Courses</div>
+                          </a>
+                        </li>
+
+                            <li>
+                              <a href="#testScore" data-toggle="tab" title="testScore">
+                                   <span class="round-tabs five">
+                                        <i class="fa fa-thumbs-up"></i>
+                                   </span> 
+                                   <div class="sectionTitle">Test Score</div>
+                              </a>
+                            </li>
+                               
+                          </ul>
+                      </div>
+
+                     <div class="tab-content">
+                      <div class="tab-pane fade in active" id="dreamSchool">
+
+                        <div class="form-group">  
+                          <label for="" class="col-sm-3 control-label">School Name</label>
+                          <div class="col-sm-6">
+                          <select name="dreamschool" class="form-control" id="dreamschool">
+                           <option>Select</option>
+                          <?php 
+                          
+                          $schoolslist=explode(",",Constants::PLAN_DREAM_SCHOOLS);
+                          foreach ($schoolslist as $row){
+                          ?>
+                          <option <?php if($this->dreamschool==$row){?> selected="selected" <?php }?>><?php echo $row;?></option>
+                          <?php }?>
+                          
+                            </select>
+                            <!--    <input type="text" class="form-control" name="dreamschool" value="<?php echo $this->dreamschool;?>"/>--> 
+                          </div>
+                          <div class="clearfix"></div>
+                        </div>
+                        <hr />
+                        <h4>School Information</h4>
+                        
+                        <?php if(isset($schoolinfo['gpa'])){?>
+                        <div class="form-group">
+                            <label for="" class="col-sm-3 control-label">Average GPA</label>
+                            <div class="col-sm-6">
+                                <label for="" class="col-sm-3 control-label" id="dreamschoolgpa"><?php echo round($schoolinfo['gpa'],2);?></label>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+						<?php }?>
+						
+						<?php if(isset($schoolinfo['satCriticalReading'])){?>
+                        <div class="form-group">
+                            <label for="" class="col-sm-3 control-label">Average SAT Critical Reading</label>
+                            <div class="col-sm-6">
+                            <?php if ($schoolinfo['satCriticalReading'] > 0) { ?>
+									<label for="" class="col-sm-3 control-label" id="avgdreamtestingscore"><?php echo $schoolinfo['satCriticalReading']; ?></label>
+							<?php } else { ?>
+									<label for="" class="col-sm-3 control-label" id="avgdreamtestingscore">Coming Soon</label>
+							<?php } ?>
+                            </div>
+							
+                            <div class="clearfix"></div>
+                        </div>
+                        <?php }?>
+                        
+                        <?php if(isset($schoolinfo['satMath'])){?>
+                        <div class="form-group">
+                            <label for="" class="col-sm-3 control-label">Average SAT Math</label>
+                            <div class="col-sm-6">
+							 <?php if ($schoolinfo['satMath'] > 0) { ?>
+                                <label for="" class="col-sm-3 control-label" id="avgdreamtestingscore"><?php echo $schoolinfo['satMath']; ?></label>
+							<?php } else { ?>
+									<label for="" class="col-sm-3 control-label" id="avgdreamtestingscore">Coming Soon</label>
+							<?php } ?>
+
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <?php }?>
+                        
+                          <?php if(isset($schoolinfo['actComposite'])){?>
+                        <div class="form-group">
+                            <label for="" class="col-sm-3 control-label">Average ACT Composite</label>
+                            <div class="col-sm-6">
+							 <?php if ($schoolinfo['actComposite'] > 0) { ?>
+                                <label for="" class="col-sm-3 control-label" id="avgdreamtestingscore"><?php echo $schoolinfo['actComposite']; ?></label>
+							<?php } else { ?>
+									<label for="" class="col-sm-3 control-label" id="avgdreamtestingscore">Coming Soon</label>
+							<?php } ?>
+							</div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <?php }?>
+                        
+                        <hr />
+                        <h4>Student Information</h4>
+                        
+                        <div class="form-group">
+                            <label for="" class="col-sm-3 control-label">Your GPA</label>
+                            <div class="col-sm-6">
+                                <label for="" class="col-sm-3 control-label" id="yourgpa"><?php if($this->yourgpa>0){echo $this->yourgpa;}else{echo "0.00";}?></label>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="" class="col-sm-3 control-label">Selected Major</label>
+                            <div class="col-sm-6">
+                                <label for="" class="col-sm-3 control-label"><?php echo $this->major;?></label>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+
+                  <div class="alert alert-success" id="success" role="alert" style="display: none;">
+                      <h4 id=""><i class="icon fa fa-check "></i>
+                      <span class="info-text" id="successtext">
+                    </span>
+                      </h4>
+                 </div>
+                    <div class="text-center">
+                        <?php if($this->planflag=="1"){?>
+                    <button type="button" id="myuceazy-submit" value="update" class="btn btn-danger" >Update My Information</button>  
+                    <button type="button" id="gpa-next" value="update" class="btn btn-danger pull-right" >Next: Organizer</button>                  
+                    
+                    <?php }else{?>
+                    <button type="button" id="myuceazy-submit" value="save" class="btn btn-danger" data-complete-text="Update My Information">Save My Information</button>   
+                    <button type="button" id="gpa-next" value="save" class="btn btn-danger pull-right" >Next: Organizer</button>                 
+                    <?php }?>
+
+                                        
+                    </div>
+                    <input type="hidden" name="uid" value="<?php echo $this->uid;?>">
+                    <div class="clearfix"></div>
+                                      
+                    
+                        <hr />
+                        <h4>Advice</h4>
+                        <ul class="todo-list">
+                        
+                        <?php if( ($yourGPA) >= (1.2*$schoolGPA)){?>
+                          <li><span class="text">Given that your GPA and standardized testing scores are above your selected college's averages, it looks like you have a very strong change of being admitted into <?php echo $this->dreamschool;?>.  To make sure you stay competitive, be sure to challenge yourself in your coursework, keep up your grades, meaningfully participate in extra-curricular activities, and wisely choose a major </span></li>
+                          <?php }elseif((1.2*$schoolGPA)>($yourGPA) && (0.98*$schoolGPA)<=($yourGPA) ){?>
+                          <li><span class="text">Given that your GPA and standardized testing scores are close to your selected college's averages, it looks like you are likely to be admitted into <?php echo $this->dreamschool;?>.  To further increase your chances, look for opportunities to raise your GPA in your academic classes, meaningfully participate in extra-curricular activities, and wisely choose a major. </span></li>
+                          <?php }elseif((0.98*$schoolGPA)>($yourGPA) && (0.95*$schoolGPA)<=($yourGPA) ){?>
+                          <li><span class="text">Given that your GPA and standardized testing scores are just below your selected college's averages, there is still a chance you can be admitted into <?php echo $this->dreamschool;?>.  To increase the likelihood of getting admitted, look for opportunities to raise your GPA in your academic classes, take advanced courses (AP/Honors) if they are available to you, meaningfully participate in extra-curricular activities, write a strong personal statement, and wisely choose a major.</span></li>
+                          <?php }elseif((0.95*$schoolGPA)>($yourGPA) && (0.90*$schoolGPA)<=($yourGPA) ){?>
+                          <li><span class="text">Given that your GPA and standardized testing scores are a little short of your selected college's averages, there is still a chance you can be admitted into <?php echo $this->dreamschool;?> with some extra effort.  To increase the likelihood of getting admitted, look for opportunities to raise your GPA in your academic classes, consider taking SAT/ACT prep courses, take advanced courses (AP/Honors) if they are available to you, meaningfully participate in extra-curricular activities, write a strong personal statement, and wisely choose a major.  If you have any circumstances that negatively affected your academic performance (for example, you have a documented learning difference, you or a close family member has a serious medical condition, someone close to you passed away, etc), be sure to address this in your personal statement or "Additional Information" section of your UC application </span></li>
+                          
+                          <?php }elseif((0.90*$schoolGPA)>($yourGPA) ){?>
+                          <li><span class="text">Given that your GPA and standardized testing scores are quite a bit lower than your selected college's averages, your chances of being admitted into <?php echo $this->dreamschool;?> are not strong.  Though GPA and test scores are extremely important to colleges, keep in mind that there are many other factors that colleges look at while considering an applicant (also that UCEazy is only calculating your chances based off of those two factors).  To increase your chances, raising your GPA in your academic classes should be your top priority, followed by taking an SAT/ACT prep courses.  Other suggestions are to take advanced courses (AP/Honors) if they are available to you, meaningfully participate in extra-curricular activities, write a strong personal statement, and wisely choose a major.  If you have any circumstances that negatively affected your academic performance (for example, you have a documented learning difference, you or a close family member has a serious medical condition, someone close to you passed away, etc), be sure to address this in your personal statement or "Additional Information" section of your UC application.  You may also want to talk to your high school's counselor for any additional suggestions.</span></li>
+                          <?php }?>
+                        </ul>
+                         <div class="box-footer">
+                         
+                       
+                  </div>
+                      </div>
+                      <!-- /dream school-->
+                      <!-- eligibility calculator -->    
+                      <div class="tab-pane fade" id="eligibilityCalculator">
+                        <div class="small-box bg-green">
+                          <div class="inner text-center" style="background-color:<?php echo $color;?> !important">
+							
+                            <h4>GPA Score: <?php if($yourGPA>0){echo $yourGPA;}else{echo "0.00";}?></h4>
+                          </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered courseTable">
+                            <thead>
+                             
+                              <tr>
+                                <th>College Detail</th>
+                                
+                              </tr>
+                            </thead>
+                            <tbody>
+                            <?php $cols = $this->cols;
+                            
+                            
+                            if(isset($cols['reach']) && count($cols['reach'])>0){
+                            foreach ($cols['reach'] as $col){
+                            ?>
+                              <tr>
+                                <td><?php echo $col;?></td>
+                               
+                              </tr>
+                              
+                              <?php }}
+                              
+                              if(isset($cols['target']) && count($cols['target'])>0){
+                            foreach ($cols['target'] as $col){
+                            ?>
+                              <tr>
+                                <td><?php echo $col;?></td>
+                               
+                              </tr>
+                              
+                              <?php }}
+                              
+                              if(isset($cols['safety']) && count( $cols['safety'])>0){                      
+                            foreach ($cols['safety'] as $col){
+                            ?>
+                              <tr>
+                                <td><?php echo $col;?></td>
+                               
+                              </tr>
+                              
+                              <?php }}?>
+                              
+                              
+                            </tbody>
+                          </table>
+                          
+                    <ul class="todo-list">
+                          <li><span class="text">Hi <b><?php  echo $session->username;?></b>!  Eligibility is a calculated based on a specific formula of your grades and test scores.  The UC and CSU systems handle eligibility a little differently.</span></li>
+                          <li><span class="text">
+                          California State University (CSU) System<br>
+With the CSU's, meeting eligibility guarantees you admission into specific campuses as long as you meet certain minimum requirements.  
+There are a few factors at play here:  your GPA, your standardized test scores, where you live, how popular the campus is 
+(the word the CSU's use to indicate a popular campus
+ is "impacted"), and how impacted your intended major is. <br> 
+An "impacted" campus means that more students are interested (and qualified) to attend that college than they have space for. 
+ When a campus is impacted, certain rules apply.  The first rule:  if you are qualified and you live close to that campus,
+  you have first priority into that school because you fall under their "Local Admission Guarantee" program. 
+   However, being a "Local Admission Guarantee" kid doesn't mean you're automatically admitted to any major on that campus. 
+    Majors are impacted as well.  To heighten your chance of being admitted to that local school, you will want to choose a non-impacted major. <br> 
+The second rule:  There are a good number of campuses across the CSU system that are not impacted  hooray!  :) 
+ Despite whether or not you live close to these schools, your admission is guaranteed as long as you meet minimum requirements. 
+  Again, this doesn't cover you if your intended major is impacted.<br>
+Complicated, right?? <br>
+UCEazy is here to help.  If you put in your GPA, your standardized test scores, and where you live into UCEazy's system, we will calculate for you which CSU campuses you will be admitted to.  With regards to impacted majors, visit the <a href='/plan/major'>Majors </a> section.
+                          
+                          
+                          </span></li>
+                          <li><span class="text">
+                          University of California (UC) System<br>
+For better or for worse, the UC system doesn't rely solely on your grades and your standardized testing scores.  
+They pride themselves on having a "holistic" view of their applicants which means they also look at (and factor into admission) your 
+activities, your personal statements, and other factors that you can bring to the university.  Because of this UCEazy cannot provide you with 
+a list of UC campuses that you are essentially guaranteed to get into (unlike the CSU system).  
+However, what UCEazy has done instead is give you a list of UC's, based on your GPA and standardized test scores, that you are
+ LIKELY to be admitted to.  Again, this is not a guarantee because there are so many factors (14 to be precise!) that the UC's use to
+  determine admission, but this is the next best thing.
+                          
+                          </span></li>
+                          <li><span class="text">
+                          Disclaimer:<br>
+Please keep in mind that UCEazy is estimating your admissibility based off of your self-reported grades, your self-reported test scores, and specific admissions trends.  Your result on this screen is not a guarantee of your admission into the UC or CSU listed.  Admissions trends change from year to year, and there is no way for us to predict what will happen with each new admissions cycle.  If we could, that would be awesome.
+                          
+                          </span></li>
+                    </ul>
+                          
+                          
+                        </div>
+                      </div>
+                      <!-- /eligibility calculator --> 
+                      <!-- Eligible Courses calculator -->    
+                      <div class="tab-pane fade" id="eligibilityCourse">
+                      
+                          <div class="table-responsive">
+                            <table class="table table-bordered courseTable">
+                            <thead>
+                              <tr bgcolor="#666">
+                                <th colspan="3" class="GPAscoreTitle">High School Courses</th>
+                              </tr>
+                              <tr>
+                                <th>Subject</th>
+                                <th>Completed</th>
+                                <th>UC Eligible</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                            
+                            <?php 
+                            
+                            $eligibleCourse=$this->eligibleCourse;
+                            $percentage=0;
+                            $missing=array();
+                            $i=0;;
+                            $total = 0;
+                            if(isset($eligibleCourse['courses']) && count($eligibleCourse['courses'])>0){
+                            foreach ($eligibleCourse['courses'] as $row){
+                            ?>
+                              <tr>
+                                <td><?php echo $row['subject'];?></td>
+                                <td><?php echo $row['completed'];?></td>
+                                <td><?php echo $row['required'];?></td>
+                              </tr>
+                              <?php 
+                            
+                              $val = $row['required'] - $row['completed'];
+                              $total +=$row['required'];
+                              if($val <= 0 ){
+                              	$val=0;
+                              }else{
+                              $missing[$i++]=$row['subject'];
+                              }
+                              $percentage += $val;
+                            } }else{?>
+                              <tr>
+                                <td colspan="3">No Records found</td>
+                                </tr>
+                              <?php }?>
+                            </tbody>
+                          </table>
+                          
+                          
+                          <ul class="todo-list">
+                          
+                          <?php if($percentage==0){?>
+                         <li><span class="text"> Congratulations, <?php echo $session->username;?>!  It looks like you have finished 100% of your A-G course requirements!  </span></li>
+                          <?php }else{?>
+                          <li><span class="text">
+                          Hi <?php echo $session->username;?>!  It looks like you have finished <?php echo round((($total-$percentage)*100/$total),2);?>% of your A-G course requirements! 
+                           In order to be eligible, you will still have to take the following courses:  <br>
+                           
+                           <?php foreach ($missing as $r){?>
+                           <?php echo $r;?><br>
+                           <?php }?>
+                           
+                          </span></li>
+                          
+                          <?php }?>
+                          <li><span class="text">Please keep in mind that fulfillment of these courses does not guarantee you admission 
+                          into the UC or CSU of your choice.  What it means is that you are eligible to apply to either college systems because 
+                          you have met their course requirements (i.e., A-G courses) at the minimum level. 
+                           In order to increase your chances, visit "Competitive Courses" to see what courses you
+can take to make you a more competitive applicant.UCEazy also recommends that you double check with your high school 
+counselor to make sure you have correctly identified your school's A-G courses. </span></li>
+                          
+                          </ul>
+                     
+                          
+                        </div>
+                      </div>
+                      <!-- /Eligible Courses calculator -->
+
+                      <!-- Competitive Courses calculator -->    
+                      <div class="tab-pane fade" id="competitiveCourse">
+                          <div class="table-responsive">
+                            <table class="table table-bordered courseTable">
+                            <thead>
+                              <tr bgcolor="#666">
+                                <th colspan="3" class="GPAscoreTitle">High School Courses</th>
+                              </tr>
+                              <tr>
+                                <th>Subject</th>
+                                <th>Competitive</th>
+                                <th>Required</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                            
+                            
+                              <?php 
+                            
+                            $competitiveCourse=$this->competitiveCourse;
+                            $percentage=0;
+                            $missing=array();
+                            $i=0;;
+                            $total = 0;
+                            
+                            if(isset($competitiveCourse['courses'])){
+                            
+                            foreach ($competitiveCourse['courses'] as $row){
+                            ?>
+                              <tr>
+                                <td><?php echo $row['subject'];?></td>
+                                <td><?php echo $row['completed'];?></td>
+                                <td><?php echo $row['required'];?></td>
+                              </tr>
+                              <?php 
+                            
+                              $val = $row['required'] - $row['completed'];
+                              $total +=$row['required'];
+                              if($val <= 0 ){
+                              	$val=0;
+                              }else{
+                              	$missing[$i++]=$row['subject'];
+                              }
+                              $percentage += $val;
+                            
+                            } }?>
+                            </tbody>
+                          </table>
+                          
+                          
+                           <ul class="todo-list">
+                          
+                          <?php if($percentage==0){?>
+                         <li><span class="text"> 
+                         
+                         Congratulations, <?php echo $session->username;?>!  It looks like you have finished 100% of your course requirements!  </span></li>
+                          <?php }else{?>
+                          <li><span class="text">
+                          
+                          
+                          Hi <?php echo $session->username;?>!   In order to give your application an extra edge, 
+                          we recommend you take the following coursesafter you've completed your required courses.<br>
+                          
+                        
+                           
+                           <?php foreach ($missing as $r){?>
+                           <?php echo $r;?><br>
+                           <?php }?>
+                           
+                          </span></li>
+                          
+                          <?php }?>
+                          <li><span class="text">
+                          
+                          A few things to keep in mind about these recommended (not required) courses.  Just because the UC's 
+                          recommend a certain amount of years, it doesnot necessarily mean you should stop there.  For example, 
+                          if you have an interest in foreign language, if it's related to your major, or you are naturally good at the subject                            you should consider going beyond the recommendations.  Similarly, if these recommended courses are not in your areas 
+                           of strength and might actually lower your GPA, you should use your discretion in deciding whether or not to enroll in them. <br> 
+Also keep in mind that fulfillment of both your required and recommended courses donot guarantee you admission into the UC or CSU of your choice.  
+If you have a specific school(s) in mind that you are interested in, visit Dream School for a better idea of what your chances are to be admitted.  
+                          
+                           </span></li>
+                          
+                          </ul>
+                          
+                          
+                        </div>
+                      </div>
+                      <!-- /Competitive Courses  -->    
+                      <!-- Test Score to Use-->
+                      <div class="tab-pane fade" id="testScore">
+                        <!-- SAT -->
+                        
+                        <?php 
+                        
+                        $satexam="";
+                        
+                        $scores=$this->bestScores;
+                        $actexam ="";
+                        
+                        $sats=isset($scores['sats'])?$scores['sats']:array();
+                        
+                        if(count($sats)>0){
+                        	
+                        	$satexam = "SAT";
+                        
+                        ?>
+                          <div class="table-responsive">
+                            <table class="table table-bordered courseTable">
+                              <thead>
+                                <tr bgcolor="#666">
+                                  <th colspan="4" class="GPAscoreTitle">SAT</th>
+                                </tr>
+                                <tr>
+                                  <th class="td-md-width">Date</th>
+                                  <th class="td-sm-width">Critical Reading</th>
+                                  <th class="td-sm-width">Math</th>
+                                  <th class="td-sm-width">Writing</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <?php foreach ($sats as $row){?>
+                                
+                                <tr>
+                                  <td>
+                                   <?php echo $row['year'];?>
+                                  </td>
+                                  <td><?php echo $row['criticalReading'];?></td>
+                                  <td><?php echo $row['math'];?></td>
+                                  <td><?php echo $row['writing'];?></td>
+                                </tr>
+                                <?php }?>
+                              </tbody>
+                            </table>
+                          </div>
+                          
+                          <?php }?>
+                        <!-- /SAT -->
+
+                        <!-- ACT -->
+                        
+                        <?php 
+                        
+                        $acts=isset($scores['acts'])?$scores['acts']:array();
+                        
+                        if(count($acts)>0){
+                        	
+                        	$actexam ="ACT";
+                        
+                        	?>
+                        
+                      
+                        
+                          <div class="table-responsive">
+                            <table class="table table-bordered courseTable">
+                              <thead>
+                                <tr bgcolor="#666">
+                                  <th colspan="7" class="GPAscoreTitle">ACT</th>
+                                </tr>
+                                <tr>
+                                  <th class="td-md-width">Date</th>
+                                  <th class="td-md-width">Composite</th>
+                                  <th class="td-sm-width">English</th>
+                                  <th class="td-sm-width">Math</th>
+                                  <th class="td-sm-width">Reading</th>
+                                  <th class="td-sm-width">Science</th>
+                                  <th class="td-sm-width">Writing</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                              <?php foreach ($acts as $row){?>
+                                <tr>
+                                  <td><?php echo $row['year'];?></td>
+                                  <td><?php echo $row['composite'];?></td>
+                                  <td><?php echo $row['english'];?></td>
+                                  <td><?php echo $row['math'];?></td>
+                                  <td><?php echo $row['reading'];?></td>
+                                  <td><?php echo $row['science'];?></td>
+                                  <td><?php echo $row['writing'];?></td>
+                                </tr>
+                                <?php }?>
+                              </tbody>
+                            </table>
+                          </div>
+                          <?php }?>
+                        <!-- /ACT -->
+                             <ul class="todo-list">
+                          
+                          <?php if(count($sats)==0 && count($acts==0)){?>
+                         <li><span class="text"> 
+                         Hi <?php echo $session->username;?>!  Did you know that different colleges often require different test scores? Luckily for you, UCEazy has got you covered! The UC system looks for the highest composite score. In other words, if you have taken more than one test, the UC's are interested in the test with the highest total score. The CSU system, however, will allow you to "superscore" - in other words, mix-and-match your highest section scores from different tests <br>
+						 
+						 So far it looks like we haven't gotten SAT and/or ACT scores from you yet. If you have any, please enter them into the  <a href="/plan/testing" >Testing</a> section. Once you've done that, come back here and UCEazy will calculate which of your scores you should use when applying to the UC and/or CSU systems.
+
+                         
+                         </span></li>
+                         <?php }else{?>
+                         <li><span class="text"> 
+                         Hi <?php echo $session->username;?>!  Did you know that different colleges often require different test scores? Luckily for you, UCEazy has got you covered! The UC system looks for the highest composite score. In other words, if you have taken more than one test, the UC's are interested in the test with the highest total score. The CSU system, however, will allow you to "superscore" - in other words, mix-and-match your highest section scores from different tests.
+						 
+						 
+                         </span></li>
+                         <?php }?>
+                         </ul>
+                      </div>
+                      <!-- /Test Score to Use-->        
+                      <div class="clearfix"></div>
+                      </div>
+
+                 
+                      
+                      </div>
+                      <!-- /board -->
+                   
+                  </div><!-- /box-body --> 
+                 <!-- /.box-footer -->
+                </div>
+
+            </div>  
+            
+            
+            
+          </div><!-- /.row -->
+
+          <div class="clearfix"></div>
+          <!-- My Notes for devices -->
+          <div class="rightSideContainer">
+            <div id="myAffix" class="box box-default hidden-lg" >
+                    <div class="box-header with-border">
+                      <h3 class="box-title"><i class="fa fa-pencil"></i> My Notes</h3>
+                    </div>
+                  <div class="box-body">
+                        <textarea class="form-control cusnote" rows="3" placeholder="Coming Soon..." name="note2" id="note2" readonly="readonly"><?php if(isset($res['notes'][0])){ echo $res['notes'][0];}?></textarea>
+                        <button class="btn btn-default marginTop"  id="savenote" disabled="true">Save My Notes </button>
+                        <input type="hidden" name="note" id="note" value="<?php if(isset($res['notes'][0])){ echo $res['notes'][0];}?>" />
+                  </div><!-- /.box-body -->
+                </div><!-- /.box -->
+           </div>
+        </section><!-- /.content -->
+      </div><!-- /.content-wrapper -->
+
+      
+    </div><!-- ./wrapper -->
+</form>
+
+
+    <div class="modal fade" id="success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header btn-danger">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title " id="myModalLabel">Success</h4>
+	      </div>
+	      <div class="modal-body" id="modalsuccessbody">
+	        Your Dream school information has been saved into our datastore.
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <!-- <button type="button" class="btn btn-primary">Save changes</button>-->
+	      </div>
+	    </div>
+	  </div>
+	</div>
+      
+       <div class="modal fade" id="failure" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header btn-danger">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title " id="myModalLabel">Failure</h4>
+	      </div>
+	      <div class="modal-body" id="modalfailbody">
+	        Oops!  Looks like something went wrong.  Please try again later.
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <!-- <button type="button" class="btn btn-primary">Save changes</button>-->
+	      </div>
+	    </div>
+	  </div>
+	</div>
+    <!-- REQUIRED JS SCRIPTS -->
+
+    <!-- jQuery 2.1.4 -->
+    <script src="/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <!-- Bootstrap 3.3.2 JS -->
+    <script src="/dist/js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- InputMask -->
+    <script src="/plugins/input-mask/jquery.inputmask.js" type="text/javascript"></script>
+    <script src="/plugins/input-mask/jquery.inputmask.date.extensions.js" type="text/javascript"></script>
+    <script src="/plugins/input-mask/jquery.inputmask.extensions.js" type="text/javascript"></script>
+
+    <!-- ChartJS 1.0.1 -->
+    <script src="/plugins/chartjs/Chart.min.js" type="text/javascript"></script>
+
+	  <!-- Slimscroll -->
+    <script src="/plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <!-- FastClick -->
+    <script src='/plugins/fastclick/fastclick.min.js'></script>
+    <!-- AdminLTE App -->
+    <script src="/dist/js/app.min.js" type="text/javascript"></script>
+    <!-- Custom Script -->
+    <script src="/dist/js/custom.js" type="text/javascript"></script>
+
+    <!-- jquery scrollbar Script -->
+    <script src="/dist/js/jquery.scrollbar.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    $('#dreamschool').on('change',function(){
+       $('#uceazyform').submit();
+    });
+
+
+
+	$('.cusnote').change(function(e){
+
+		 $('#note').val($(this).val());
+		
+	});
+		
+	
+    $('#savenote').click(function(e){
+    	  var data = {
+    		      "action": "gpa",
+    		      "mode" : "update"
+    		    };
+    	  var btn = $(this)
+    	  btn.button('loading');
+    	 	    data = $("#uceazyform").serialize() + "&" + $.param(data);
+    	 	 var btn = $(this)
+    		  btn.button('loading');
+    		    $.ajax({
+    		      type: "POST",
+    		      dataType: "json",
+    		      url: "/plan/myuceazyJSON", 
+    		      data: data,
+    		      success: function(data) {
+    	  		     
+    	  		      
+    				  if(data['ecode']=='0'){
+
+    					  $('#savenote').html('Saved');
+    		
+    						 setTimeout(function(){  $('#savenote').html('Save My Notes'); }, 10000);	
+
+  					  
+    					 // $("#modalsuccessbody").html("Your Dream school information successfully stored in our database");
+    					  //$('#success').modal('show');
+    				  }else{
+    					  $("#modalfailbody").html("Oops!  Looks like something went wrong.  Please try again later.");
+       		          $('#failure').modal('show');
+       		      }
+    		      },
+    		      error: function(xhr, textStatus, errorThrown){
+    		          alert('Whoops!  It looks like there was a problem submitting your request. Please try again. If the problem persists, please contact us.');
+    		         
+    		       },
+    		       complete: function(xhr, textStatus){
+  			  		  btn.button('reset');
+  		  		}
+    		    });
+    		    return false;
+          
+    });
+
+
+    
+
+    $('#gpa-next').click(function(e){
+    	  var data = {
+    		      "action": "gpa",
+    		      "mode" : $(this).val()
+    		    };
+    	 	    data = $("#uceazyform").serialize() + "&" + $.param(data);
+    	 	 var btn = $(this)
+    		  btn.button('loading');
+    		    $.ajax({
+    		      type: "POST",
+    		      dataType: "json",
+    		      url: "/plan/myuceazyJSON", 
+    		      data: data,
+    		      success: function(data) {
+    	  		     
+    	  		      
+    				  if(data['ecode']=='0'){
+
+    				
+    				  }else{
+    			
+       		      }
+    		      },
+    		      error: function(xhr, textStatus, errorThrown){
+    		         
+    		         
+    		       },
+    		       complete: function(xhr, textStatus){
+        		       window.location.href="/plan/organisation";
+  			  		  btn.button('reset');
+  		  		}
+    		    });
+    		    return false;
+          
+    });
+
+    
+    $('#myuceazy-submit').click(function(e){
+  	  var data = {
+  		      "action": "gpa",
+  		      "mode" : $(this).val()
+  		    };
+  	 	    data = $("#uceazyform").serialize() + "&" + $.param(data);
+  	 	 var btn = $(this)
+  		  btn.button('loading');
+  		    $.ajax({
+  		      type: "POST",
+  		      dataType: "json",
+  		      url: "/plan/myuceazyJSON", 
+  		      data: data,
+  		      success: function(data) {
+  	  		     
+  	  		      
+  				  if(data['ecode']=='0'){
+
+  					$("#success").show();
+					$("#successtext").html('Your dream school information has been saved.');
+					setTimeout(function(){ $('#success').hide(); }, 10000);	
+					btn.button('reset');
+					$('#myuceazy-submit').val('update');
+					btn.button('complete');
+					
+  					 // $("#modalsuccessbody").html("Your Dream school information successfully stored in our database");
+  					  //$('#success').modal('show');
+  				  }else{
+  					  $("#modalfailbody").html("Oops!  Looks like something went wrong.  Please try again later.");
+     		          $('#failure').modal('show');
+					  btn.button('reset');
+     		      }
+  		      },
+  		      error: function(xhr, textStatus, errorThrown){
+  		          alert('Whoops!  It looks like there was a problem submitting your request. Please try again. If the problem persists, please contact us.');
+  		         btn.button('reset');
+  		       },
+  		       complete: function(xhr, textStatus){
+			  		  
+		  		}
+  		    });
+  		    return false;
+        
+  });
+
+    
+    
+    
+	</script>
+
+
+
+
+<script>
+
+$('#myTab a').click(function (e) {
+  e.preventDefault();
+  $(this).tab('show')
+});
+  
+  $('.targetDiv').hide();
+
+     $(function(){
+           $('.showSingle').click(function(){			 
+             var index = $(this).parent().index(),
+                 newTarget = $('.targetDiv').eq(index);
+             $('.targetDiv').not(newTarget).fadeOut('fast');
+             newTarget.delay('fast').fadeToggle('fast');
+             return false;
+           });
+           $('.targetDiv').click(function(e){
+             e.stopPropagation();
+           });
+
+       });
+     $(function(){
+       $(document).click(function(){
+         var $el = $(".targetDiv");
+         if($el.is(":visible")){
+           $el.fadeOut(200);
+         }
+       });
+     });
+
+   </script>
+<script type="text/javascript">
+var fby = fby || [];
+fby.push(['showTab', {id: '9871', position: 'right', color: '#EB0000'}]);
+
+(function () {
+   var f = document.createElement('script'); f.type = 'text/javascript'; f.async = true;
+   f.src = '//cdn.feedbackify.com/f.js';
+   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(f, s);
+})();
+</script>
+
+<!-- Feedbacify -->
+<script type="text/javascript">
+var fby = fby || [];
+fby.push(['showTab', {id: '9871', position: 'right', color: '#EB0000'}]);
+
+(function () {
+   var f = document.createElement('script'); f.type = 'text/javascript'; f.async = true;
+   f.src = '//cdn.feedbackify.com/f.js';
+   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(f, s);
+})();
+</script>
+
+<!-- Fixed container - Mynotes and social media -->
+<script>
+var fixmeTop = $('.myNotes').offset().top;
+$(window).scroll(function() {
+    var currentScroll = $(window).scrollTop() + 60;
+    if (currentScroll >= fixmeTop) {
+        $('.myNotes').css({
+            position: 'fixed',
+            top: '60px',
+            right: '20'
+        });
+    } else {
+        $('.myNotes').css({
+            position: 'static'
+        });
+    }
+});
+</script>
+
+<!-- Carousel control -->
+<script>
+$('.carousel-control').click(function(e){
+    e.stopPropagation();
+    var goTo = $(this).data('slide');
+    if(goTo=="prev") {
+        $('#myCarousel').carousel('prev'); 
+    } else {
+        $('#myCarousel').carousel('next'); 
+    }
+});
+
+$('#myTab a').click(function (e) {
+ e.preventDefault()
+ $(this).tab('show')
+});
+</script>

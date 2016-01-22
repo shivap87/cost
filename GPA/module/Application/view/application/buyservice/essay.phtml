@@ -1,0 +1,713 @@
+<?php 
+use Common\ActionForms\ExplorerForm;
+use Common\Utilities\Constants;
+use Zend\Session\SessionManager;
+use Zend\Session\Container;
+$session = new Container('user');
+$uid=$this->uid;
+$pay_table_id=$this->buy_row_id;
+$status=$mode='';
+$essay_id=0;
+$status=$this->essay_status;
+$mode='update';
+if(isset($_GET['flag']) && isset($session->success_flag)&& $_GET['flag']==$session->success_flag){
+	$status="Paid";	
+}
+
+//$status="Paid";
+$old_data=array();
+$status=strtolower($status);
+$essay_data = $this->essay_data;
+foreach ($essay_data as $data){
+	$old_data[]=$data;
+}unset($data);
+if(count($old_data)>0){
+	$essay_id=$old_data[0]->essay_id;
+	$pay_table_id=$old_data[0]->buy_id;	
+	$status=$old_data[0]->status;
+}
+
+
+
+?>
+
+
+
+<!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper pscontentContainer">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+            <i class="fa fa-file-text-o"></i> UC Essay Review
+            <!-- <small>Advice from Your UCEazy Counselor</small>-->
+          </h1>
+          <label class="status" >Status : <span id="essay_status"><?php echo ucfirst($status);?> </span></label>
+          <label class="essay_history" ><a href="#essay_history" id="show_history"> History</a> </label>
+          
+          
+        <ol class="breadcrumb pull-right">
+            <li><a href="/user/index"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li class="active"></i> Essay Review</li>
+            
+          </ol>
+         
+         
+        </section>
+        <section class="content">
+          <div class="row">
+          <?php if(isset($session->success_flag) && isset($_GET['flag']) &&  $session->success_flag == $_GET['flag']){?>
+			<div id="payment_success" class="alert alert-success col-sm-12">
+				<div class="info-text-container-success ">
+					<i class="glyphicon glyphicon-ok"></i> 
+					<span class="info-text" id="">The transaction was successful </span>
+				</div>
+		</div>
+		<?php $session->success_flag='';}?>
+            <div class="col-lg-6 col-lg-offset-3 col-md-12 col-sm-12 col-xs-12 ">
+              <div id="generalPanel" class="box box-default box-solid">
+                <div class="box-header bg-blue ">
+                  <h3 class="box-title">UC Essay Review</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <div class="form-group">
+                    <label for="" class="col-sm-3 control-label">Essay 1</label>
+                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 " >
+                      <textarea class="form-control cusnote" rows="10" placeholder="Describe the world you come from - for example, your family, community or school - and tell us how your world has shaped your dreams and aspirations." name="text_box1" id="text_box1"  <?php if(!($status=="paid" || $status=='saved')){?> readonly="readonly" disabled <?php }?> >
+                       <?php if(isset($old_data[0]->user_input1)){ echo html_entity_decode(trim($old_data[0]->user_input1)); } ?>
+                      </textarea>
+                      <div id="text_box1_count"></div>
+                    </div>
+                  </div>
+                  <div class="clearfix"></div>
+                  <div class="form-group" style="margin-top:15px;">
+                    <label for="" class="col-sm-3 control-label">Essay 2</label>
+                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 " >
+                     <textarea class="form-control cusnote" rows="10"  placeholder="Tell us about a personal quality, talent, accomplishment, contribution or experience that is important to you. What about this quality or accomplishment makes you proud and how does it relate to the person you are?" name="text_box2" id="text_box2" <?php if(!($status=="paid" || $status=='saved')){?> readonly="readonly"   disabled <?php }?> >
+                     <?php if(isset($old_data[0]->user_input2)){ echo   html_entity_decode(trim($old_data[0]->user_input2)); } ?>
+                     </textarea>
+					<div id="text_box2_count"></div>
+                    </div>
+                  </div>                  
+                  <div class="clearfix"></div>                  
+                  
+                    <?php if(isset($status) && $status=='reviewed'){?>
+                  
+                  <hr />
+                  
+                  <div class="form-group" style="margin-top:15px;" >
+                    <label for="" class="col-sm-3 control-label">Essay-1 Comments</label>
+                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 " >
+                      <textarea class="form-control" rows="10" placeholder="" readonly="readonly" id="review_cmt1" disabled>
+                      <?php if(isset($old_data[0]->essay_comment1)){ echo   html_entity_decode(trim($old_data[0]->essay_comment1)); } ?>
+                      </textarea>
+                    </div>
+                  </div>
+                   
+                  <div class="clearfix"></div>
+                  
+                  <div class="form-group" style="margin-top:15px;" >
+                    <label for="" class="col-sm-3 control-label">Essay-2 Comments</label>
+                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 " >
+                      <textarea class="form-control" rows="10" placeholder="" readonly="readonly" id="review_cmt2" disabled>
+                      <?php if(isset($old_data[0]->essay_comment2)){ echo   html_entity_decode(trim($old_data[0]->essay_comment2)); } ?>
+                      </textarea>
+                    </div>
+                  </div>                  
+                  
+                  <div class="clearfix"></div>
+                 
+                 
+                  <hr />
+                  <div class="form-group" style="margin-top:15px;">
+                    <label for="" class="col-sm-3 control-label">User Feedback about Essay Review</label>
+                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 " >
+                      <textarea class="form-control" rows="6" placeholder="We Would appreciate if you could give us feedback/commentary on our editing services."  id="feedback_text"></textarea>
+                    </div>
+                  </div>
+                  <?php }?> 
+ 
+
+                  <div class="clearfix"></div>                  
+                  <hr />
+					<div id="errordiv" class="alert alert-danger col-sm-12"
+						style="display: none;">
+						<div class="info-text-container-failure ">
+							<i class="fa fa-close "></i> <span class="info-text" id="errortext"> </span>
+						</div>
+					</div>
+
+					<div id="page_error" class="alert alert-danger col-sm-12" style="display: none;">
+						<div class="info-text-container-failure ">
+							<i class="glyphicon glyphicon-remove-sign"></i> <span class="info-text" id="page_error_txt"> </span>
+						</div>
+					</div>
+					<div id="successdiv" class="alert alert-success col-sm-12" 	style="display: none;">
+						<div class="info-text-container-success ">
+							<i class="glyphicon glyphicon-ok"></i> <span class="info-text" id="successdiv_text"></span>
+						</div>
+					</div>
+
+
+
+					<div class="text-center">
+                      <?php if(isset($status) && ($status=='saved' || $status=='paid')){?>
+                    <button type="button" id="essay-save-btn" value="" class="btn btn-primary" data-complete-text="Save" id="essay-save-btn" >Save</button>
+                    <button type="button"  id="essay-submit-btn"  class="btn btn-danger" data-loading-text="Loading...." data-reset-text="Submit" >Submit</button>  
+                     <?php } if(isset($status) && $status=='reviewed'){?>
+                    <button type="button" id="essay-review-btn" value="" class="btn btn-danger pull-right" ><i class="glyphicon glyphicon-thumbs-up">&nbsp;</i>Submit Feedback</button>                   
+                     <?php }?>
+                    </div>
+					<h5> Have a question? <a href="mailto:support@uceazy.com" style="color:#3c8dbc"> support@uceazy.com</a> </h5>
+                </div>
+              </div>
+            </div>
+          </div>
+		
+
+
+
+
+			<input type="hidden" id="uid" name="uid" value="<?php echo $uid;?>" >
+          <input type="hidden" id="pay_row_id" name="pay_row_id" value="<?php echo $pay_table_id;?>" > 
+          <input type="hidden" id="data_mode"  value="<?php echo $mode;?>" >
+          <input type="hidden" id="clicked_btn"  value="" >
+          <input type="hidden" id="essay_id"  value="<?php echo $essay_id;?>" >
+      </section>
+    </div>
+    
+    
+    <div class="modal fade" id="confirm-submit" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Confirm Submit</h4>
+                </div>
+            
+                <div class="modal-body">
+                    <p><label class="alert-warning">Warning:</label> You are about to submit your Personal Statements to be reviewed. You will NOT be able to update your Statements after you click "Submit." Please make sure you have read through your Statements, pasted them into the correct box, and checked for any spelling or simple errors.
+
+						<br><br>After you click "Submit," you will hear back from us in 3 business days with reviewer's comments.						
+</p>
+                    
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary btn-ok" id="esubmit">OK</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    
+    <div class="modal fade" id="essay_history" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Essay Service History</h4>
+                </div>
+            
+                <div class="modal-body">
+                   
+
+				<table class="table table-bordered courseTable" id="essay_table">
+					<thead>
+						<tr>
+							<th>S.No</th>
+							<th>Services</th>
+							<th>Submitted On</th>
+							<th>Reviewed On</th>
+							<th>Cost</th>	
+							<th>Status</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+
+					</tbody>
+				</table>
+
+
+					
+                    		
+                    	
+                   
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+<!-- REQUIRED JS SCRIPTS -->
+
+    <!-- jQuery 2.1.4 -->
+    <script src="/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <!-- Bootstrap 3.3.2 JS -->
+    <script src="/dist/js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- InputMask -->
+    <script src="/plugins/input-mask/jquery.inputmask.js" type="text/javascript"></script>
+    <script src="/plugins/input-mask/jquery.inputmask.date.extensions.js" type="text/javascript"></script>
+    <script src="/plugins/input-mask/jquery.inputmask.extensions.js" type="text/javascript"></script>
+
+    <!-- ChartJS 1.0.1 -->
+    <script src="/plugins/chartjs/Chart.min.js" type="text/javascript"></script>
+
+    <!-- Slimscroll -->
+    <script src="/plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <!-- FastClick -->
+    <script src='/plugins/fastclick/fastclick.min.js'></script>
+    <!-- AdminLTE App -->
+    <script src="/dist/js/app.min.js" type="text/javascript"></script>
+    
+
+    <!-- jquery scrollbar Script -->
+    <script src="/dist/js/jquery.scrollbar.min.js" type="text/javascript"></script>
+	<script src="http://bootboxjs.com/bootbox.js"></script>
+	<script src="/dist/js/buyService.js" type="text/javascript"></script>
+	
+
+<!-- Feedbacify -->
+<script>
+
+
+($(function() {
+// hiding the transaction message
+setTimeout(function(){$('#payment_success').hide();},5000);
+
+	//Text boxes remaining length calculation
+	text_max = 1000;
+	text_min=250;
+	cnt=0;	
+	$('#text_box1_count').html(text_max + ' words remaining');
+	$('#text_box2_count').html(text_max + ' words remaining');
+	
+	$(document).on('keyup', "#text_box1,#text_box2", function(e){		
+		e.preventDefault();			
+		
+		var self=this;		
+		var regex = /\s+/gi;	
+		do_resize(self);
+		if(cnt>1 && (! $(self).attr('data-changed')) ){			
+			$(self).attr('data-changed', 'yes');
+		}cnt+=1;				
+		var text_length1 = $('#text_box1').val().trim().replace(regex, ' ').split(' ').length;		     
+	    var text_length2 = $('#text_box2').val().trim().replace(regex, ' ').split(' ').length;
+	    var l1= text_length1 > text_min ? 0  : (text_min-text_length1);
+		var l2= text_length2 > text_min ? 0  : (text_min-text_length2);
+		var cur_len=text_length1+text_length2;
+		var max_avil=text_max-cur_len;
+		var mantatory_len_total=l1+l2;
+		var avil_len=max_avil-mantatory_len_total;
+		avil_len= avil_len >= 0 ? avil_len  : 0;
+		
+
+		var m1=text_length1+avil_len+l1;
+		var m2=text_length2+avil_len+l2;
+		if((m1+m2)>text_max){
+			if(self.id=="text_box1"){
+			var temp=(m1+m2)-text_max;
+			m1-=temp;
+			}
+			if(self.id=="text_box2"){
+				var temp=(m1+m2)-text_max;
+				m2-=temp;
+				}
+		}
+		var tx1=$("#text_box1").val();
+		var tx2=$("#text_box2").val();
+		
+		//$("#text_box1").attr('maxlength',(text_length1+avil_len+l1));
+		//$("#text_box2").attr('maxlength',(text_length2+avil_len+l2));
+		$('#text_box2_count').html((avil_len+l2) + ' words remaining');
+		$('#text_box1_count').html((avil_len+l1) + ' words remaining');
+		if(tx1=='' && tx2==''){
+			text_length1=text_length2=0;
+		}
+		
+	    if(text_length1==0 && text_length2==0){
+	    	$('#text_box1_count').html((text_max) + ' words remaining');
+			$('#text_box2_count').html((text_max) + ' words remaining');
+	    }else{ 
+			
+		    if((text_length1+text_length2) > text_max){		    	
+	    	$('#text_box1_count').html(('0') + ' words remaining');
+			$('#text_box2_count').html(('0') + ' words remaining');
+			
+			
+			 /* Auto trimming
+			 var trimmed1 = $("#text_box1").val().split(regex, m1).join(" ");
+			 $("#text_box1").val(trimmed1);
+
+			 var trimmed2 = $("#text_box2").val().split(regex, m2).join(" ");
+			 $("#text_box2").val(trimmed2);*/
+			
+			
+		}else if((text_length1+text_length2)< text_max){
+
+			if(avil_len+l1<=0){		    	
+				//$("#text_box1").val(tx1.substring(0,m1));			
+				//$("#text_box1").attr('maxlength',(m1));
+				
+				 var trimmed1 = $("#text_box1").val().split(regex, m1).join(" ");
+				 $("#text_box1").val(trimmed1);
+				 
+				 			
+			}else{				
+				 $('#text_box1_count').html((avil_len+l1) + ' words remaining');
+			}
+			if(avil_len+l2<=0){							
+				var trimmed2 = $("#text_box2").val().split(regex, m2).join(" ");
+				 $("#text_box2").val(trimmed2);				
+			}else{
+				$('#text_box2').removeAttr('maxlength');
+				 $('#text_box2_count').html((avil_len+l2) + ' words remaining');
+				}		
+			
+		}
+
+	}
+		
+		
+	 });
+	
+//onload trim the text bos values
+    	var t1=$.trim($("#text_box1").val())
+    	var t2=$.trim($("#text_box2").val())
+    	var t3=$.trim($("#review_cmt1").val())
+    	var t4=$.trim($("#review_cmt2").val())
+    		
+    	$("#text_box1").val(t1);
+    	$("#text_box2").val(t2);
+    	$("#review_cmt1").val(t3);
+    	$("#review_cmt2").val(t4);
+    	
+    	if(t1!='' || t2!=''){        	  		
+    		 $('#text_box1').trigger('keyup');
+    		 $('#text_box2').trigger('keyup');
+    		 $('#text_box1').focus().val("").val(t1);
+    		 $('#text_box2').focus().val("").val(t2);    		 
+    		 
+    	}
+
+        
+   
+	//submit the essay form
+	$(document).on('click', "#essay-submit-btn", function(e){		
+		e.preventDefault();		
+	  	if(is_valid_inputs()){
+  	  	$("#confirm-submit").modal('show'); 
+  	  	$("#clicked_btn").val("submit");	  
+		return false;
+	}
+	else{
+		$('#page_error').show();
+		setTimeout(function(){ $('#page_error').hide();}, 10000);
+		return false;
+    } 	
+	 
+});
+	
+
+
+	
+
+$(document).on('click', "#essay-review-btn", function(e){
+	e.preventDefault();
+	var self=this;
+	var feedback_text=$("#feedback_text").val();
+	var pay_row_id =$("#pay_row_id").val();
+	var mode="feedback_submit";	
+	var essay_id=$("#essay_id").val();
+
+	if(feedback_text.length>1){		
+		var btn = $(self);
+		btn.button('loading'); 
+		   var data = {"mode" : mode,feedback_text:feedback_text,pay_row_id:pay_row_id,essay_id:essay_id};
+				data=$.param(data);
+			    $.ajax({
+			      type: "POST",
+			      dataType: "json",
+			      url: "/buyservice/updateEssayFeedback", 
+			      data: data,
+			      success: function(data) {
+		  		    if(data['status']>0){
+		  		    	$("#essay_status").html(data['essay_status']);    	  		    	
+					$('#successdiv').show();
+					$('#successdiv_text').html("Your information has been saved.");
+					setTimeout(function(){$('#successdiv').hide();},5000);
+					btn.button('reset');
+					$("#feedback_text").prop("disabled", true);					
+					$(btn).remove();	
+					 
+					
+				}else{
+						 $('#errordiv').show();
+						 $('#errortext').html("Oops!  Looks like something went wrong.  Please try again later");
+						 setTimeout(function(){$('#errordiv').hide();},5000);
+						 btn.button('reset');
+	 		       }
+			      },
+			      error: function(xhr, textStatus, errorThrown){
+			          alert('Oops!  Looks like something went wrong');
+			        btn.button('reset');
+			         
+			       },
+		  		    complete: function(xhr, textStatus){
+			   		 
+			   		}
+			    });
+			    return false;
+	    
+	 
+	}
+		else{
+			$('#errordiv').show();
+			 $('#errortext').html("Please enter your feedback");
+			 setTimeout(function(){$('#errordiv').hide();},5000);
+			 
+	    }
+
+});
+
+	
+
+$("#esubmit").click(function(e){
+	e.preventDefault();
+	var box1_data=$("#text_box1").val();
+	var box2_data=$("#text_box2").val();
+	var uid=$("#uid").val();
+	var pay_row_id =$("#pay_row_id").val();
+	var mode=$("#data_mode").val();
+	var clicked_btn=$("#clicked_btn").val();
+	var essay_id=$("#essay_id").val();
+	
+	$("#confirm-submit").modal('hide');
+	var btn = $("#essay-submit-btn");
+	btn.button('loading');
+	var data = {"mode" : mode,box1_data:box1_data,box2_data:box2_data,uid:uid,pay_row_id:pay_row_id,clicked_btn:clicked_btn,essay_id:essay_id};
+	data=$.param(data);
+	$.ajax({
+	      type: "POST",
+	      dataType: "json",
+	      url: "/buyservice/essay", 
+	      data: data,
+	      success: function(data) {
+  		  	if(data['status']>0){ 
+  	  		  	$("#essay_status").html(data['essay_status']); 	  		  	
+  		  		$('#successdiv').show();
+  		  		$('#successdiv_text').html("Your information has been submitted.");  	  		  	
+  	  		  	setTimeout(function(){$('#successdiv').hide();},5000);
+				btn.button('reset');
+				$("#text_box1").prop("disabled", true);
+				$("#text_box2").prop("disabled", true);
+				$(btn).remove();
+				$("#essay-save-btn").remove();
+			}else{
+				$('#errordiv').show();
+					 $('#errortext').html("Oops!  Looks like something went wrong.  Please try again later");
+					 setTimeout(function(){$('#errordiv').hide();},5000);
+					 btn.button('reset');
+	 		       }
+	      },
+	      error: function(xhr, textStatus, errorThrown){
+			     alert('Oops!  Looks like something went wrong');
+			     btn.button('reset');
+		 },
+		 complete: function(xhr, textStatus){
+			}
+		 });
+	return false; 
+ 		
+ });
+
+
+$("#essay-save-btn").click(function(e){
+	e.preventDefault();
+	
+	$("#clicked_btn").val("save");	
+	var box1_data=$("#text_box1").val();
+	var box2_data=$("#text_box2").val();
+	var uid=$("#uid").val();
+	var pay_row_id =$("#pay_row_id").val();
+	var mode=$("#data_mode").val();
+	var clicked_btn=$("#clicked_btn").val();
+	var essay_id=$("#essay_id").val();
+	
+	
+	var btn = $("#essay-save-btn");
+	btn.button('loading');
+	var data = {"mode" : mode,box1_data:box1_data,box2_data:box2_data,uid:uid,pay_row_id:pay_row_id,clicked_btn:clicked_btn,essay_id:essay_id};
+	data=$.param(data);
+	$.ajax({
+	      type: "POST",
+	      dataType: "json",
+	      url: "/buyservice/essay", 
+	      data: data,
+	      success: function(data) {
+  		  	if(data['status']>0){
+  		  	$("#essay_status").html(data['essay_status']);
+  		  	$("#data_mode").val("update");
+  		   	
+  		  		$('#successdiv').show();	
+  		  		$('#successdiv_text').html("Your information has been saved.");  		  		
+				setTimeout(function(){$('#successdiv').hide();},5000);
+				btn.button('reset');				
+			}else{
+				$('#errordiv').show();
+					 $('#errortext').html("Oops!  Looks like something went wrong.  Please try again later");
+					 setTimeout(function(){$('#errordiv').hide();},5000);
+					 btn.button('reset');
+	 		       }
+	      },
+	      error: function(xhr, textStatus, errorThrown){
+			     alert('Oops!  Looks like something went wrong');
+			     btn.button('reset');
+		 },
+		 complete: function(xhr, textStatus){
+			}
+		 });
+	return false; 
+	
+});
+
+	
+
+$("#show_history").click(function(e){
+	e.preventDefault();		
+	get_essay_history("essay_table","essay_history");	
+	
+});
+
+
+function is_valid_inputs(){	
+		var text_min=250;
+		var text_max = 1000;
+		var each_bx_mx=750;
+		var regex = /\s+/gi;
+		var text_length1 = $('#text_box1').val().trim().replace(regex, ' ').split(' ').length;
+        var text_length2 = $('#text_box2').val().trim().replace(regex, ' ').split(' ').length;
+        console.log("box 1 --->"+ text_length1 + ' words');
+        console.log("box 2 --->"+ text_length2 + ' words');
+		if(text_length1<text_min){
+			$('#page_error').show();
+			$('#page_error_txt').html("The essay-1 should have minimum "+ text_min + " words");
+			setTimeout(function(){$('#page_error').hide();},5000);
+			return false;
+			}
+		if(text_length2<text_min){
+        	$('#page_error').show();
+			$('#page_error_txt').html("The essay-2 should have minimum "+ text_min + " words");
+			setTimeout(function(){$('#page_error').hide();},5000);
+			return false;
+        }if((text_length1+text_length2)> text_max){	
+        	$('#page_error').show();
+			$('#page_error_txt').html("Two essays that total 1,000 words, neither of which is shorter than 250 words in length.<br>"+"The Essay-1 has "+text_length1+" words.<br>"+"The Essay-2 has "+text_length2+" words.<br>" );
+			setTimeout(function(){$('#page_error').hide();},8000);
+			return false;
+        }
+        
+        return true;
+        
+	}
+    
+}));
+
+function do_resize(textbox) {	
+	var maxrows=10;	   
+	var txt=textbox.value;
+	var cols=textbox.cols;
+	var arraytxt=txt.split('\n');
+	var rows=arraytxt.length;
+	if(rows<maxrows){
+		textbox.rows=maxrows;
+	}else{
+	textbox.rows=rows;
+	}
+}
+/*
+$(document).ready(function() {
+    $("#text_box1,#text_box2").bind('paste', function (e){
+    	var self=$(this);    	
+		self.attr('data-toggle', 'popover');
+		self.attr('data-content', "More than the limit of words will be trimmed automatically");		
+		self.attr('data-placement', 'top');
+		self.popover('show');	
+		setTimeout(function () {			
+			self.removeAttr('data-toggle');
+			self.removeAttr('data-content');		
+			self.removeAttr('data-placement');
+			self.popover('destroy');
+			
+		}, 15000);
+    });
+});
+*/
+
+
+function before_leave(e) {
+	if ( ($("#text_box1").attr('data-changed')) || ($("#text_box2").attr('data-changed'))) {
+		$("#essay-save-btn").trigger('click');
+	}
+}
+window.onbeforeunload=before_leave;
+
+</script>
+
+
+
+
+
+
+<style>
+.status{
+    float: left;
+    background: transparent;
+    margin-top: 0px;
+    margin-bottom: 0;
+    font-size: 12px;
+    padding: 5px 13px;
+    position: absolute;
+    top: 15px;
+    left: 20%;    
+    border-radius: 2px;
+}
+.essay_history{
+	float: right;
+    background: transparent;
+    margin-top: 0px;
+    margin-bottom: 0;
+    font-size: 12px;
+    padding: 5px 13px;
+    position: absolute;
+    top: 15px;
+    right: 20%;    
+    border-radius: 2px;
+
+}
+</style>
+
+<!-- Feedbackify -->  
+<script type="text/javascript">
+var fby = fby || [];
+fby.push(['showTab', {id: '9871', position: 'right', color: '#EB0000'}]);
+
+(function () {
+   var f = document.createElement('script'); f.type = 'text/javascript'; f.async = true;
+   f.src = '//cdn.feedbackify.com/f.js';
+   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(f, s);
+})();
+</script>  
+
+
+
+    

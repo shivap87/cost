@@ -1,0 +1,992 @@
+
+<?php
+use Common\Utilities\Constants;
+use Common\Utilities\Convertors;
+$allstates=explode(",",Constants::COUNTY);
+$res=$this->result;
+$uid=$this->uid;
+
+$months=explode(",", Constants::MONTHS);
+
+?>
+
+<form name="plan-resume" id="plan-resume" >
+<!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper pscontentContainer">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+            <i class="fa fa-file-text"></i> Resume
+            <small>Extracurricular Activities, Work, Awards</small>
+          </h1>
+          <ol class="breadcrumb">
+            <li><a href="/user/index"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li><a href="/plan/index"><i class="ion ion-gear-b"></i> Plan</a></li>
+            <li class="active">Resume</li>
+          </ol>
+        </section>
+<!-- Main content -->
+        <section class="content">
+        <!-- Testing Form -->
+          <div class="row">
+            <!-- Right side content -->
+            <div class="col-lg-3 col-lg-push-9 col-md-12 col-sm-12 col-xs-12 rightSideContainer">
+                <div class="box box-warning ">
+                    <div class="box-header with-border">
+                      <h3 class="box-title"><i class="fa fa-file-video-o"></i> Hear from An Expert</h3>
+                    </div>
+                  <div class="box-body" >
+                    <!-- <div class="embed-responsive embed-responsive-16by9">
+                      <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/sqpw3NynsTE"></iframe>
+                    </div>-->
+                    <div id="myCarousel" class="carousel slide">
+                      <!--<ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1" class=""></li>
+                      </ol>-->
+                      <div class="carousel-inner">
+                        <div class="item active">
+                          <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/UWbU-QhKuuU?showinfo=0&amp;" allowfullscreen></iframe>
+                          </div>
+                        </div>
+                        
+                      </div>
+                      <!-- <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+                      <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a> -->
+                    </div>
+                  
+                  </div><!-- /.box-body -->
+                </div><!-- /.box -->           
+                <div id="myAffix" class="box box-default visible-lg" data-spy="affix" data-offset-top="300">
+                    <div class="box-header with-border">
+                      <h3 class="box-title"><i class="fa fa-pencil"></i> My Notes</h3>
+                    </div>
+                  <div class="box-body">
+                        <textarea class="form-control cusnote" rows="3" placeholder="Coming Soon..."   name="note1" id="note1" readonly="readonly"><?php if(isset($res['notes'][0])){ echo $res['notes'][0];}?></textarea>
+                        <button class="btn btn-default marginTop"  id="savenote" disabled="true">Save My Notes </button>
+                  </div><!-- /.box-body -->
+                </div><!-- /.box -->
+                <!-- social media -->
+                <div id="myAffix1" class="box box-solid visible-lg" data-spy="affix" data-offset-top="300">
+                    <div class="box-header ">
+                      <h3 class="box-title"><i class="fa fa-share-alt"></i> Follow Us</h3>
+                      <div class=" pull-right " >
+                        <div  class="fixedBtn"><a href="https://www.facebook.com/askuceazy" class="bg-facebook" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a></div>
+                        <div class="fixedBtn"><a href="https://twitter.com/Uaskuceazy?lang=en" class="bg-twitter" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></div>
+                        <div class="fixedBtn"><a href="https://www.linkedin.com/company/uceazy" class="bg-linkedin" target="_blank" title="Linkedin"><i class="fa fa-linkedin"></i></a></div>
+
+						<!-- <div class="fixedBtn"><a href="#" class="bg-google-plus"><i class="fa fa-google-plus"></i></a></div>
+                        <div class="fixedBtn"><a href="#" class="bg-instagram"><i class="fa fa-instagram"></i></a></div>
+                        <div class="fixedBtn"><a href="#" class="bg-pinterest"><i class="fa fa-pinterest"></i></a></div>-->
+                      </div>  
+                    </div>
+                </div>
+            </div>
+            <!-- ./Right side content -->
+
+            <div class="col-lg-9 col-lg-pull-3 col-md-12 col-sm-12 col-xs-12">
+         
+              <input type="hidden" name="uid" value="<?php echo $this->uid;?>">
+              <div class="box box-default box-solid">
+                <div class="box-header bgResume-acctive">
+                  <h3 class="box-title">Please enter your information</h3>
+                </div><!-- /.box-header -->
+                <!-- form start -->
+                <div class="box-body">
+                <!-- Educational Prep Program(s) -->
+                  <div class="box box-default box-solid">
+                    <div class="box-header bgResume" data-widget="collapse" data-collapse="custom" >
+                      <h3 class="box-title">Educational Prep Program(s)</h3>
+                      <div class="box-tools pull-right">
+                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                      </div><!-- /.box-tools -->
+                    </div><!-- /.box-header -->
+                  
+                  <div class="box-body  table-responsive">
+                      <table class="table table-bordered courseTable">
+                        <thead>
+                          <tr>
+                            <th rowspan="2" class="td-lg-width"><a href="#" data-toggle="tooltip" class="tip-right" data-original-title="Please specify &#34;None&#34;, if you do not have any program to specify.">Name of Program </a>
+                          </div></th>
+                            <th rowspan="2" class="td-xlg-width">Description of Activity</th>
+                            <th rowspan="2" class="td-lg-width">Your Title/Role</th>
+                            <th rowspan="2" class="td-xs-width">Years Involved</th>
+                            <th colspan="2" class="text-center" >Time Spent</th>
+                            <th rowspan="2" class="td-xs-width text-center">&nbsp;</th>
+                          </tr>
+                          <tr>
+                            <th class="td-xs-width">Hrs / Week</th>
+                            <th class="td-xs-width">Weeks / Year</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        
+                        <?php 
+                        $edus=isset($res['educationPreProgm'])?$res['educationPreProgm']:array();
+                        //var_dump($res);
+                        if(count($edus)>0){
+                        	$minusFlag=false;
+                        foreach ($edus as $row){
+                        ?>
+                          <tr>
+                            <td><input type="hidden" name="R_1_grade[]" value="1">
+							<input type="text" class="form-control" name="eduprogram[]" value="<?php echo $row['programName'];?>" placeholder=""  data-validate="no" data-rules="type:alphabet"/></td>
+                            <td><input type="text" class="form-control" name="eduactivity[]"  value="<?php echo $row['descriptionOfActivity'];?>"  placeholder=""  data-validate="no" data-rules="type:alphanumeric"/></td>
+                            <td><input type="text" class="form-control" name="edurole[]"  value="<?php echo $row['titleOrRole'];?>"  placeholder="" data-validate="yes" data-rules="type:alphabet" /></td>
+                            <td>
+                                <select class="form-control" name="eduyears[]">
+                                <option <?php if($row['yearsInvloved']=='9'){?> selected="selected" <?php }?>>9</option>
+                                <option <?php if($row['yearsInvloved']=='10'){?> selected="selected" <?php }?>>10</option>
+                                <option <?php if($row['yearsInvloved']=='11'){?> selected="selected" <?php }?>>11</option>
+                                <option <?php if($row['yearsInvloved']=='12'){?> selected="selected" <?php }?>>12</option>
+                              </select>
+                            </td>
+                            <td><input type="text" class="form-control" placeholder="" name="eduhrs[]" value="<?php echo Convertors::getHrs($row['timeSpent']);?>" maxlength="2"  data-validate="yes" data-rules="type:numeric,max_length:2,min:1,max:84" /></td>
+                            <td><input type="text" class="form-control" placeholder="" name="eduweeks[]" value="<?php echo Convertors::getWeeks($row['timeSpent']);?>" maxlength="2" data-validate="yes" data-rules="type:numeric,max_length:2,min:1,max:54" /></td>
+                             <td class="text-center" >
+                            <?php 
+                            if($minusFlag===false){?>
+                            <button value="" class="btn btn-default plusbtn" ><i class="fa fa-plus"></i></button>
+                            <?php }else{?>
+                             <button value="" class="btn btn-default minusbtn" ><i class="fa fa-minus"></i></button>
+                            <?php } $minusFlag=true; ?>
+                            </td>
+                          </tr>
+                          <?php } }else{?>
+                           <tr>
+                            <td><input type="hidden" name="R_1_grade[]" value="1">
+							<input type="text" class="form-control" name="eduprogram[]" placeholder="" data-validate="no" data-rules="type:alphabet"/></td>
+                            <td><input type="text" class="form-control" name="eduactivity[]" placeholder="" data-validate="no" data-rules="type:alphanumeric" /></td>
+                            <td><input type="text" class="form-control" name="edurole[]" placeholder="" data-validate="yes" data-rules="type:alphabet" /></td>
+                            <td>
+                                <select class="form-control" name="eduyears[]">
+                                <option>9</option>
+                                <option>10</option>
+                                <option>11</option>
+                                <option>12</option>
+                              </select>
+                            </td>
+                            <td><input type="text" class="form-control" placeholder="" name="eduhrs[]"maxlength="2" data-validate="yes" data-rules="type:numeric,max_length:2,min:1,max:84" /></td>
+                            <td><input type="text" class="form-control" placeholder="" name="eduweeks[]" maxlength="2" data-validate="yes" data-rules="type:numeric,max_length:2,min:1,max:54"/></td>
+                            <td class="text-center"><button value="" class="btn btn-default plusbtn" ><i class="fa fa-plus"></i></button></td>
+                          </tr>
+                          <?php }?>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div><!-- /.widget box -->
+
+                  <!-- Volunteer and Community Service -->
+                  <div class="box box-default box-solid collapsed-box">
+                    <div class="box-header bgResume" data-widget="collapse" data-collapse="custom">
+                      <h3 class="box-title">Volunteer and Community Service</h3>
+                      <div class="box-tools pull-right">
+                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                      </div><!-- /.box-tools -->
+                    </div><!-- /.box-header -->
+                  
+                  <div class="box-body  table-responsive">
+                      <table class="table table-bordered courseTable">
+                        <thead>
+                          <tr>
+                            <th rowspan="2" class="td-lg-width"><a href="#" data-toggle="tooltip" class="tip-right" data-original-title="Please specify &#34;None&#34;, if you do not have any organization to specify.">Name of Organization</a></th>
+                            <th rowspan="2" class="td-xlg-width">Description</th>
+                            <th rowspan="2" class="td-lg-width">Your Title/Role</th>
+                            <th rowspan="2" class="td-xs-width">Years Involved</th>
+                            <th colspan="2" class="text-center">Time Spent</th>
+                            <th rowspan="2" class="td-xs-width">&nbsp;</th>
+                          </tr>
+                          <tr>
+                            <th class="td-xs-width">Hrs / Week</th>
+                            <th class="td-xs-width">Weeks / Year</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                       
+                        <?php 
+                        $servs=isset($res['volunteer'])?$res['volunteer']:array();
+                        //var_dump($res);
+                        if(count($servs)>0){
+                        	$minusFlag=false;
+                        foreach ($servs as $row){
+                        ?>
+                       
+                       
+                          <tr>
+                            <td><input type="hidden" name="R_2_grade[]" value="2">
+							<input type="text" class="form-control" placeholder="" value="<?php echo $row['organizatioName'];?>" name="servname[]" data-validate="yes" data-rules="type:alphabet"/></td>
+                            <td><input type="text" class="form-control" placeholder="" value="<?php echo $row['description'];?>"  name="servdesc[]" data-validate="yes" data-rules="type:alphabet"/></td>
+                            <td><input type="text" class="form-control" placeholder="" value="<?php echo $row['titleOrRole'];?>"  name="servrole[]" data-validate="yes" data-rules="type:alphabet"/></td>
+                            <td>
+                                <select class="form-control" name="servyear[]">
+                                <option <?php if($row['yearsInvolved']=='9'){?> selected="selected" <?php }?>>9</option>
+                                <option <?php if($row['yearsInvolved']=='10'){?> selected="selected" <?php }?>>10</option>
+                                <option <?php if($row['yearsInvolved']=='11'){?> selected="selected" <?php }?>>11</option>
+                                <option <?php if($row['yearsInvolved']=='12'){?> selected="selected" <?php }?>>12</option>
+                              </select>
+                            </td>
+                            <td class="text-center"> <input type="text" class="form-control" placeholder="" value="<?php echo Convertors::getHrs($row['timeSpent']);?>" name="servhrs[]" maxlength="2" data-validate="yes" data-rules="type:numeric,max_length:2,min:1,max:84"/></td>
+                            <td><input type="text" class="form-control" placeholder="" value="<?php echo Convertors::getWeeks($row['timeSpent']);?>" name="servweeks[]" maxlength="2" data-validate="yes" data-rules="type:numeric,max_length:2,min:1,max:54"/></td>
+                             <td class="text-center">
+                            <?php 
+                            if($minusFlag===false){?>
+                            <button value="" class="btn btn-default plusbtn" ><i class="fa fa-plus"></i></button>
+                            <?php }else{?>
+                             <button value="" class="btn btn-default minusbtn" ><i class="fa fa-minus"></i></button>
+                            <?php } $minusFlag=true; ?>
+                            </td>
+                          </tr>
+                          <?php }}else{?>
+                          
+                          
+                          <tr>
+                            <td><input type="hidden" name="R_2_grade[]" value="2">
+							<input type="text" class="form-control" placeholder="" value="" name="servname[]" data-validate="yes" data-rules="type:alphabet" /></td>
+                            <td><input type="text" class="form-control" placeholder="" value=""  name="servdesc[]" data-validate="yes" data-rules="type:alphabet" /></td>
+                            <td><input type="text" class="form-control" placeholder="" value=""  name="servrole[]" data-validate="yes" data-rules="type:alphabet" /></td>
+                            <td>
+                                <select class="form-control" name="servyear[]">
+                                <option >9</option>
+                                <option >10</option>
+                                <option >11</option>
+                                <option >12</option>
+                              </select>
+                            </td>
+                            <td class="text-center"><input type="text" class="form-control" placeholder="" value="" name="servhrs[]" maxlength="2" data-validate="yes" data-rules="type:numeric,max_length:2,min:1,max:84"/></td>
+                            <td><input type="text" class="form-control" placeholder="" value="" name="servweeks[]" maxlength="2" data-validate="yes" data-rules="type:numeric,max_length:2,min:1,max:54"/></td>
+                            <td class="text-center"><button value="" class="btn btn-default plusbtn" ><i class="fa fa-plus"></i></button></td>
+                          </tr>
+                          
+                          <?php }?>
+                          
+                        </tbody>
+                      </table>
+                    </div>
+                  </div><!-- /.widget box -->
+
+                  <!-- Work Experience -->
+                  <div class="box box-default box-solid collapsed-box">
+                    <div class="box-header bgResume" data-widget="collapse" data-collapse="custom" >
+                      <h3 class="box-title">Work Experience</h3>
+                      <div class="box-tools pull-right">
+                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                      </div><!-- /.box-tools -->
+                    </div><!-- /.box-header -->
+                  
+                  <div class="box-body  table-responsive">
+                      <table class="table table-bordered courseTable">
+                        <thead>
+                          <tr>
+                            <th rowspan="2" class="td-md-width"><a href="#" data-toggle="tooltip" class="tip-right" data-original-title="Please specify &#34;None&#34;, if you do not have any work to specify.">Name of Work</a></th>
+                            <th rowspan="2" class="td-lg-width">Description</th>
+                            <th rowspan="2" class="td-md-width">Your Title/Role</th>
+                            <th rowspan="2" class="td-xs-width">Years Involved</th>
+                            <th colspan="2" class="text-center" >Time Spent</th>
+                             <th rowspan="2" class="td-lg-width" >Start Date</th>
+                            <th rowspan="2" class="td-lg-width" >End Date</th>
+                            <th rowspan="2" class="td-xs-width">&nbsp;</th>
+                          </tr>
+                          <tr>
+                            <th  class="td-xs-width">During Summer</th>
+                            <th class="td-xs-width">During School Year</th>
+                           
+                          </tr>
+                        </thead>
+                        <tbody>
+                           <?php 
+                        $rows=isset($res['workExperience'])?$res['workExperience']:array();
+                        //var_dump($res);
+                        if(count($rows)>0){
+                        	$minusFlag=false;
+                        foreach ($rows as $row){
+                        ?>
+                          
+                          <tr>
+                            <td><input type="hidden" name="R_3_grade[]" value="3">
+							<input type="text" class="form-control" placeholder="" value="<?php echo $row['employerName'];?>" name="workname[]" data-validate="yes" data-rules="type:alphabet" /></td>
+                            <td><input type="text" class="form-control" placeholder="" value="<?php echo $row['description'];?>" name="workdesc[]" data-validate="yes" data-rules="type:alphabet" /></td>
+                            <td><input type="text" class="form-control" placeholder="" value="<?php echo $row['titleOrRole'];?>" name="workrole[]" data-validate="yes" data-rules="type:alphabet"/></td>
+                            <td>
+                                <select class="form-control col-md-6" name="workyears[]">
+                                 <option <?php if($row['yearsInvolved']=='9'){?> selected="selected" <?php }?>>9</option>
+                                <option <?php if($row['yearsInvolved']=='10'){?> selected="selected" <?php }?>>10</option>
+                                <option <?php if($row['yearsInvolved']=='11'){?> selected="selected" <?php }?>>11</option>
+                                <option <?php if($row['yearsInvolved']=='12'){?> selected="selected" <?php }?>>12</option>
+                              
+                              </select>
+                            </td>
+                            <td><input type="text" class="form-control" placeholder="" value="<?php echo $row['timeSpentInSummer'];?>" name="worksummer[]" data-validate="yes" data-rules="type:alphanumeric"/></td>
+                            <td><input type="text" class="form-control" placeholder="" value="<?php echo $row['timeSpentDuringSchool'];?>" name="workschoolyear[]" data-validate="yes" data-rules="type:alphanumeric"/></td>
+                            <td>
+                              <div class="floatLeft">
+                                <select class="form-control"  name="workstartmonth[]" >
+                                 <?php 
+                                 
+                                 $tmp=$row['startDate'];
+                                 $smonth="";
+                                 $syear="";
+                                 if($tmp!=null || $tmp!=""){
+                                 	$arr=explode("/", $tmp);
+                                 	$smonth=isset($arr[0])?$arr[0]:"";
+                                 	$syear=isset($arr[1])?$arr[1]:"";
+                                 }
+                                 
+                                 foreach ($months as $month){?>
+                                 <option <?php if($smonth==$month){ ?> selected="selected" <?php }?>><?php echo $month;?></option>
+                                 <?php }?>
+                                </select>
+                              </div>
+                              <div class="floatLeft">
+                                <select class="form-control col-md-6" name="workstartyear[]">
+                                  
+                                  <?php $year=date('Y');
+                                  		$startYear=$year-10;
+                                  for($i=$startYear;$i<=$year;$i++){
+                                  ?>
+                                  <option <?php if($syear==$i){ ?> selected="selected" <?php }?>><?php echo $i;?></option>
+                                  <?php }?>
+                                </select>
+                              </div>
+                            </td>
+                            <td>
+                              <div class="floatLeft">
+                                 <?php 
+                                 $tmp=$row['endDate'];
+                                 $emonth="";
+                                 $eyear="";
+                                 if($tmp!=null || $tmp!=""){
+                                 	$arr=explode("/", $tmp);
+                                 	$emonth=isset($arr[0])?$arr[0]:"";
+                                 	$eyear=isset($arr[1])?$arr[1]:"";
+                                 }
+                                 ?>
+                              
+                                <select class="form-control"  name="workendmonth[]">
+                               <?php  foreach ($months as $month){?>
+                                 <option <?php if($emonth==$month){ ?> selected="selected" <?php }?>><?php echo $month;?></option>
+                                 <?php }?>
+                                </select>
+                              </div>
+                              <div class="floatLeft">
+                                <select class="form-control col-md-6" name="workendyear[]">
+                                  <?php $year=date('Y');
+                                  		$startYear=$year-10;
+                                  for($i=$startYear;$i<=$year;$i++){
+                                  ?>
+                                  <option <?php if($eyear==$i){ ?> selected="selected" <?php }?>><?php echo $i;?></option>
+                                  <?php }?>
+                                </select>
+                              </div>
+                            </td>
+                             <td class="text-center">
+                            <?php 
+                            if($minusFlag===false){?>
+                            <button value="" class="btn btn-default plusbtn" ><i class="fa fa-plus"></i></button>
+                            <?php }else{?>
+                             <button value="" class="btn btn-default minusbtn" ><i class="fa fa-minus"></i></button>
+                            <?php } $minusFlag=true; ?>
+                            </td>
+                          </tr>
+                          
+                          <?php }}else{?>
+                          
+                          <tr>
+                            <td><input type="hidden" name="R_3_grade[]" value="3">
+							<input type="text" class="form-control" placeholder="" name="workname[]" data-validate="yes" data-rules="type:alphabet" /></td>
+                            <td><input type="text" class="form-control" placeholder="" name="workdesc[]" data-validate="yes" data-rules="type:alphabet" /></td>
+                            <td><input type="text" class="form-control" placeholder="" name="workrole[]" data-validate="yes" data-rules="type:alphabet" data-validate="yes" data-rules="type:alphanumeric"/></td>
+                            <td>
+                                <select class="form-control col-md-6" name="workyears[]">
+                                <option>9</option>
+                                <option>10</option>
+                                <option>11</option>
+                                <option>12</option>
+                              </select>
+                            </td>
+                            <td><input type="text" class="form-control" placeholder="" name="worksummer[]" data-validate="yes" data-rules="type:alphanumeric"/></td>
+                            <td><input type="text" class="form-control" placeholder="" name="workschoolyear[]" data-validate="yes" data-rules="type:alphanumeric"/></td>
+                            <td>
+                              <div class="floatLeft">
+                                <select class="form-control"  name="workstartmonth[]" >
+                                 <?php  foreach ($months as $month){?>
+                                 <option ><?php echo $month;?></option>
+                                 <?php }?>
+                                </select>
+                              </div>
+                              <div class="floatLeft">
+                                <select class="form-control col-md-6" name="workstartyear[]">
+                                  <?php $year=date('Y');
+                                  		$startYear=$year-10;
+                                  for($i=$startYear;$i<=$year;$i++){
+                                  ?>
+                                  <option><?php echo $i;?></option>
+                                  <?php }?>
+                                </select>
+                              </div>
+                            </td>
+                            <td>
+                              <div class="floatLeft">
+                                <select class="form-control"  name="workendmonth[]">
+                                  <?php  foreach ($months as $month){?>
+                                 <option ><?php echo $month;?></option>
+                                 <?php }?>
+                                </select>
+                              </div>
+                              <div class="floatLeft">
+                                <select class="form-control col-md-6" name="workendyear[]">
+                                  <?php $year=date('Y');
+                                  		$startYear=$year-10;
+                                  for($i=$startYear;$i<=$year;$i++){
+                                  ?>
+                                  <option><?php echo $i;?></option>
+                                  <?php }?>
+                                   
+                                </select>
+							</div>
+                            </td>
+                            <td class="text-center"><button value="" class="btn btn-default plusbtn" ><i class="fa fa-plus"></i></button></td>
+                          </tr>
+                          
+                          <?php }?>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div><!-- /.widget box -->
+
+                  <!-- Extracurricular Activities -->
+                  <div class="box box-default box-solid collapsed-box">
+                    <div class="box-header bgResume" data-widget="collapse" data-collapse="custom" >
+                      <h3 class="box-title">Extracurricular Activities</h3>
+                      <div class="box-tools pull-right">
+                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                      </div><!-- /.box-tools -->
+                    </div><!-- /.box-header -->
+                  
+                  <div class="box-body  table-responsive">
+                      <table class="table table-bordered courseTable">
+                        <thead>
+                          <tr>
+                            <th rowspan="2" class="td-lg-width"><a href="#" data-toggle="tooltip" class="tip-right" data-original-title="Please specify &#34;None&#34;, if you do not have any activity to specify.">Name of Activity</a></th>
+                            <th rowspan="2" class="td-xlg-width">Description</th>
+                            <th rowspan="2" class="td-lg-width">Your Title/Role</th>
+                            <th rowspan="2" class="td-xs-width">Years Involved</th>
+                            <th colspan="2" class="text-center" >Time Spent</th>
+                            <th rowspan="2" class="td-xs-width">&nbsp;</th>
+                          </tr>
+                          <tr>
+                            <th class="td-xs-width">Hrs / Week</th>
+                            <th class="td-xs-width">Weeks / Year</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                           <?php 
+                        $rows=isset($res['extracurricular'])?$res['extracurricular']:array();
+                        //var_dump($res);
+                        if(count($rows)>0){
+                        	$minusFlag=false;
+                        foreach ($rows as $row){
+                        ?>
+                          <tr>
+                            <td><input type="hidden" name="R_4_grade[]" value="4">
+							<input type="text" class="form-control" placeholder="" value="<?php echo $row['activityName'];?>" name="extraname[]" data-validate="yes" data-rules="type:alphabet" /></td>
+                            <td><input type="text" class="form-control" placeholder="" value="<?php echo $row['description'];?>" name="extradesc[]"  data-validate="yes" data-rules="type:alphabet" /></td>
+                            <td><input type="text" class="form-control" placeholder="" value="<?php echo $row['titleOrRole'];?>" name="extrarole[]" data-validate="yes" data-rules="type:alphabet" /></td>
+                            <td>
+                                <select class="form-control" name="extrayear[]">
+                                <option <?php if($row['yearsInvloved']=='9'){?> selected="selected" <?php }?>>9</option>
+                                <option <?php if($row['yearsInvloved']=='10'){?> selected="selected" <?php }?>>10</option>
+                                <option <?php if($row['yearsInvloved']=='11'){?> selected="selected" <?php }?>>11</option>
+                                <option <?php if($row['yearsInvloved']=='12'){?> selected="selected" <?php }?>>12</option>
+                              </select>
+                            </td>
+                            <td><input type="text" class="form-control" placeholder="" value="<?php echo Convertors::getHrs($row['timeSpent']);?>" name="extrahrs[]" maxlength="2" data-validate="yes" data-rules="type:numeric,max_length:2,min:1,max:84" /></td>
+                            <td><input type="text" class="form-control" placeholder="" value="<?php echo  Convertors::getWeeks($row['timeSpent']);?>" name="extraweeks[]" maxlength="2" data-validate="yes" data-rules="type:numeric,max_length:2,min:1,max:54"/></td>
+                             <td class="text-center">
+                            <?php 
+                            if($minusFlag===false){?>
+                            <button value="" class="btn btn-default plusbtn" ><i class="fa fa-plus"></i></button>
+                            <?php }else{?>
+                             <button value="" class="btn btn-default minusbtn" ><i class="fa fa-minus"></i></button>
+                            <?php } $minusFlag=true; ?>
+                            </td>
+                          </tr>
+                          <?php }}else{ ?>
+                              <tr>
+                            <td><input type="hidden" name="R_4_grade[]" value="4">
+							<input type="text" class="form-control" placeholder="" name="extraname[]" data-validate="yes" data-rules="type:alphabet" /></td>
+                            <td><input type="text" class="form-control" placeholder="" name="extradesc[]" data-validate="yes" data-rules="type:alphabet" /></td>
+                            <td><input type="text" class="form-control" placeholder="" name="extrarole[]" data-validate="yes" data-rules="type:alphabet" /></td>
+                            <td>
+                                <select class="form-control" name="extrayear[]">
+                                <option>9</option>
+                                <option>10</option>
+                                <option>11</option>
+                                <option>12</option>
+                              </select>
+                            </td>
+                            <td><input type="text" class="form-control" placeholder="" name="extrahrs[]" maxlength="2" data-validate="yes" data-rules="type:numeric,max_length:2,min:1,max:84" /></td>
+                            <td><input type="text" class="form-control" placeholder="" name="extraweeks[]" maxlength="2" data-validate="yes" data-rules="type:numeric,max_length:2,min:1,max:54"/></td>
+                            <td class="text-center"><button value="" class="btn btn-default plusbtn" ><i class="fa fa-plus"></i></button></td>
+                          </tr>
+                        <?php  }?>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div><!-- /.widget box -->
+
+                  <!-- Awards and Honors -->
+                  <div class="box box-default box-solid collapsed-box">
+                    <div class="box-header bgResume"data-widget="collapse" data-collapse="custom" >
+                      <h3 class="box-title">Awards and Honors</h3>
+                      <div class="box-tools pull-right">
+                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                      </div><!-- /.box-tools -->
+                    </div><!-- /.box-header -->
+                  
+                  <div class="box-body  table-responsive">
+                      <table class="table table-bordered courseTable">
+                        <thead>
+                          <tr>
+                            <th class="td-lg-width"><a href="#" data-toggle="tooltip" class="tip-right" data-original-title="Please specify &#34;None&#34;, if you do not have any award to specify.">Name of Award</a></th>
+                            <th class="td-md-width">Level</th>
+                            <th class="td-xlg-width">Description</th>
+                            <th class="td-md-width">Type</th>
+                            <th class="td-md-width">Date Received</th>
+                            <th class="td-xs-width">&nbsp;</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        
+                           <?php 
+                        $rows=isset($res['awardsAndHonors'])?$res['awardsAndHonors']:array();
+                        
+                        if(count($rows)>0){
+                        	$minusFlag=false;
+                        foreach ($rows as $row){
+                        ?>
+                          <tr>
+                            <td><input type="hidden" name="R_5_grade[]" value="5">
+							<input type="text" class="form-control" placeholder="" value="<?php echo $row['awardName'];?>" name="awardname[]" data-validate="yes" data-rules="type:alphabet"/></td>
+                            <td>
+                              <select class="form-control" name="awardlevel[]">
+                                <option <?php if($row['level']=='School'){?> selected="selected" <?php }?>>School</option>
+                                <option <?php if($row['level']=='District'){?> selected="selected" <?php }?>>District</option>
+                                <option <?php if($row['level']=='State'){?> selected="selected" <?php }?>>State</option>
+                                <option <?php if($row['level']=='National'){?> selected="selected" <?php }?>>National</option>
+                                <option <?php if($row['level']=='International'){?> selected="selected" <?php }?>>International</option>
+                              </select>
+                            </td>
+                            <td><input type="text" class="form-control" placeholder=""  value="<?php echo $row['description'];?>"  name="awarddesc[]" data-validate="yes" data-rules="type:alphabet" /></td>
+                            <td>
+                                <select class="form-control" name="awardtype[]">
+                                <option <?php if($row['type']=='Academic'){?> selected="selected" <?php }?>>Academic</option>
+                                <option <?php if($row['type']=='Other'){?> selected="selected" <?php }?>>Other</option>
+                              </select>
+                            </td>
+                            <td><input type="text" class="form-control" placeholder=""  value="<?php echo $row['yearsInvloved'];?>"  name="awarddate[]" data-validate="no" data-rules="type:date" /></td>
+                             <td class="text-center">
+                            <?php 
+                            if($minusFlag===false){?>
+                            <button value="" class="btn btn-default plusbtn" ><i class="fa fa-plus"></i></button>
+                            <?php }else{?>
+                             <button value="" class="btn btn-default minusbtn" ><i class="fa fa-minus"></i></button>
+                            <?php } $minusFlag=true; ?>
+                            </td>
+                          </tr>
+                          <?php }}else{?>
+                          <tr>
+                            <td><input type="hidden" name="R_5_grade[]" value="5">
+							<input type="text" class="form-control" placeholder="" name="awardname[]" data-validate="yes" data-rules="type:alphabet" /></td>
+                            <td>
+                              <select class="form-control" name="awardlevel[]">
+                                <option>School</option>
+                                <option>District</option>
+                                <option>State</option>
+                                <option>National</option>
+                                <option>International</option>
+                              </select>
+                            </td>
+                            <td><input type="text" class="form-control" placeholder="" name="awarddesc[]" data-validate="yes" data-rules="type:alphabet" /></td>
+                            <td>
+                                <select class="form-control" name="awardtype[]">
+                                <option>Academic</option>
+                                <option>Other</option>
+                              </select>
+                            </td>
+                            <td><input type="text" class="form-control" placeholder="" name="awarddate[]" data-validate="no" data-rules="type:alphabet" /></td>
+                            <td class="text-center"><button value="" class="btn btn-default plusbtn" ><i class="fa fa-plus"></i></button></td>
+                          </tr>
+                          <?php }?>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div><!-- /.widget box -->
+
+                  <!-- Coursework other than A-G -->
+                  <div class="box box-default box-solid collapsed-box">
+                    <div class="box-header bgResume" data-widget="collapse" data-collapse="custom" >
+                      <h3 class="box-title">Coursework other than A-G</h3>
+                      <div class="box-tools pull-right">
+                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                      </div><!-- /.box-tools -->
+                    </div><!-- /.box-header -->
+                  
+                  <div class="box-body  table-responsive">
+                      <table class="table table-bordered courseTable">
+                        <thead>
+                          <tr>
+                            <th rowspan="2" class="td-lg-width"><a href="#" data-toggle="tooltip" class="tip-right" data-original-title="Please specify &#34;None&#34;, if you do not have any course to specify.">Name of Course</a></th>
+                            <th rowspan="2" class="td-xlg-width">Course Description</th>
+                            <th rowspan="2" class="td-md-width">Years Involved</th>
+                            <th colspan="2" class="text-center">Time Spent</th>
+                            <th rowspan="2" class="td-xs-width">&nbsp;</th>
+                          </tr>
+                          <tr>
+                            <th class="td-xs-width">Hrs / Week</th>
+                            <th class="td-xs-width">Weeks / Year</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        
+                          <?php 
+                        $rows=isset($res['nonA2GCourses'])?$res['nonA2GCourses']:array();
+                        //var_dump($res);
+                        if(count($rows)>0){
+                        	$minusFlag=false;
+                        foreach ($rows as $row){
+                        ?>
+                        
+                          <tr>
+                            <td><input type="hidden" name="R_6_grade[]" value="6">
+							<input type="text" class="form-control" placeholder="" value="<?php echo $row['courseName'];?>" name="coursename[]" data-validate="yes" data-rules="type:alphabet" /></td>
+                            <td><input type="text" class="form-control" placeholder="" value="<?php echo $row['description'];?>"  name="coursedesc[]" data-validate="yes" data-rules="type:alphabet" /></td>
+                            <td>
+                                <select class="form-control" name="courseyear[]">
+                                 
+                        <option <?php if($row['yearsInvloved']=='9'){?> selected="selected" <?php }?>>9</option>
+                        <option <?php if($row['yearsInvloved']=='10'){?> selected="selected" <?php }?>>10</option>
+                        <option <?php if($row['yearsInvloved']=='11'){?> selected="selected" <?php }?>>11</option>
+                        <option <?php if($row['yearsInvloved']=='12'){?> selected="selected" <?php }?>>12</option>
+                              </select>
+                            </td>
+                            
+                            <td><input type="text" class="form-control" placeholder=""  value="<?php echo Convertors::getHrs($row['timeSpent']);?>"  name="coursehrs[]" maxlength="2" data-validate="yes" data-rules="type:numeric,max_length:2,min:1,max:84" /></td>
+                            <td><input type="text" class="form-control" placeholder="" value="<?php echo Convertors::getWeeks($row['timeSpent']);?>"  name="courseweeks[]" maxlength="2" data-validate="yes" data-rules="type:numeric,max_length:2,min:1,max:54" /></td>
+                             <td class="text-center">
+                            <?php 
+                            if($minusFlag===false){?>
+                            <button value="" class="btn btn-default plusbtn" ><i class="fa fa-plus"></i></button>
+                            <?php }else{?>
+                             <button value="" class="btn btn-default minusbtn" ><i class="fa fa-minus"></i></button>
+                            <?php } $minusFlag=true; ?>
+                            </td>
+                          </tr>
+                          <?php }}else{?>
+                               <tr>
+                            <td><input type="hidden" name="R_6_grade[]" value="6">
+							<input type="text" class="form-control" placeholder="" name="coursename[]" data-validate="yes" data-rules="type:alphabet" /></td>
+                            <td><input type="text" class="form-control" placeholder="" name="coursedesc[]" data-validate="yes" data-rules="type:alphabet" /></td>
+                            <td>
+                                <select class="form-control" name="courseyear[]">
+                                <option>9</option>
+                                <option>10</option>
+                                <option>11</option>
+                                <option>12</option>
+                              </select>
+                            </td>
+                            
+                            <td><input type="text" class="form-control" placeholder="" name="coursehrs[]" maxlength="2" data-validate="yes" data-rules="type:numeric,max_length:2,min:1,max:84" /></td>
+                            <td><input type="text" class="form-control" placeholder="" name="courseweeks[]" maxlength="2" data-validate="yes" data-rules="type:numeric,max_length:2,min:1,max:54" /></td>
+                            <td class="text-center"><button value="" class="btn btn-default plusbtn" ><i class="fa fa-plus"></i></button></td>
+                          </tr>
+                          <?php }?>
+                          
+                        </tbody>
+                      </table>
+                    </div>
+                  </div><!-- /.widget box -->
+                    
+                </div><!-- /.box-body -->
+
+
+
+                  <div class="box-footer">
+                    
+                     <div class="alert alert-error" id="error" role="alert" style="display: none;">
+                      <h4 id=""><i class="icon fa fa-check "></i>
+                      <span class="info-text" id="texterror">
+                    </span>
+                      </h4>
+                 </div>
+      
+      <div class="alert alert-success" id="success" role="alert" style="display: none;">
+                      <h4 id=""><i class="icon fa fa-check "></i>
+                      <span class="info-text" id="textsuccess">
+                    </span>
+                      </h4>
+                 </div>
+                  
+                     <div class="text-center">
+                     <?php if($this->planflag=="1"){?>
+                    <button type="button" id="resume-submit" value="update" class="btn btn-danger " >Update My Information</button>                    
+                    
+                    <?php }else{?>
+                    <button type="button" id="resume-submit" value="save" class="btn btn-danger " data-complete-text="Update My Information">Save My Information</button>                    
+                    <?php }?>
+                    </div>              
+                    
+                  </div><!-- /.box-footer -->
+                
+              </div><!-- /.box -->
+                
+            </div>
+            
+            
+
+          </div><!-- /.row -->
+          <div class="clearfix"></div>
+          <!-- My Notes for devices -->
+          <div class="rightSideContainer">
+            <div id="myAffix" class="box box-default hidden-lg" >
+                    <div class="box-header with-border">
+                      <h3 class="box-title"><i class="fa fa-pencil"></i> My Notes</h3>
+                    </div>
+                  <div class="box-body">
+                        <textarea class="form-control cusnote" rows="3" placeholder="Coming Soon..." name="note2" id="note2" readonly="readonly"><?php if(isset($res['notes'][0])){ echo $res['notes'][0];}?></textarea>
+                        <button class="btn btn-default marginTop"  id="savenote" disabled="true">Save My Notes </button>
+                        <input type="hidden" name="note" id="note" value="<?php if(isset($res['notes'][0])){ echo $res['notes'][0];}?>">
+                  </div><!-- /.box-body -->
+                </div><!-- /.box -->
+           </div>
+        </section><!-- /.content -->
+      </div><!-- /.content-wrapper -->
+
+      
+       <div class="modal fade" id="success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header btn-danger">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title " id="myModalLabel">Success</h4>
+	      </div>
+	      <div class="modal-body" id="modalsuccessbody">
+	        Your Resume information has been saved into our database
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <!-- <button type="button" class="btn btn-primary">Save changes</button>-->
+	      </div>
+	    </div>
+	  </div>
+	</div>
+      
+       <div class="modal fade" id="failure" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header btn-danger">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title " id="myModalLabel">Failure</h4>
+	      </div>
+	      <div class="modal-body" id="modalfailbody">
+	        Oops!  Looks like something went wrong.  Please try again later.
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <!-- <button type="button" class="btn btn-primary">Save changes</button>-->
+	      </div>
+	    </div>
+	  </div>
+	</div>
+      
+    </form>
+      <!-- Main Footer -->
+     
+      
+    </div><!-- ./wrapper -->
+
+<!-- REQUIRED JS SCRIPTS -->
+
+    <!-- jQuery 2.1.4 -->
+    <script src="/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <!-- Bootstrap 3.3.2 JS -->
+    <script src="/dist/js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- InputMask -->
+    <script src="/plugins/input-mask/jquery.inputmask.js" type="text/javascript"></script>
+    <script src="/plugins/input-mask/jquery.inputmask.date.extensions.js" type="text/javascript"></script>
+    <script src="/plugins/input-mask/jquery.inputmask.extensions.js" type="text/javascript"></script>
+
+    <!-- ChartJS 1.0.1 -->
+    <script src="/plugins/chartjs/Chart.min.js" type="text/javascript"></script>
+
+    <!-- Slimscroll -->
+    <script src="/plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <!-- FastClick -->
+    <script src='/plugins/fastclick/fastclick.min.js'></script>
+    <!-- AdminLTE App -->
+    <script src="/dist/js/app.min.js" type="text/javascript"></script>
+    <!-- Custom Script -->
+    <script src="/dist/js/custom.js" type="text/javascript"></script>
+
+    <!-- jquery scrollbar Script -->
+    <script src="/dist/js/jquery.scrollbar.min.js" type="text/javascript"></script>
+	<script src="/dist/js/validation.js"></script>
+
+    
+    <script>
+      $('#resume-submit').click(function(e){
+	   if(page_has_error()){
+	  var data = {
+  		      "action": "resume",
+  		      "mode" : $(this).val()
+  		    };
+  	 	    data = $("#plan-resume").serialize() + "&" + $.param(data);
+
+  	    	 var btn = $(this)
+  	   	  	btn.button('loading');
+   	   	  	
+  		    $.ajax({
+  		      type: "POST",
+  		      dataType: "json",
+  		      url: "/plan/resumeJSON", 
+  		      data: data,
+  		      success: function(data) {
+  	  		      if(data['ecode']=='0'){
+  	  		    	 $("#success").show();
+      	 			  $("#textsuccess").html('Your resume information has been saved');
+      	 			  setTimeout(function(){ $('#success').hide(); }, 10000); 
+					  btn.button('reset');
+					  $('#resume-submit').val('update');
+					  btn.button('complete');
+				  }else{
+					  $("#error").show();
+      	 			  $("#texterror").html('Oops!  Looks like something went wrong.  Please try again later.');
+      	 			  setTimeout(function(){ $('#error').hide(); }, 10000);
+					  btn.button('reset');					  
+     		      }
+  		      },
+  		      error: function(xhr, textStatus, errorThrown){
+  		         btn.button('reset');
+  		         
+  		       },
+		       
+  		  		complete: function(xhr, textStatus){
+  		  		  
+  		  		}
+  		    });
+  		    return false;
+	   }else{
+			$('#page_error').show();
+			setTimeout(function(){ $('#page_error').hide();}, 10000);
+			return false; 
+	   }
+});
+
+
+  	$('.cusnote').change(function(e){
+
+  		 $('#note').val($(this).val());
+  		
+  	});
+  		
+  	
+
+
+      $('#savenote').click(function(e){
+   	 
+   	  var data = {
+     		      "action": "resume",
+     		      "mode" : "update"
+     		    };
+     	 	    data = $("#plan-resume").serialize() + "&" + $.param(data);
+
+     	    	 var btn = $(this)
+     	   	  	btn.button('loading');
+      	   	  	
+     		    $.ajax({
+     		      type: "POST",
+     		      dataType: "json",
+     		      url: "/plan/resumeJSON", 
+     		      data: data,
+     		      success: function(data) {
+     	  		      if(data['ecode']=='0'){
+     	  		    	 $('#savenote').html('Saved');
+	   		    		
+						 setTimeout(function(){  $('#savenote').html('Save My Notes'); }, 10000);	
+
+   				  }else{
+   					  $("#error").show();
+         	 			  $("#texterror").html('Oops!  Looks like something went wrong.  Please try again later.');
+         	 			  setTimeout(function(){ $('#error').hide(); }, 10000); 
+        		      }
+     		      },
+     		      error: function(xhr, textStatus, errorThrown){
+     		          alert('Whoops!  It looks like there was a problem submitting your request. Please try again. If the problem persists, please contact us.');
+     		         
+     		       },
+   		       
+     		  		complete: function(xhr, textStatus){
+     		  		  btn.button('reset');
+     		  		}
+     		    });
+     		    return false;
+   	  
+   });
+
+function page_has_error(){
+	var cnt =0;
+	$('[data-haserror="yes"]').each(function() {
+		cnt+=1;
+	});
+	if(cnt>0)
+		return false;
+	else
+		return true;
+}
+</script>
+<style>	
+	.has_error{background-color:#f3cb5f}
+</style>
+
+
+
+<script>
+     $('.targetDiv').hide();
+
+     $(function(){
+           $('.showSingle').click(function(){
+             var index = $(this).parent().index(),
+                 newTarget = $('.targetDiv').eq(index);
+             $('.targetDiv').not(newTarget).fadeOut('fast');
+             newTarget.delay('fast').fadeToggle('fast');
+             return false;
+           });
+           $('.targetDiv').click(function(e){
+             e.stopPropagation();
+           });
+
+       });
+     $(function(){
+       $(document).click(function(){
+         var $el = $(".targetDiv");
+         if($el.is(":visible")){
+           $el.fadeOut(200);
+         }
+       });
+     });
+
+   </script>
+
+<!-- Feedbacify -->
+<script type="text/javascript">
+var fby = fby || [];
+fby.push(['showTab', {id: '9871', position: 'right', color: '#EB0000'}]);
+
+(function () {
+   var f = document.createElement('script'); f.type = 'text/javascript'; f.async = true;
+   f.src = '//cdn.feedbackify.com/f.js';
+   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(f, s);
+})();
+</script>
+
+
