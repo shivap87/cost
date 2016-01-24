@@ -1,0 +1,661 @@
+<?php
+use Common\Utilities\Constants;
+use Zend\Session\SessionManager;
+use Zend\Session\Container;
+use Common\Utilities;
+use Common\Utilities\Languages;
+$session = new Container('user');
+ $allstates=explode(",",Constants::COUNTY);
+ ?>
+  
+
+      <!-- Header -->
+      <header id="top" class="headerbg">
+          <div class="text-vertical-center bannerText">
+              <!-- <h1>UC and CSU Admissions Made Easy</h1>
+              <a href="/search/eazy"><h2>Try It Now</h2></a>
+			  <h2><font color="white">Free for Fall 2016 Freshman Admission Applicants</font></h2>			  -->
+            <h1>UC and CSU Admissions Made Easy</h1>
+<!--             <h2>Sign Up For Free</h2> -->
+            <a href="/user/signup" class="btn btn-default1 btn-lg" style="margin-right:15px;">Sign Up For Free</a>
+            <!-- <a href="/search/eazy" class="btn btn-default1 btn-lg" >Try Our App</a>-->
+          </div>
+      </header>
+
+   
+<!-- App Modules -->
+<section id="appmodule" class=" about text-center">
+  <div class="container">
+      <div class="row text-center">
+          <div class="col-lg-12 text-center ">
+              <h2>UCEazy Software Modules</h2>
+              <hr class="small">
+              <div class="col-lg-6">
+                <div class="embed-responsive embed-responsive-16by9">
+                  <iframe width="560" height="315" src="https://www.youtube.com/embed/9QlPps9Vr7k?showinfo=0" frameborder="0" allowfullscreen></iframe>
+                </div>
+              </div>
+              <!-- Testimonial slider -->
+              <div class="col-md-6" data-wow-delay="0.01s" style="position:reative; top:60px;">
+                <div class="carousel slide" data-ride="carousel" id="quote-carousel">
+                    <!-- Bottom Carousel Indicators 
+                    <ol class="carousel-indicators">
+                      <li data-target="#quote-carousel" data-slide-to="0" class="active"></li>
+                      <li data-target="#quote-carousel" data-slide-to="1" class=""></li>
+                      <li data-target="#quote-carousel" data-slide-to="2" class=""></li>
+                      <li data-target="#quote-carousel" data-slide-to="3" class=""></li>
+                      <li data-target="#quote-carousel" data-slide-to="4" class=""></li>
+                      <li data-target="#quote-carousel" data-slide-to="5" class=""></li>
+                    </ol>-->
+                    <!-- Carousel Slides / Quotes -->
+                    <div class="carousel-inner text-center">
+                        <!-- Quote 1 -->
+                        <div class="item active">
+                            <blockquote>
+                                <div class="row">
+                                    <div class="col-sm-8 col-sm-offset-2">
+                                        <p>Impacted campus is very very helpful!!</p>
+                                        <small>David W., Cupertino, CA</small>
+                                    </div>
+                                </div>
+                            </blockquote>
+                        </div>
+                        <!-- Quote 2 -->
+                        <div class="item">
+                            <blockquote>
+                                <div class="row">
+                                    <div class="col-sm-8 col-sm-offset-2">
+                                        <p>Hands down one of the best features is this, helping students stay organized</p>
+                                        <small>Surya R., San Jose, CA</small>
+                                    </div>
+                                </div>
+                            </blockquote>
+                        </div>
+                        <!-- Quote 3 -->
+                        <div class="item">
+                            <blockquote>
+                                <div class="row">
+                                    <div class="col-sm-8 col-sm-offset-2">
+                                        <p>I love how the software captures the numerical aspects of the applicant very concisely!</p>
+                                        <small>Jen C., Cupertino, CA</small>
+                                    </div>
+                                </div>
+                            </blockquote>
+                        </div>
+                        <!-- Quote 4 -->
+                        <div class="item">
+                            <blockquote>
+                                <div class="row">
+                                    <div class="col-sm-8 col-sm-offset-2">
+                                        <p>The colors look pretty nice</p>
+                                        <small>Yogi J., Cupertino, CA</small>
+                                    </div>
+                                </div>
+                            </blockquote>
+                        </div>
+                        <!-- Quote 5 -->
+                        <div class="item">
+                            <blockquote>
+                                <div class="row">
+                                    <div class="col-sm-8 col-sm-offset-2">
+                                        <p>A lot of viable content, where the user can experience many different things</p>
+                                        <small>Juliana J., Cupertino, CA</small>
+                                    </div>
+                                </div>
+                            </blockquote>
+                        </div>
+                        <!-- Quote 6 -->
+                        <div class="item">
+                            <blockquote>
+                                <div class="row">
+                                    <div class="col-sm-8 col-sm-offset-2">
+                                        <p>Highly customizable and amazingly easy to provide basic scholastic information and preferences to assess which colleges are in reach, safe, and target zones!</p>
+                                        <small>Aditya P., Denver, CO</small>
+                                    </div>
+                                </div>
+                            </blockquote>
+                        </div>
+                        
+                      <!-- Quote 7 -->
+                        <div class="item">
+                            <blockquote>
+                                <div class="row">
+                                    <div class="col-sm-8 col-sm-offset-2">
+                                        <p>I liked how it gives options that fit my likings. I liked how it gives some background on the schools!</p>
+                                        <small>Anonymous User</small>
+                                    </div>
+                                </div>
+                            </blockquote>
+                        </div>
+                      <!-- Quote 8 -->
+                        <div class="item">
+                            <blockquote>
+                                <div class="row">
+                                    <div class="col-sm-8 col-sm-offset-2">
+                                        <p>Helpful website because now I know which college I am going to!</p>
+                                        <small>Anonymous User</small>
+                                    </div>
+                                </div>
+                            </blockquote>
+                        </div>
+                      <!-- Quote 9 -->
+                        <div class="item">
+                            <blockquote>
+                                <div class="row">
+                                    <div class="col-sm-8 col-sm-offset-2">
+                                        <p>I liked how simple it was to use. The college feedback was very helpful. I don't have much criticism as it worked well!</p>
+                                        <small>Anonymous User</small>
+                                    </div>
+                                </div>
+                            </blockquote>
+                        </div>
+                      <!-- Quote 10 -->
+                        <div class="item">
+                            <blockquote>
+                                <div class="row">
+                                    <div class="col-sm-8 col-sm-offset-2">
+                                        <p>Really good idea. It gives students a good estimate of what to estimate in the college world!</p>
+                                        <small>Anonymous User</small>
+                                    </div>
+                                </div>
+                            </blockquote>
+                        </div>
+                      <!-- Quote 11 -->
+                        <div class="item">
+                            <blockquote>
+                                <div class="row">
+                                    <div class="col-sm-8 col-sm-offset-2">
+                                        <p>This is a very cool website that could really help me in future when I do end up applying to colleges!</p>
+                                        <small>Anonymous User</small>
+                                    </div>
+                                </div>
+                            </blockquote>
+                        </div>
+                      <!-- Quote 12 -->
+                        <div class="item">
+                            <blockquote>
+                                <div class="row">
+                                    <div class="col-sm-8 col-sm-offset-2">
+                                        <p>Very clean and visually appealing. Very accurate for my situation. Simple, straight forward and modern Looking!</p>
+                                        <small>Anonymous User</small>
+                                    </div>
+                                </div>
+                            </blockquote>
+                        </div>
+                      <!-- Quote 13 -->
+                        <div class="item">
+                            <blockquote>
+                                <div class="row">
+                                    <div class="col-sm-8 col-sm-offset-2">
+                                        <p>Easy to follow and well organized. Pretty cool to find out the college you may be able to apply to!</p>
+                                        <small>Anonymous User</small>
+                                    </div>
+                                </div>
+                            </blockquote>
+                        </div>
+
+						
+                    </div>
+                    <!-- Carousel Buttons Next/Prev 
+                    <a data-slide="prev" href="#quote-carousel" class="left carousel-control"><i class="fa fa-chevron-left"></i></a>
+                    <a data-slide="next" href="#quote-carousel" class="right carousel-control"><i class="fa fa-chevron-right"></i></a>-->
+                </div>
+            </div>
+        </div>
+
+
+          </div>
+      </div>
+   </div>
+</section>
+<!-- Explore -->
+<section id="explore" class="explore bg-green1 bg-icon-explore">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12  ">
+          <div class="text-center">
+          <h2>Explore</h2>
+          <h4>Create your college list</h4>
+          <hr class="small">
+          </div>
+          <div class="contentPadding">
+            <div class="col-lg-4 col-xs-12 exploreContent">
+              <p>Which colleges are a good fit for me? How do I make well rounded list of colleges that fit my requirements?
+              </p>
+              <p>Our Explore module will instantly create a Reach-Target-Safety list for you based upon your college selection criteria.</p>
+              <div class=" btn-feature-content"> 
+                  <!--  <a href="/search/eazy" class="btn btn-danger" >Try It Now</a>-->                    
+                </div>
+                 
+                
+            </div>
+            <div class="col-xs-12 col-lg-8 ">
+              <img src="dist/img/RTS.png" alt="Explore - Reach, Target, Safety" class="img-responsive">
+            </div>
+          </div>
+          </div>
+      </div>
+    </div>
+</section>
+<!-- Plan -->
+<section id="plan" class="plan bg-blue1 bg-icon-plan">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 ">
+          <div class="text-center">
+          <h2>Plan</h2>
+          <h4>Organize, Prepare, Track</h4>
+          <hr class="small">
+          </div>
+          <div class="contentPadding">
+          
+            <div class="col-lg-4 col-xs-12  planContent">
+              <p >Now that your college list is finalized, you need a guide to help meet the application deadline of Nov 30th.</p>
+                <p >Our Plan module helps you calculate your UC/CSU GPA, report the best test scores, organize your Activities and Awards, write a compelling personal statement, and calculate college application and attendance costs.</p>
+                <div class=" btn-feature-content"> 
+                  <a href="/user/signup" class="btn btn-danger" >Sign Up</a>
+                </div>
+            </div>
+            <div class="col-xs-12 col-lg-8 text-center">
+              <img src="dist/img/plan_infographic.png" alt="Plan Infographic" class="img-responsive">
+            </div>
+            </div>
+          </div>
+      </div>
+    </div>
+</section>
+
+
+
+<!-- Our Story -->
+<section id="story" class="story bg-contact">
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-12 ">
+                <div class="text-center">
+                  <h2>Our Story</h2>
+                  <!-- <h4>Byline goes here</h4>-->
+                  <hr class="small">
+                </div>
+                <div class="contentPadding">
+                <div class="row">
+                  <div class="col-lg-12 col-xs-12">
+                  <p>Our co-founders, Vinnie and VK, are first generation immigrants who believe their success was due to a great college education.</p>
+                  <p>Vinnie just went through the overwhelmingly complex & confusing college admission process for his two children. His family needed help with selecting target colleges, reporting test scores and submitting applications; unfortunately, the public school guidance counselors were too busy to provide meaningful help.</p>
+                  <p>VK's children will start applying to college in a few years and like any Silicon Valley entrepreneur, he wanted to create a hi-tech solution to help them navigate the college admission process.</p>
+                  <p>Did you know that in California the public schools student-counselor ratio is 945:1? Students are not selecting the correct target schools, and are at a competitive disadvantage when applying to highly selective colleges.</p>
+                  <p><strong>Our vision</strong> is to create an affordable online college counseling solution that is easy to use, easy to understand and fits into your hectic lifestyle. Initially we are focusing our energy on CSUs & UCs, because that's where most California students apply.</p>
+                  <p>We would appreciate your feedback and ideas. Please feel free to share your thoughts with us by clicking on" <a href="#contact" title="Share your Thoughts">Contact Us</a>".</p>
+                  </div>
+                  
+                  </div>
+                </div>
+              </div>
+          </div>
+          <!-- /.row -->
+      </div>
+      <!-- /.container -->
+  </section>
+
+    <!-- Team -->
+    <section id="team" class="team">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1 text-center">
+                    <h2>Our Team</h2>
+                    <!-- <h4>Byline goes here</h4>-->
+                    <hr class="small">
+                    <div class="row">
+                      <div class="contentPadding">
+                        <div class="col-md-3 col-xs-3">
+                            <div class="team-item">
+                                <a class="showTeam" target="1" title="Read more about Vinnie Gupta">
+                                    <img class="img-team img-responsive" src="dist/img/team/vinnie.jpg" alt="Vinnie Gupta">
+                                </a>
+                                <h4>Vinnie Gupta </h4>
+                                <h5>CEO and Founder</h5>
+                                <p>
+                                   <a href="mailto:vgupta@uceazy.com" title="Mailto: Vinnie Gupta" target="_blank"> 
+                                      <i class="fa fa-envelope text-primary"></i>
+                                    </a>
+                                   <a href="https://www.linkedin.com/in/vinniegupta" title="View Profile" target="_blank"> 
+                                      <i class="fa fa-linkedin-square text-primary"></i>
+                                  </a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-xs-3">
+                            <div class="team-item">
+                                <a class="showTeam" target="2" title="Read more about Vaitheesh Kolady">
+                                    <img class="img-team img-responsive" src="dist/img/team/vaitheesh_kolady.jpg" alt="Vaitheesh Kolady">
+                                </a>
+                                <h4>Vaitheesh Kolady </h4>
+                                <h5>COO and Founder</h5>
+                                <p>
+                                   <a href="mailto:vkolady@uceazy.com" title="Mailto: Vaitheesh Kolady" target="_blank"> 
+                                      <i class="fa fa-envelope text-primary"></i>
+                                    </a>
+                                   <a href="https://www.linkedin.com/pub/vaitheesh-kolady/1/466/628" title="View Profile" target="_blank"> 
+                                      <i class="fa fa-linkedin-square text-primary"></i>
+                                  </a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-xs-3">
+                            <div class="team-item">
+                                <a class="showTeam" target="3" title="Read more about Stacey Ho Ching">
+                                    <img class="img-team img-responsive" src="dist/img/team/stacey.jpg" alt="Stacey Ho Ching">
+                                </a>
+                                <h4>Stacey Ho Ching</h4>
+                                <h5>Admissions Expert</h5>
+                                <p>
+                                   <a href="https://www.linkedin.com/in/staceyhoching" title="View Profile" target="_blank"> 
+                                      <i class="fa fa-linkedin-square text-primary"></i>
+                                  </a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-xs-3">
+                            <div class="team-item">
+                                <a class="showTeam" target="4" title="Read more about Shari Schussel">
+                                    <img class="img-team img-responsive" src="dist/img/team/shari.jpg" alt="Shari Schussel">
+                                </a>
+                                <h4>Shari Schussel</h4>
+                                <h5>Admissions Expert</h5>
+                                <p>
+                                   <a href="https://www.linkedin.com/pub/shari-schussel/b3/aaa/1a5" title="View Profile" target="_blank"> 
+                                      <i class="fa fa-linkedin-square text-primary"></i>
+                                  </a>
+                                </p>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <!-- /.col-lg-10 -->
+            </div>
+            <!-- /.row -->
+
+            <!-- show/hide content -->
+            <div class="row teamContainer">
+                <div class="col-lg-10 col-lg-offset-1">
+                  <div id="closebtn">
+                    <a class="closebtn" title="Close"><i class="fa fa-times"></i></a>
+                  </div>
+                  <div class="clearfix"></div>
+                <!-- VG -->
+                  <div id="div1" class="teamContent targetDiv">
+                    <p>
+                      <span class="textHighlight">Vinnie</span> has over twenty-five years experience in the startup and big company world. He loves solving big problems and making impact at scale.  
+                    </p>
+                    <p>
+                      He is passionate about Education as a tool for improving an individual's  (and by extension the society) physical and intellectual quality of life. A large part of his experience includes working with K-12 and higher education customers. 
+                    </p>
+                    <p>
+                      Vinnie lives in Silicon Valley with his wife (a high school science teacher) and their golden retriever. His daughter graduated from UCLA and his son is a college freshman. Outside work, you can see him tending to his garden or playing competitive sports.  
+                    </p>
+                  </div>
+                  <!-- VK -->
+                  <div id="div2" class="teamContent targetDiv">
+                    <p>
+                      <span class="textHighlight">Vaitheesh</span> has over twenty years experience in managing software development teams in North America, Europe and Asia. He holds a Master's in Computer Science and Applications. He believes that most problems can be solved through talented teams, provided they are having fun. 
+                    </p>
+                    <p>
+                      He lives in Silicon Valley with his wife and their two sons. His older son is a high school freshman and is very excited about using UCEazy for his college admissions. 
+                    </p>
+                    <p>
+                      Outside work and reading, you can see VK working out at the local Y, playing competitive sports or listening to music. 
+                    </p>
+                  </div>
+                  <!-- SHC -->
+                  <div id="div3" class="teamContent targetDiv">
+                    <p>
+                      <span class="textHighlight">Stacey</span> has been a college admissions counselor in California schools for 10 years. She holds a BA in Communication Studies from UCLA and a Master's in School Counseling from the University of Maryland, College Park. She also obtained a certification in College Admissions Advising from UC Berkeley Extension. 
+                    </p>
+                    <p>
+                      Stacey has witnessed firsthand the discrepancy in resources, access, and equity when it comes to college admission advising.  Committed to social justice, Stacey sees UCEazy as an opportunity to share her knowledge with all students.  
+                    </p>
+                    <p>
+                      Stacey currently resides in Redwood City (but her heart is in Oakland!) with her husband and 1-year old diva of a daughter.
+                    </p>
+                  </div>
+                  <!-- SS -->
+                  <div id="div4" class="teamContent targetDiv">
+                    <p>
+                      <span class="textHighlight">Shari</span> has been a college admissions counselor in California public schools for 10 years. She holds a BA in Counseling Psychology and a Master's in Educational Counseling. Her mantra as a counselor is to "lead the student to a better place than where they were when they first came to me".
+                    </p>
+                    <p>
+                      Shari grew up in rural California. She is a first generation college attendee. Working with students to prepare and help them through the college application process is not just professionally exciting but personally fulfilling for her. 
+                    </p>
+                    <p>
+                      In Shari's own words: "I am so excited about being on the UCEazy team. I am part of a team that shares my passion about helping all students, no matter what their background, gain access to college through simplifying the college research and application process."
+                    </p>
+                  </div>
+              </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+    </section>
+
+
+    <!-- Team -->
+<section id="expert" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1 text-center" style="margin-bottom:15px;">
+                <h2>Educational Partnerships</h2>
+                <hr class="small">
+                <div class="row">
+                    <div class="col-md-3 col-xs-12 text-center" >
+                      <div style="height:90px; position:relative; top:10px;">
+                        <img class=" img-responsive text-center"  src="../dist/img/pointArena.png" alt="Point Arena High School" style="margin:auto;" />
+                      </div>
+                        <h3>Point Arena High School</h3>
+                    </div>
+                    <div class="col-md-3 col-xs-12 text-center" >
+                      <div style="height:90px; position:relative; top:20px;">
+                      <img class=" img-responsive text-center"  src="../dist/img/Fremont.png" alt="Point Arena High School" style="margin:auto;" />
+                      </div>
+                      <h3>Fremont High School Sunnyvale</h3>
+                    </div>
+                    <div class="col-md-3 col-xs-12 text-center" >
+                      <div style="height:90px; position:relative; top:30px;">
+                      <img class=" img-responsive text-center"  src="../dist/img/montaVista.png" alt="Point Arena Highschool" style="margin:auto;" />
+                      </div>
+                      <h3>Monta Vista DECA</h3>
+                    </div>
+					<div class="col-md-3 col-xs-12 text-center" >
+                      <div style="height:90px; position:relative; top:10px;">
+                      <img class=" img-responsive text-center"  src="../dist/img/Peninsula.png" alt="Point Arena Highschool" style="margin:auto;" />
+                      </div>
+                      <h3>The Peninsula College Fund</h3>
+                    </div>
+                </div>
+                <div class="row" style="padding:40px 0px 0px 0px;">
+                <!-- <div class="col-lg-6 text-center ">  
+                  <p><strong>For School Counselors</strong></p>
+                  <div class="embed-responsive embed-responsive-16by9">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/9QlPps9Vr7k?showinfo=0&amp;" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div> -->   
+				<p>Listen to Tom Jacoubowsky, a California School Administrator, provide his opinion of UCEazy’s value.</p>
+                <div class="col-lg-6 col-lg-offset-3   text-center ">
+                  <!--<p><strong>For School Administrators</strong></p>-->
+                  <div class="embed-responsive embed-responsive-16by9">
+                        <iframe width="560" height="400" src="https://www.youtube.com/embed/9SFigJkCaL0?showinfo=0&amp;" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+				<p style="padding:20px 0px 0px 0px;">If your school is interested in bringing UCEazy to your students please fill out the <a href="#contact" title="Contact Us">Contact Us</a> form below.</p>
+        </div>
+            </div>
+            <!-- /.col-lg-10 -->
+
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+</section>
+                
+    
+    
+    <!-- Contact Us -->
+    <aside id="contact" class="call-to-action contact">
+        <div class="container">
+            <div class="row text-center form-horizontal">
+              <div class="contentPadding">
+              <form action="" method="post" id="con_form">
+
+                <div class="col-lg-6 col-lg-offset-3 ">
+                  <h2>Contact Us</h2>
+                 <!-- <h4>Byline goes here</h4> -->
+                  <hr class="small">
+                   <div class="form-group">
+                      <label for="" class="col-sm-3 col-xs-12 control-label contactLabelAlign">Name</label>
+                      <div class="col-sm-8 col-xs-12">
+                         <input type="text" class="form-control" name="" placeholder="Enter Name" value="" required  autocomplete="off" id="con_name" /> 
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="" class="col-sm-3 col-xs-12 control-label contactLabelAlign">Phone Number</label>
+                      <div class="col-sm-8 col-xs-12">
+                          <input type="tel" class="form-control" name="" placeholder="Enter Phone number" value="" required  autocomplete="off" id="con_phone"/> 
+                      </div>
+                    </div>  
+
+                    <div class="form-group">
+                      <label for="" class="col-sm-3 col-xs-12 control-label contactLabelAlign">Email</label>
+                      <div class="col-sm-8 col-xs-12">
+                          <input type="email" class="form-control" name="" placeholder="Enter Email" value="" required  autocomplete="off" id="con_email"/> 
+                      </div>
+                    </div> 
+
+                    <div class="form-group">
+                      <label for="" class="col-sm-3 col-xs-12 control-label contactLabelAlign">Comments</label>
+                      <div class="col-sm-8 col-xs-12">
+                          <textarea class="form-control" rows="3" placeholder="Enter your feedback and comments" value="" required   id="con_cmts"></textarea>
+                      </div>
+                    </div>    
+
+                    <button type="submit" class="btn btn-danger" id="commbutton">Submit</button>   
+                     
+                    </div>
+                   </form>
+
+                </div>
+                
+                
+            </div>
+            
+            <div id="con_status" class="alert alert-success" style="display: none;">
+                <div class="info-text-container-success ">
+                  	<i class="fa fa-check "></i> 
+                    <span class="info-text" id="simpleexpsuccess">Thank you for your interest. We will contact you soon
+                    </span>
+                 </div>
+              </div>
+            
+        </div>
+    </aside>
+
+    <!-- Subscribe Newsletter -->
+    <aside class="subscribe ">
+        <div class="container">
+            <div class="row text-center">
+              <form method="post" id="subscribe_form">
+          <div class="col-lg-12 ">
+                  <h2>Subscribe to our Newsletter</h2>
+                    <hr class="small">
+                   <div class="input-group col-lg-6 marginAuto">
+                    <input class="form-control" type="email" autocomplete="off" required  id="subscribe_id" placeholder="Enter your email id"> 
+                    <span class="input-group-btn">
+            <button type="submit" class="btn btn-info btn-flat" >Subscribe</button>
+                    </span>
+                  </div>
+          
+          <div class="row">
+         	 <div id="subsuccess" class="alert alert-success col-sm-12" style="display: none;">
+                <div class="info-text-container-success ">
+                  	<i class="fa fa-check "></i> 
+                    <span class="info-text" id="simpleexpsuccess">Thank You for your Subscription
+                    </span>
+                 </div>
+              </div>
+              </div>
+          </div>
+        </form>
+    </div>
+ </div>
+</aside>
+ 
+
+	
+<?php  if($this->action=='verify' and  $this->success!=''){?>
+        
+<input type="hidden" id="verifyid" value="1"> 
+        <?php }
+        if ($this->action=='verify' and $this->error!=''){?>
+       <input type="hidden" id="verifyid" value="0"> 
+        <?php }?>
+
+<?php  if($this->action=='unsubscribe' and  $this->success!=''){?>
+        
+<input type="hidden" id="unsubscribeid" value="1"> 
+        <?php }
+        if ($this->action=='unsubscribe' and $this->error!=''){?>
+       <input type="hidden" id="unsubscribeid" value="0"> 
+        <?php }?>
+
+ 	
+ 	<div class="modal fade" id="verifysuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header btn-danger">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title " id="myModalLabel">Verify Account</h4>
+	      </div>
+	      <div class="modal-body">
+	        <?php echo $this->success;?>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <!-- <button type="button" class="btn btn-primary">Save changes</button>-->
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+	
+<div class="modal fade" id="verifyerror" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header btn-danger">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title " id="myModalLabel">Verify Account</h4>
+	      </div>
+	      <div class="modal-body">
+	        <?php echo $this->error;?>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <!-- <button type="button" class="btn btn-primary">Save changes</button>-->
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+
+<!-- Feedbackify -->	
+<script type="text/javascript">
+var fby = fby || [];
+fby.push(['showTab', {id: '9871', position: 'right', color: '#EB0000'}]);
+
+(function () {
+   var f = document.createElement('script'); f.type = 'text/javascript'; f.async = true;
+   f.src = '//cdn.feedbackify.com/f.js';
+   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(f, s);
+})();
+</script>     

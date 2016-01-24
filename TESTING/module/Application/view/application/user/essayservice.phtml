@@ -1,0 +1,82 @@
+<?php 
+
+use Common\ActionForms\ExplorerForm;
+use Common\Utilities\Constants;
+use Zend\Session\SessionManager;
+use Zend\Session\Container;
+$session = new Container('user');
+
+?>
+
+
+
+<!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper pscontentContainer">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+            <i class="fa fa-file-text-o"></i> Essay Review
+            <!-- <small>Advice from Your UCEazy Counselor</small>-->
+          </h1>
+         <!--  <ol class="breadcrumb">
+            <li><a href="/user/index"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li><a href="/plan/index"><i class="ion ion-gear-b"></i> Essay Service</a></li>
+            <li class="active">Essay Service</li>
+          </ol>-->
+        </section>
+        <section class="content">
+          <div class="row">
+            <div class="col-lg-6 col-lg-offset-3 col-md-12 col-sm-12 col-xs-12 ">
+              <div id="generalPanel" class="box box-default box-solid">
+                <div class="box-header bg-blue ">
+                  <h3 class="box-title">Lead text</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <div class="form-group">
+                    <label for="" class="col-sm-3 control-label">Essay 1</label>
+                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 " >
+                      <textarea class="form-control" rows="4" placeholder="Enter ..."></textarea>
+                    </div>
+                  </div>
+                  <div class="clearfix"></div>
+                  <div class="form-group" style="margin-top:15px;">
+                    <label for="" class="col-sm-3 control-label">Essay 2</label>
+                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 " >
+                      <textarea class="form-control" rows="4" placeholder="Enter ..."></textarea>
+                    </div>
+                  </div>
+                  <div class="clearfix"></div>
+                  <hr />
+                  <div class="form-group" style="margin-top:15px;">
+                    <label for="" class="col-sm-3 control-label">Essay Review Comments</label>
+                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 " >
+                      <textarea class="form-control" rows="4" placeholder="Enter ..."></textarea>
+                    </div>
+                  </div>
+                  <div class="clearfix"></div>
+                  <hr />
+                  <div class="form-group" style="margin-top:15px;">
+                    <label for="" class="col-sm-3 control-label">User Feedback about Essay Review</label>
+                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 " >
+                      <textarea class="form-control" rows="4" placeholder="Enter ..."></textarea>
+                    </div>
+                  </div>
+
+                  <div class="clearfix"></div>
+                  <hr />
+                  <div class="text-center">
+                    <button type="button" id="" value="" class="btn btn-primary" data-complete-text="Save">Buy Essay Review
+                    </button>  
+                    <button type="button" id="" value="" class="btn btn-primary" data-complete-text="Save">Save
+                    </button>  
+                    <button type="button" id="" value="" class="btn btn-danger pull-right" >Submit</button>                   
+                    <button type="button" id="" value="" class="btn btn-danger pull-right" >Send</button>                   
+                    
+                    </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+      </section>
+    </div>

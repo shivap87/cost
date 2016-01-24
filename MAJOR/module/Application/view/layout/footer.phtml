@@ -1,0 +1,356 @@
+
+    <!-- Main Footer -->
+      <footer class="main-footer text-center">
+        <!-- Default to the left -->
+        <div class="copyRight col-lg-3 col-md-12 col-sm-12 col-xs-12">Copyright &copy; 2015 <a href="/">UCEazy</a>. All rights reserved.
+        </div>
+        <div class="text-center col-lg-6 col-md-12 col-sm-12 col-xs-12">
+          This web application is best viewed on desktops and tablets. App for smartphones will be coming soon.
+        </div>
+        <!-- To the right -->
+        
+        <div class="footer-links col-lg-3 col-md-12 col-sm-12 col-xs-12" >
+          <ul>
+            <li><a href="/index/faq" title="FAQ" > FAQ</a></li>
+            <li><a href="/index/terms" title="Terms of Use" > Terms of Use</a></li>
+            <li><a href="/index/privacy" title="Privacy Policy" > Privacy Policy</a></li>
+			
+          </ul>
+       
+        </div>
+        <div class="followUs visible-xs text-center" >
+            Follow us on: 
+              <div  class="fixedBtn"><a href="https://www.facebook.com/askuceazy" class="bg-facebook"  target="_blank"><i class="fa fa-facebook"></i></a></div>
+              <div class="fixedBtn"><a href="https://twitter.com/Uaskuceazy?lang=en" class="bg-twitter" target="_blank"><i class="fa fa-twitter"></i></a></div>
+              <div class="fixedBtn"><a href="https://www.linkedin.com/company/uceazy" class="bg-linkedin" target="_blank"><i class="fa fa-linkedin"></i></a></div>
+              <div class="fixedBtn"><a href="https://instagram.com/uceazy/" class="bg-instagram" target="_blank"><i class="fa fa-instagram"></i></a></div>
+          </div>  
+        <div class="clearfix"></div>
+      </footer>
+
+      <!-- Fixed sidebar -->
+      <div id="fixedSidebar" class="fixedSidebar hidden-xs">
+          <div class="btnContainer">
+            <div  class="fixedBtn"><a href="https://www.facebook.com/askuceazy" class="bg-facebook" target="_blank"><i class="fa fa-facebook"></i></a></div>
+            <div class="fixedBtn"><a href="https://twitter.com/Uaskuceazy?lang=en" class="bg-twitter" target="_blank"><i class="fa fa-twitter"></i></a></div>
+            <div class="fixedBtn"><a href="https://www.linkedin.com/company/uceazy" class="bg-linkedin" target="_blank"><i class="fa fa-linkedin"></i></a></div>
+            <div class="fixedBtn"><a href="https://instagram.com/uceazy/" class="bg-instagram" target="_blank"><i class="fa fa-instagram"></i></a></div>
+          </div>
+          
+      </div>
+      <!-- fixed side bar -->
+
+
+  
+    <!-- REQUIRED JS SCRIPTS -->
+
+    <!-- jQuery 2.1.4 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+    <script>
+
+    // Fallback to loading jQuery from a local path if the CDN is unavailable
+    (window.jQuery || document.write('<script src="plugins/jQuery/jQuery-2.1.4.min.js"><\/script>'));
+    </script>
+    <script src="/dist/js/jquery.ui.touch-punch.min.js"></script>
+    <!-- Bootstrap 3.3.2 JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script>
+    // Fallback to loading jQuery from a local path if the CDN is unavailable
+    ($.fn.modal || document.write('<script src="dist/js/bootstrap.min.js"><\/script>'));
+    </script>
+    
+ 
+    
+  <script>
+   $(window).load(function() {
+
+	   
+    	if($("#verifyid").val()=="1"){
+
+    		 swal({   title: "Success!",   text: "Successfully verified your email. Proceed to Sign In!",   type: "success",   confirmButtonText: "Sign in" },function() { document.location.href='/user/signin' });
+    		  
+        }
+        if ($("#verifyid").val()=="0"){
+        	 swal({   title: "Error!",   text: "Your Email Authorization token is invaild.",   type: "error",   confirmButtonText: "close" });
+       	  
+        }
+
+       
+    });
+    </script>
+
+
+<script>
+   $(window).load(function() {
+
+	   
+    	if($("#unsubscribeid").val()=="1"){
+
+    		 swal({   title: "Success!",   text: "You have now unsubscribed from all communications from UCEazy.  To change your communication preferences, please login!",   type: "success",   confirmButtonText: "Close" });
+    		  
+        }
+        if ($("#unsubscribeid").val()=="0"){
+        	 swal({   title: "Error!",   text: "Oops!  Something happened and we cannot unsubscribe you from UCEazy communications at this time.  Please try again later.",   type: "error",   confirmButtonText: "close" });
+       	  
+        }
+
+       
+    });
+    </script>
+    
+    
+    
+    <!-- Bootstrap css fallback -->
+    <script>
+      (function($) {
+          $(function() {
+              if ($('body').css('color') !== 'rgb(51, 51, 51)') {
+                  $('head').prepend('<link rel="stylesheet" href="dist/css/bootstrap.min.css">');
+              }
+          });
+      })(window.jQuery);
+    </script>
+
+    <!-- Font awesome fallback -->
+    <script>
+        (function($){
+            var $span = $('<span class="fa" style="display:none"></span>').appendTo('body');
+            if ($span.css('fontFamily') !== 'FontAwesome' ) {
+                // Fallback Link
+                $('head').append('<link href="dist/font-awesome-4.3.0/css/font-awesome.min.css" rel="stylesheet">');
+            }
+            $span.remove();
+        })(jQuery);
+    </script>
+
+    <!-- Slimscroll -->
+    <script src="/plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <!-- FastClick -->
+    <script src='/plugins/fastclick/fastclick.min.js'></script>
+    <!-- AdminLTE App -->
+    <script src="/dist/js/app.min.js" type="text/javascript"></script>
+    
+    <!-- Custom Theme JavaScript -->
+    <script>
+
+    // Scrolls to the selected menu item on the page
+    $(function() {
+  
+  $('section').click(function(){
+  
+  if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+ // some code..
+        $('body').removeClass("sidebar-open");
+        }else{
+        
+        $('body').addClass("sidebar-collapse");
+        }
+        
+  //$('body').addClass("sidebar-collapse");
+  });
+  $('.bannerText').click(function(){
+  if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+ // some code..
+        $('body').removeClass("sidebar-open");
+        }else{
+        
+        $('body').addClass("sidebar-collapse");
+        }
+        
+  });
+  
+  
+        $('a[href*=#]:not([href=#])').click(function() {
+            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
+
+                var target = $(this.hash);
+        
+        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+ // some code..
+        $('body').removeClass("sidebar-open");
+        }else{
+        
+        $('body').addClass("sidebar-collapse");
+        }
+        
+                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                if (target.length) {
+                    $('html,body,header').animate({
+                        scrollTop: target.offset().top - '70'
+                    }, 1000);
+                    return false;
+                }
+            }
+        });
+    });
+    </script>
+    <script>
+    $(function() {
+
+      $('#one').click(function(event) {
+        event.preventDefault();
+
+        $("#oneModal").dialog({                   
+            width: 600,
+            modal: true,
+            close: function(event, ui) {
+                $("#oneModal").hide();
+                }
+            });
+        }); //close click
+
+      // sneak submit
+    $("#sneakForm").on("submit", function(e) {   
+      e.preventDefault();
+      var first_name=last_name=email='';
+      first_name=$("#first_name").val();
+      last_name=$("#last_name").val();
+      email=$("#email").val();
+      if(first_name !='' && last_name != '' && email != ''){
+        $.ajax({
+          type: "POST",
+          dataType: "json",
+          url: "process.php", 
+          data: {"flag":"sneak","first_name":first_name,"last_name":last_name,"email":email},
+          success: function(data) {
+            if(data[0]['status']==1){
+              $('#sneakForm')[0].reset(); 
+              $("#sneak_save_status").text("Thank you for your registration");                                  
+            }else{
+              $('#sneakForm')[0].reset(); 
+              $("#sneak_save_status").text("Something went wrong. Please try again");
+            }
+            setTimeout(function(){ $('#myModal').modal('toggle'); }, 10000);            
+          },
+        error: function(e) {
+          //called when there is an error
+          console.log(e.message);
+          }
+        });     
+        
+      }else{
+        $("#myModalLabel").text("please fill all the fields");
+      }       
+    });
+    // subscription form
+    $("#subscribe_form").on("submit", function(e) {   
+      e.preventDefault();
+      var email=$("#subscribe_id").val();
+      if(email!=''){
+
+        $.ajax({
+          type: "POST",
+          dataType: "json",
+          url: "/index/subservice", 
+          data: {"flag":"subscribe","email":email},
+          success: function(data) {
+            if(data['status']==1){
+              $('#subscribe_form')[0].reset();              
+              //$("#subscribe_id").text("");
+              
+              $("#subsuccess").show();
+              setTimeout(function(){ $('#subsuccess').hide(); }, 10000); 
+                                                  
+            }else{
+              $('#subscribe_form')[0].reset();
+              //$("#subscribe_id").text("");
+              $("#subscribe_status").text("Something went wrong. PLease try again");
+            }
+            setTimeout(function(){ $('#subscribe_status').text(""); }, 10000);            
+          },
+        error: function(e) {
+          //called when there is an error
+          console.log(e.message);
+          }
+        }); 
+      }
+    });
+
+
+    //Contact us
+    $("#con_form").on("submit", function(e) {   
+      e.preventDefault();
+
+      var btn = $("#commbutton");
+	  btn.button('loading');
+      
+      var con_name=con_phone=con_email=con_cmts='';
+      con_name=$("#con_name").val();
+      con_phone=$("#con_phone").val();
+      con_email=$("#con_email").val();
+      con_cmts=$("#con_cmts").val();
+      if(con_name !='' && con_phone != '' && con_email != '' && con_cmts!=''){
+        $.ajax({
+          type: "POST",
+          dataType: "json",
+          url: "/index/contactservice", 
+          data: {"flag":"contact_us","name":con_name,"phone":con_phone,"email":con_email,"comments":con_cmts},
+          success: function(data) {
+            if(data['status']==1){           
+              $('#con_form')[0].reset();
+              $("#con_status").show();  
+              setTimeout(function(){ $('#con_status').hide(); }, 10000);                                                       
+            }else{
+              $('#con_form')[0].reset();              
+              $("#con_status").text("Oops!  Looks like something went wrong.  Please try again later.");             
+            }
+            setTimeout(function(){ $('#con_status').text(""); }, 10000);            
+          },
+        error: function(e) {
+          //called when there is an error
+          console.log(e.message);
+          },
+    		complete: function(xhr, textStatus){
+       		 btn.button('reset');
+       		
+       		}
+        });     
+        
+      }     
+    });
+    
+    
+        
+    });
+    </script>
+
+    <!-- Show hide team -->
+    <script type="text/javascript">
+      $(function(){
+         $('.targetDiv').hide();
+         $('#closebtn').hide()
+        $('.showTeam').on('click',function(){
+              $('.targetDiv').hide();
+              $('#closebtn').fadeIn("slow")
+              $('#div'+$(this).attr('target')).fadeIn("slow");
+        });
+
+        $('.showTeam img').on('click',function(){
+          $('.showTeam img').removeClass('active');
+          $(this).addClass('active');
+          return true;
+        });
+
+        $('#closebtn').click(function(){
+              $('.targetDiv').hide();
+            $(this).hide();
+             $('.showTeam img').removeClass('active');
+        });
+    });
+    </script><!-- Modal -->
+    <!-- Google Analytics -->
+   <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-68102741-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+  </body>
+</html>
+
